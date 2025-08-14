@@ -3,7 +3,6 @@ import { Badge } from "@/components/shadcn/ui/badge";
 import Balancer from "react-wrap-balancer";
 import { formatInTimeZone } from "date-fns-tz";
 import { Event } from "db/types";
-import { headers } from "next/headers";
 import { getClientTimeZone } from "@/lib/utils/client/shared";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 export default function EventFull({ event }: { event: Event }) {
