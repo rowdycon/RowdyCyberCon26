@@ -10,35 +10,50 @@ import {
 	ProfileInfo,
 } from "@/components/admin/users/ServerSections";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator
+	DropdownMenu,
+	DropdownMenuTrigger,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
 } from "@/components/shadcn/ui/dropdown-menu";
 import { auth } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
-import { isUserAdmin } from "@/lib/utils/server/admin";
+import { userHasPermission } from "@/lib/utils/server/admin";
 import ApproveUserButton from "@/components/admin/users/ApproveUserButton";
 import c from "config";
 import { getHacker, getUser } from "db/functions";
+import BanUserDialog from "@/components/admin/users/BanUserDialog";
+import { db, eq } from "db";
+import { bannedUsers } from "db/schema";
+import RemoveUserBanDialog from "@/components/admin/users/RemoveUserBanDialog";
+import { PermissionType } from "@/lib/constants/permission";
+import Restricted from "@/components/Restricted";
+import { getCurrentUser } from "@/lib/utils/server/user";
 
 export default async function Page({ params }: { params: { slug: string } }) {
-	const { userId } = await auth();
+	const admin = await getCurrentUser();
+	if (!userHasPermission(admin, PermissionType.VIEW_USERS)) return notFound();
 
-	if (!userId) return notFound();
+	const subject = await getHacker(params.slug);
 
-	const admin = await getUser(userId);
-	if (!admin || !isUserAdmin(admin)) return notFound();
-
-	const user = await getHacker(params.slug);
-
-	if (!user) {
+	if (!subject) {
 		return <p className="text-center font-bold">User Not Found</p>;
 	}
 
+	const banInstance = await db.query.bannedUsers.findFirst({
+		where: eq(bannedUsers.userID, subject.clerkID),
+	});
+
 	return (
 		<main className="mx-auto max-w-5xl pt-44">
+			{!!banInstance && (
+				<div className="absolute left-0 top-28 w-screen bg-destructive p-2 text-center">
+					<strong>
+						This user has been suspended, reason for suspension:{" "}
+					</strong>
+					{banInstance.reason}
+				</div>
+			)}
 			<div className="mb-5 grid w-full grid-cols-3">
 				<div className="flex items-center">
 					<div>
@@ -49,65 +64,100 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						{/* <p className="text-sm text-muted-foreground">{users.length} Total Users</p> */}
 					</div>
 				</div>
-				<div className="col-span-2 hidden md:flex items-center justify-end gap-2 ">
-					<Link href={`/@${user.hackerTag}`} target="_blank">
+				<div className="col-span-2 hidden items-center justify-end gap-2 md:flex">
+					<Link href={`/@${subject.hackerTag}`} target="_blank">
 						<Button variant={"outline"}>Hacker Profile</Button>
 					</Link>
 
-					<Link href={`mailto:${user.email}`}>
+					<Link href={`mailto:${subject.email}`}>
 						<Button variant={"outline"}>Email Hacker</Button>
 					</Link>
 
-					<UpdateRoleDialog
-						name={`${user.firstName} ${user.lastName}`}
-						canMakeAdmins={admin.role === "super_admin"}
-						currPermision={user.role}
-						userID={user.clerkID}
-					/>
+					<Restricted
+						user={admin}
+						permissions={PermissionType.CHANGE_USER_ROLES}
+						targetRolePosition={subject.role.position}
+						position="higher"
+					>
+						<UpdateRoleDialog
+							name={`${subject.firstName} ${subject.lastName}`}
+							currentRoleId={subject.role_id}
+							userID={subject.clerkID}
+						/>
+					</Restricted>
+
+					<Restricted
+						user={admin}
+						permissions={PermissionType.BAN_USERS}
+						targetRolePosition={subject.role.position}
+						position="higher"
+					>
+						{!!banInstance ? (
+							<RemoveUserBanDialog
+								name={`${subject.firstName} ${subject.lastName}`}
+								reason={banInstance.reason!}
+								userID={subject.clerkID}
+							/>
+						) : (
+							<BanUserDialog
+								name={`${subject.firstName} ${subject.lastName}`}
+								userID={subject.clerkID}
+							/>
+						)}
+					</Restricted>
+
 					{(c.featureFlags.core.requireUsersApproval as boolean) && (
 						<ApproveUserButton
-							userIDToUpdate={user.clerkID}
-							currentApproval={user.isApproved}
+							userIDToUpdate={subject.clerkID}
+							currentApproval={subject.isApproved}
 						/>
 					)}
 				</div>
-				<div className="col-span-2 flex md:hidden items-center justify-end pr-4">
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-					<Button variant={"outline"} >
-						Admin Actions
-					</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end" className="min-w-[160px]">
-					<DropdownMenuItem className="justify-center">
-						<Link href={`/@${user.hackerTag}`} target="_blank">
-						<Button variant={"outline"}>Hacker Profile</Button>
-						</Link>
-					</DropdownMenuItem>
-					<DropdownMenuSeparator />
-					<DropdownMenuItem className="justify-center">
-						<Link href={`mailto:${user.email}`}>
-						<Button variant={"outline"}>Email Hacker</Button>
-						</Link>
-					</DropdownMenuItem>
-					<DropdownMenuSeparator />
-					<div className="px-2 py-1.5 text-sm text-center hover:bg-accent rounded-sm cursor-pointer">
-						<UpdateRoleDialog
-						name={`${user.firstName} ${user.lastName}`}
-						canMakeAdmins={admin.role === "super_admin"}
-						currPermision={user.role}
-						userID={user.clerkID}
-						/>
-					</div>
+				<div className="col-span-2 flex items-center justify-end pr-4 md:hidden">
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button variant={"outline"}>Admin Actions</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent
+							align="end"
+							className="min-w-[160px]"
+						>
+							<DropdownMenuItem className="justify-center">
+								<Link
+									href={`/@${subject.hackerTag}`}
+									target="_blank"
+								>
+									<Button variant={"outline"}>
+										Hacker Profile
+									</Button>
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem className="justify-center">
+								<Link href={`mailto:${subject.email}`}>
+									<Button variant={"outline"}>
+										Email Hacker
+									</Button>
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuSeparator />
+							<div className="cursor-pointer rounded-sm px-2 py-1.5 text-center text-sm hover:bg-accent">
+								<UpdateRoleDialog
+									name={`${subject.firstName} ${subject.lastName}`}
+									currentRoleId={subject.role_id}
+									userID={subject.clerkID}
+								/>
+							</div>
 
-					{(c.featureFlags.core.requireUsersApproval as boolean) && (
-						<ApproveUserButton
-							userIDToUpdate={user.clerkID}
-							currentApproval={user.isApproved}
-						/>
-					)}
-					</DropdownMenuContent>
-				</DropdownMenu>
+							{(c.featureFlags.core
+								.requireUsersApproval as boolean) && (
+								<ApproveUserButton
+									userIDToUpdate={subject.clerkID}
+									currentApproval={subject.isApproved}
+								/>
+							)}
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 			</div>
 			<div className="mt-20 grid min-h-[500px] w-full grid-cols-3">
@@ -116,27 +166,27 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						<Image
 							className="object-cover object-center"
 							fill
-							src={user.profilePhoto}
-							alt={`Profile Photo for ${user.firstName} ${user.lastName}`}
+							src={subject.profilePhoto}
+							alt={`Profile Photo for ${subject.firstName} ${subject.lastName}`}
 						/>
 					</div>
 					<h1 className="mt-4 text-3xl font-semibold">
-						{user.firstName} {user.lastName}
+						{subject.firstName} {subject.lastName}
 					</h1>
 					<h2 className="font-mono text-muted-foreground">
-						@{user.hackerTag}
+						@{subject.hackerTag}
 					</h2>
 					{/* <p className="mt-5 text-sm">{team.bio}</p> */}
 					<div className="mt-5 flex gap-x-2">
 						<Badge className="no-select">
 							Joined{" "}
-							{user.signupTime
+							{subject.signupTime
 								.toDateString()
 								.split(" ")
 								.slice(1)
 								.join(" ")}
 						</Badge>
-						{user.isRSVPed && (
+						{subject.isRSVPed && (
 							<Badge className="no-select bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-padding text-center hover:from-teal-500 hover:to-blue-600">
 								<CalendarCheck className="mr-1 h-3 w-3" />
 								RSVP
@@ -145,9 +195,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					</div>
 				</div>
 				<div className="col-span-2 overflow-x-hidden">
-					<PersonalInfo user={user} />
-					<ProfileInfo user={user} />
-					<AccountInfo user={user} />
+					<PersonalInfo user={subject} />
+					<ProfileInfo user={subject} />
+					<AccountInfo user={subject} />
 				</div>
 			</div>
 		</main>
