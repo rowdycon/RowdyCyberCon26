@@ -52,7 +52,7 @@ export default function HeroClient({
 	const [bootSequence, setBootSequence] = useState(true);
 	const [bootText, setBootText] = useState<string[]>([]);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const animationRef = useRef<number>(null);
+	const animationRef = useRef<number>(0);
 	const lastTimeRef = useRef<number>(0);
 
 	// Boot sequence
