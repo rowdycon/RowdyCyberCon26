@@ -154,7 +154,7 @@ function UserDropDownActions({ row }: { row: Row<userValidatorType> }) {
 					<MoreHorizontal size={20} />
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end">
+			<DropdownMenuContent align="end" className="bg-[#c0c0c0]">
 				<DropdownMenuItem>
 					<Link href={`/admin/users/${user.clerkID}`}>View User</Link>
 				</DropdownMenuItem>

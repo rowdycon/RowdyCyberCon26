@@ -1,4 +1,4 @@
-const defaultTheme = "dark";
+const defaultTheme = "light";
 
 const schoolOptions = [
 	"The University of Texas at San Antonio",
@@ -806,9 +806,9 @@ const softwareExperienceOptions = [
 ] as const;
 
 const c = {
-	hackathonName: "HackKit",
-	itteration: "I",
-	siteUrl: "https://rowdyhacks.org", // Do not have a trailing slash
+	hackathonName: "Rowdy CyberCon",
+	itteration: "III",
+	siteUrl: "https://rowdycybercon.org", // Do not have a trailing slash
 	defaultMetaDataDescription: "Your Metadata Description Here",
 	rsvpDefaultLimit: 500,
 	botName: "HackKit",
@@ -885,20 +885,20 @@ const c = {
 			discordRole: "Guild E Role",
 		},
 	},
-	issueEmail: "team@rowdyhacks.org",
+	issueEmail: "utsarowdycon@gmail.com",
 	links: {
-		discord: "https://go.rowdyhacks.org/discord",
-		instagram: "https://instagram.com/rowdyhacks",
-		facebook: "https://facebook.com/rowdyhacks",
-		twitter: "https://twitter.com/rowdyhacks",
-		github: "https://github.com/acmutsa",
-		guide: "https://go.rowdyhacks.org/discord",
+		discord: "https://discord.gg/DDhMg6pXXF",
+		instagram: "https://www.instagram.com/rowdycybercon/",
+		// facebook: "https://facebook.com/rowdyhacks",
+		// twitter: "https://twitter.com/rowdyhacks",
+		github: "https://github.com/rowdycon",
+		guide: "https://rowdycon.notion.site/Guide-56f8318aeea7461bac459ae3fbc02273",
 	},
 	icon: {
-		sm: "/img/logo/hackkit.svg",
-		md: "/img/logo/hackkit-md.png",
-		lg: "/img/logo/hackkit-lg.png",
-		svg: "/img/logo/hackkit.svg",
+		sm: "/img/logo/rowdyconlogo.png",
+		md: "/img/logo/rowdyconlogo.png",
+		lg: "/img/logo/rowdyconlogo.png",
+		svg: "/img/logo/rowdyconlogo.png",
 	},
 	dashPaths: {
 		dash: {
@@ -925,9 +925,9 @@ const c = {
 		Other: "#795548",
 	},
 	days: {
-		Saturday: new Date(2023, 6, 15),
+		Saturday: new Date(2026, 3, 11),
 	},
-	Sunday: new Date(2023, 6, 16),
+	Sunday: new Date(2026, 3, 12),
 	maxResumeSizeInBytes: 4194304,
 	maxProfilePhotoSizeInBytes: 3145728,
 	maxFileSizeInBytes: 4194304,
@@ -935,8 +935,8 @@ const c = {
 	noResumeProvidedURL:
 		"https://static.acmutsa.org/No%20Resume%20Provided.pdf",
 	// Come in and change this date to whenever the hackathon starts
-	startDate: new Date(new Date(2024, 1, 24).setHours(9)),
-	prettyLocation: "Location of Hackathon",
+	startDate: new Date(new Date(2026, 3, 11).setHours(9)),
+	prettyLocation: "San Pedro I",
 	roleBadges: {
 		hacker: {
 			title: "Hacker",

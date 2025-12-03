@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 export default function CreatedWithHackkit() {
 	return (
 		<div className="flex items-center gap-x-2 rounded-lg border-black bg-[#222222] py-[6px] pl-[7px] pr-4">

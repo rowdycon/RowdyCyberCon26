@@ -2,9 +2,6 @@
 DROP TABLE IF EXISTS `invites`;
 DROP TABLE IF EXISTS `teams`;
 
--- Remove the old column from user_hacker_data (SQLite ≥ 3.35 supports DROP COLUMN)
-ALTER TABLE `user_hacker_data` DROP COLUMN `team_id`;
-
 -- Create the final banned_users table in its desired shape
 CREATE TABLE `banned_users` (
   `id`          INTEGER PRIMARY KEY NOT NULL,

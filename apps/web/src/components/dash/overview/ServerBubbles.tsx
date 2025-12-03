@@ -17,10 +17,10 @@ export function Questions() {
 			</div>
 			<div className="flex items-end gap-2">
 				<Link href={c.links.discord}>
-					<Button className="border-hackathon">Discord</Button>
+					<Button variant={"default"}>Discord</Button>
 				</Link>
 				<Link href={`mailto:${c.issueEmail}`}>
-					<Button className="border-hackathon">Email</Button>
+					<Button variant={"destructive"}>Email</Button>
 				</Link>
 			</div>
 		</div>
@@ -32,10 +32,10 @@ export function TitleBubble() {
 		<div className="relative col-span-1 !col-start-1 !row-start-1 aspect-video h-full w-full overflow-hidden rounded-xl border border-hackathon p-5 sm:col-span-2 sm:row-span-2 lg:!col-start-auto lg:!row-start-auto lg:aspect-auto">
 			<GradientHero />
 			<div className="relative z-20 flex h-full w-full flex-col items-center justify-center gap-y-2 rounded-xl">
-				<h1 className="text-7xl font-black text-white">
+				<h1 className="text-7xl font-black text-black">
 					{c.hackathonName}
 				</h1>
-				<h2 className="text-center font-mono text-xs text-white sm:text-sm">
+				<h2 className="text-center font-mono text-xs text-black sm:text-sm">
 					{`${format(c.startDate, "h:mma, MMM d, yyyy")}`} @{" "}
 					{c.prettyLocation}
 				</h2>
@@ -54,8 +54,8 @@ export function QuickQR({ qrPayload }: { qrPayload: string }) {
 			<div className="flex aspect-square h-[50%] items-center justify-center overflow-x-hidden rounded-xl border-2 border-dashed border-muted p-2">
 				<QRCode
 					className="h-full"
-					bgColor="hsl(var(--background))"
-					fgColor="hsl(var(--primary))"
+					bgColor="#C0C0C0"
+					fgColor="#000080"
 					value={qrPayload}
 				/>
 			</div>

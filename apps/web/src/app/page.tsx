@@ -4,7 +4,6 @@ import About from "@/components/landing/About";
 
 import Partners from "@/components/landing/Partners";
 import Footer from "@/components/landing/Footer";
-import MLHBadge from "@/components/landing/MLHBadge";
 
 import { Oswald } from "next/font/google";
 import WorkWithUs from "@/components/landing/WorkWithUs";
@@ -16,12 +15,14 @@ const oswald = Oswald({
 
 export default function Home() {
 	return (
-		<div className={`${oswald.variable} w-full overflow-x-hidden`}>
+		<div
+			className={`${oswald.variable} relative min-h-screen w-full overflow-x-hidden`}
+		>
 			<Navbar />
-			<MLHBadge />
-			<main className="overflow-x-hidden">
-				<Hero />
+			<div className="win98-bg fixed inset-0 -z-10" />
 
+			<main className="relative z-10 overflow-x-hidden">
+				<Hero />
 				<About />
 				<Partners />
 				<WorkWithUs />

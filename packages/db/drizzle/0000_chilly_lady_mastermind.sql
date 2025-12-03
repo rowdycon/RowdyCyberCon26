@@ -67,7 +67,6 @@ CREATE TABLE `files` (
 CREATE UNIQUE INDEX `files_id_unique` ON `files` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `files_key_unique` ON `files` (`key`);--> statement-breakpoint
 
---> statement-breakpoint
 CREATE TABLE `scans` (
 	`updated_at` integer DEFAULT (current_timestamp) NOT NULL,
 	`user_id` text(255) NOT NULL,

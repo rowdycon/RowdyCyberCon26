@@ -63,7 +63,7 @@ export function RegistrationToggles({
 					<div className="flex items-center border-y border-y-muted py-4">
 						<p className="text-sm font-bold">New Registrations</p>
 						<Switch
-							className="ml-auto"
+							className="ml-auto bg-[#c0c0c0]"
 							checked={
 								ToggleRegistrationEnabledOptimisticData.statusSet
 							}

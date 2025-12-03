@@ -1,29 +1,130 @@
-import Balancer from "react-wrap-balancer";
-import Image from "next/image";
-import D1 from "../../../public/img/landing/d1.svg";
-import D2 from "../../../public/img/landing/d2.svg";
-import D3 from "../../../public/img/landing/d3.svg";
-import D4 from "../../../public/img/landing/d4.svg";
-import Dino_Coding from "../../../public/img/landing/dinos_coding.png";
+import Link from "next/link";
+
 export default function About() {
-	const d1_stylesheet = {
-		width: "25rem",
-		height: "auto",
-		sm: "width: 30rem",
-	};
 	return (
-		<section
-			className="flex min-h-screen w-full items-center justify-center border-y-2 border-muted-foreground"
-			id="About"
-		>
-			<div className="flex w-full flex-col items-center justify-center">
-				<h1 className="text-center text-4xl font-black md:text-5xl">
-					About Section
-				</h1>
-				<h3 className="px-4 text-center text-lg font-bold md:px-0 md:text-2xl">
-					Introduce the hackathon and its purpose! Make it sound
-					enticing
-				</h3>
+		<section className="w-full py-8" id="About">
+			{/* Who are we section */}
+			<div className="mx-auto max-w-6xl px-4">
+				<div className="win98-window mb-8 bg-[#C0C0C0]">
+					<div className="win98-titlebar">
+						<span>About RowdyCon</span>
+						<div className="flex">
+							<button className="win98-titlebar-btn">_</button>
+							<button className="win98-titlebar-btn">□</button>
+							<button className="win98-titlebar-btn">×</button>
+						</div>
+					</div>
+					<div className="p-4">
+						<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+							<div>
+								<h2 className="mb-2 text-2xl font-bold text-[#000080]">
+									Who are we?
+								</h2>
+							</div>
+							<div className="win98-inset p-4">
+								<p className="text-sm">
+									RowdyCon is a one-day cybersecurity
+									conference where San Antonio area based
+									students can learn{" "}
+									<strong>
+										new skills, participate in challenges,
+										and network
+									</strong>
+									! You'll also have the opportunity to attend
+									a plethora of different{" "}
+									<strong>
+										workshops and meet employers
+									</strong>
+									. We welcome all students no matter what
+									major or skill level, so go ahead and
+									register today to secure your spot!
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* Volunteering section */}
+				{/* <div className="win98-window mb-8 bg-[#C0C0C0]">
+					<div className="win98-titlebar">
+						<span>Volunteer Opportunities</span>
+						<div className="flex">
+							<button className="win98-titlebar-btn">_</button>
+							<button className="win98-titlebar-btn">□</button>
+							<button className="win98-titlebar-btn">×</button>
+						</div>
+					</div>
+					<div className="p-4">
+						<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+							<div>
+								<h2 className="mb-2 text-2xl font-bold text-[#000080]">
+									Interested in Volunteering?
+								</h2>
+							</div>
+							<div className="win98-inset p-4">
+								<p className="mb-4 text-sm">
+									We have plenty of things to do the day of
+									RowdyCon and we'd love your help if you're
+									able to give it! Sign up below!
+								</p>
+								<div className="flex justify-center">
+									<Link
+										href={
+											"https://forms.gle/G8t8UQxiQLGbFLVE9"
+										}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<button className="win98-btn">
+											Volunteer Form
+										</button>
+									</Link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> */}
+
+				{/* Partnering section */}
+				<div className="win98-window bg-[#C0C0C0]">
+					<div className="win98-titlebar">
+						<span>Partnership Information</span>
+						<div className="flex">
+							<button className="win98-titlebar-btn">_</button>
+							<button className="win98-titlebar-btn">□</button>
+							<button className="win98-titlebar-btn">×</button>
+						</div>
+					</div>
+					<div className="p-4">
+						<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+							<div>
+								<h2 className="mb-2 text-2xl font-bold text-[#000080]">
+									Interested in Partnering?
+								</h2>
+							</div>
+							<div className="win98-inset p-4">
+								<p className="mb-4 text-sm">
+									RowdyCon is very grateful for the amazing
+									support of our partners. If you or your
+									organization are interested in becoming a
+									partner, click the link below to explore our
+									Partner Packet for more information.
+								</p>
+								<div className="flex justify-center">
+									<Link
+										href={"https://tally.so/r/WOOr1Q"}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<button className="win98-btn">
+											Partner Form
+										</button>
+									</Link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	);

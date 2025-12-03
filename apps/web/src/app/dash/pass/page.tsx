@@ -113,8 +113,8 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 							<div className="flex aspect-square h-[90%] items-center justify-center overflow-x-hidden rounded-xl border-2 border-dashed border-muted p-2">
 								<QRCode
 									className="h-full"
-									bgColor="hsl(var(--background))"
-									fgColor="hsl(var(--primary))"
+									bgColor="#C0C0C0"
+									fgColor="#000080"
 									value={qrPayload}
 								/>
 							</div>
@@ -122,8 +122,8 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 						<DrawerContent className="flex h-[90%] w-full items-center justify-center focus-visible:outline-none">
 							<QRCode
 								className="h-full"
-								bgColor="hsl(var(--background))"
-								fgColor="hsl(var(--primary))"
+								bgColor="#C0C0C0"
+								fgColor="#000080"
 								value={qrPayload}
 							/>
 						</DrawerContent>

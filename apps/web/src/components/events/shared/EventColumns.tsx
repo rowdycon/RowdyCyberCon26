@@ -132,7 +132,10 @@ export const columns: ColumnDef<EventRow>[] = [
 								<MoreHorizontal className="h-4 w-4" />
 							</Button>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent align="end">
+						<DropdownMenuContent
+							align="end"
+							className="bg-[#c0c0c0]"
+						>
 							<DropdownMenuItem
 								asChild
 								className="h-full w-full cursor-pointer"
