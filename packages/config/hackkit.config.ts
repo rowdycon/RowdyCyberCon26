@@ -807,7 +807,7 @@ const softwareExperienceOptions = [
 
 const c = {
 	hackathonName: "Rowdy CyberCon",
-	itteration: "III",
+	itteration: "II",
 	siteUrl: "https://rowdycybercon.org", // Do not have a trailing slash
 	defaultMetaDataDescription: "Your Metadata Description Here",
 	rsvpDefaultLimit: 500,
