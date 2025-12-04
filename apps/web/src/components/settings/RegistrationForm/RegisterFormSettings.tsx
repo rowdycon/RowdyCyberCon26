@@ -264,7 +264,7 @@ export default function RegisterFormSettings({
 													<SelectValue placeholder="Select a Gender" />
 												</SelectTrigger>
 											</FormControl>
-											<SelectContent>
+											<SelectContent className="bg-[#c0c0c0]">
 												<SelectGroup>
 													<SelectItem value="MALE">
 														Male
@@ -463,34 +463,6 @@ export default function RegisterFormSettings({
 								)}
 							/>
 						</div>
-					</FormGroupWrapper>
-					<FormGroupWrapper title="MLH">
-						<FormField
-							control={form.control}
-							name="isEmailable"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-									<FormControl>
-										<Checkbox
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<div className="space-y-1 leading-none">
-										<FormLabel>
-											I authorize MLH to send me an email
-											where I can further opt into the MLH
-											Hacker, Events, or Organizer
-											Newsletters and other communications
-											from MLH.
-										</FormLabel>
-										<FormDescription>
-											This is optional.
-										</FormDescription>
-									</div>
-								</FormItem>
-							)}
-						/>
 					</FormGroupWrapper>
 					<FormGroupWrapper title="University Info">
 						<div
@@ -741,44 +713,6 @@ export default function RegisterFormSettings({
 										<FormControl>
 											<Input type="number" {...field} />
 										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="softwareBuildingExperience"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>
-											Software Building Experience
-										</FormLabel>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger className="w-full placeholder:text-muted-foreground">
-													<SelectValue placeholder="Experience Level" />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												<SelectGroup>
-													<SelectItem value="Beginner">
-														Beginner
-													</SelectItem>
-													<SelectItem value="Intermediate">
-														Intermediate
-													</SelectItem>
-													<SelectItem value="Advanced">
-														Advanced
-													</SelectItem>
-													<SelectItem value="Expert">
-														Expert
-													</SelectItem>
-												</SelectGroup>
-											</SelectContent>
-										</Select>
 										<FormMessage />
 									</FormItem>
 								)}
