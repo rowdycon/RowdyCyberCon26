@@ -22,7 +22,6 @@ import { Button } from "@/components/shadcn/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormGroupWrapper from "./FormGroupWrapper";
 import { Checkbox } from "@/components/shadcn/ui/checkbox";
-import Link from "next/link";
 import c from "config";
 import {
 	Command,
@@ -63,7 +62,6 @@ import { useAction } from "next-safe-action/hooks";
 import type {
 	GenderOptionsType,
 	HeardFromOptionsType,
-	SoftwareExperienceOptionsType,
 	ShirtSizeOptionsType,
 	RaceOptionsType,
 	EthnicityOptionsType,
@@ -101,8 +99,6 @@ export default function RegisterForm({
 			isSearchable: false,
 			bio: "",
 			isEmailable: false,
-			hasAcceptedMLHCoC: false,
-			hasSharedDataWithMLH: false,
 			accommodationNote: "",
 			firstName: "",
 			lastName: "",
@@ -124,7 +120,6 @@ export default function RegisterForm({
 			university: "" as SchoolOptionsType,
 			phoneNumber: "",
 			countryOfResidence: "",
-			softwareExperience: "" as SoftwareExperienceOptionsType,
 			email: defaultEmail,
 			skills: [],
 		},
@@ -149,7 +144,6 @@ export default function RegisterForm({
 						university,
 						dietRestrictions,
 						heardFrom,
-						softwareExperience,
 						levelOfStudy,
 						race,
 						skills,
@@ -167,8 +161,6 @@ export default function RegisterForm({
 						skills: skills as Tag[],
 						major: major as MajorOptionsType,
 						levelOfStudy: levelOfStudy as LevelOfStudyOptionsType,
-						softwareExperience:
-							softwareExperience as SoftwareExperienceOptionsType,
 						heardFrom: heardFrom as HeardFromOptionsType,
 						dietRestrictions:
 							dietRestrictions as (typeof c.registration.dietaryRestrictionOptions)[number][],
@@ -527,7 +519,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent>
+													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup>
 															{c.registration.genderOptions.map(
 																(option) => (
@@ -587,7 +579,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="">
+													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup className="max-h-[400px] w-[var(--radix-select-trigger-width)] overflow-y-scroll">
 															{c.registration.raceOptions.map(
 																(option) => (
@@ -647,7 +639,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent>
+													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup>
 															{c.registration.ethnicityOptions.map(
 																(option) => (
@@ -712,7 +704,7 @@ export default function RegisterForm({
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
-													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto p-0">
+													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto bg-[#c0c0c0] p-0">
 														<Command>
 															<CommandInput placeholder="Search countries..." />
 															<CommandList>
@@ -779,115 +771,7 @@ export default function RegisterForm({
 									/>
 								</div>
 							</FormGroupWrapper>
-							<FormGroupWrapper title="MLH">
-								<FormField
-									control={form.control}
-									name="hasAcceptedMLHCoC"
-									render={({ field }) => (
-										<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-											<FormControl>
-												<Checkbox
-													checked={field.value}
-													onCheckedChange={
-														field.onChange
-													}
-												/>
-											</FormControl>
-											<div className="space-y-1 leading-none">
-												<FormLabel>
-													I accept the{" "}
-													<Link
-														target="_blank"
-														className="underline"
-														href={
-															"https://mlh.io/code-of-conduct"
-														}
-													>
-														MLH Code of Conduct
-													</Link>
-													{" *"}
-												</FormLabel>
-											</div>
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="hasSharedDataWithMLH"
-									render={({ field }) => (
-										<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-											<FormControl>
-												<Checkbox
-													checked={field.value}
-													onCheckedChange={
-														field.onChange
-													}
-												/>
-											</FormControl>
-											<div className="space-y-1 leading-none">
-												<FormLabel>
-													I authorize you to share my
-													application/registration
-													information with Major
-													League Hacking for event
-													administration, ranking, and
-													MLH administration in-line
-													with the MLH Privacy Policy.
-													I further agree to the terms
-													of both the{" "}
-													<Link
-														target="_blank"
-														className="underline"
-														href={
-															"https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
-														}
-													>
-														MLH Contest Terms and
-														Conditions
-													</Link>{" "}
-													and the{" "}
-													<Link
-														target="_blank"
-														className="underline"
-														href={
-															"https://mlh.io/privacy"
-														}
-													>
-														MLH Privacy Policy
-													</Link>
-													. *
-												</FormLabel>
-											</div>
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="isEmailable"
-									render={({ field }) => (
-										<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-											<FormControl>
-												<Checkbox
-													checked={field.value}
-													onCheckedChange={
-														field.onChange
-													}
-												/>
-											</FormControl>
-											<div className="space-y-1 leading-none">
-												<FormLabel>
-													I authorize MLH to send me
-													an email where I can further
-													opt into the MLH Hacker,
-													Events, or Organizer
-													Newsletters and other
-													communications from MLH.
-												</FormLabel>
-											</div>
-										</FormItem>
-									)}
-								/>
-							</FormGroupWrapper>
+
 							<FormGroupWrapper title="University Info">
 								<div
 									className={`grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-4 lg:grid-cols-6`}
@@ -935,7 +819,7 @@ export default function RegisterForm({
 														</PopoverTrigger>
 													</FormControl>
 													<PopoverContent
-														className="no-scrollbar max-h-[400px] w-[--radix-popover-trigger-width] overflow-y-auto p-0"
+														className="no-scrollbar max-h-[400px] w-[--radix-popover-trigger-width] overflow-y-auto bg-[#c0c0c0] p-0"
 														onFocusOutside={() =>
 															console.log(
 																"closing",
@@ -1074,7 +958,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent>
+													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup className="max-h-[400px] w-[calc(var(--radix-select-trigger-width)+10rem)] overflow-y-scroll">
 															{c.registration.levelsOfStudy.map(
 																(level) => (
@@ -1142,7 +1026,7 @@ export default function RegisterForm({
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
-													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto p-0">
+													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto bg-[#c0c0c0] p-0">
 														<Command>
 															<CommandInput placeholder="Search major..." />
 															<CommandList className="">
@@ -1225,66 +1109,7 @@ export default function RegisterForm({
 											</FormItem>
 										)}
 									/>
-									<FormField
-										control={form.control}
-										name="softwareExperience"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>
-													{formatRegistrationField(
-														"Coding Experience",
-														hackerRegistrationFormValidator.shape[
-															field.name
-														].isOptional(),
-													)}
-												</FormLabel>
-												<Select
-													onValueChange={
-														field.onChange
-													}
-													defaultValue={field.value}
-												>
-													<FormControl>
-														<SelectTrigger className="placeholder:text-muted-foreground">
-															<div
-																className={clsx(
-																	"flex w-[95%] justify-start",
-																	{
-																		"text-muted-foreground":
-																			!field.value,
-																	},
-																)}
-															>
-																<p className="overflow-hidden text-ellipsis whitespace-nowrap">
-																	{field.value ||
-																		`Select an Option`}
-																</p>
-															</div>
-														</SelectTrigger>
-													</FormControl>
-													<SelectContent>
-														<SelectGroup className="max-h-[400px] w-[var(--radix-select-trigger-width)]">
-															{c.registration.softwareExperienceOptions.map(
-																(option) => (
-																	<SelectItem
-																		value={
-																			option
-																		}
-																		key={
-																			option
-																		}
-																	>
-																		{option}
-																	</SelectItem>
-																),
-															)}
-														</SelectGroup>
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
+
 									<FormField
 										control={form.control}
 										name="heardFrom"
@@ -1322,7 +1147,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent>
+													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup className="max-h-[400px] w-[var(--radix-select-trigger-width)]">
 															{c.registration.heardFromOptions.map(
 																(option) => (
@@ -1386,7 +1211,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent>
+													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup>
 															{c.registration.shirtSizeOptions.map(
 																(option) => (
@@ -1648,7 +1473,7 @@ export default function RegisterForm({
 														uploadedFile
 															? ""
 															: "cursor-pointer"
-													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white`}
+													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white bg-[#c0c0c0]`}
 												>
 													<input
 														type="file"

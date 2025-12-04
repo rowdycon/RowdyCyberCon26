@@ -73,7 +73,6 @@ export const modifyRegistrationData = authenticatedAction
 						levelOfStudy,
 						schoolID,
 						hackathonsAttended,
-						softwareExperience: softwareBuildingExperience,
 						heardFrom: heardAboutEvent,
 						GitHub: github,
 						LinkedIn: linkedin,

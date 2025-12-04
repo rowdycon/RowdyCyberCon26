@@ -83,7 +83,6 @@ export default function RegisterFormSettings({
 			race: user.race as any,
 			shirtSize: user.shirtSize as any,
 			schoolID: originalData.schoolID,
-			softwareBuildingExperience: originalData.softwareExperience as any,
 			university: originalData.university,
 			phoneNumber: user.phoneNumber,
 			countryOfResidence: user.countryOfResidence,

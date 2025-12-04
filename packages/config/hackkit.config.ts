@@ -798,13 +798,6 @@ const heardFromOptions = [
 
 const shirtSizeOptions = ["S", "M", "L", "XL", "2XL", "3XL"] as const;
 
-const softwareExperienceOptions = [
-	"Beginner",
-	"Intermediate",
-	"Advanced",
-	"Expert",
-] as const;
-
 const c = {
 	hackathonName: "Rowdy CyberCon",
 	itteration: "II",
@@ -828,7 +821,6 @@ const c = {
 		ethnicityOptions,
 		heardFromOptions,
 		shirtSizeOptions,
-		softwareExperienceOptions,
 		minRequiredAge: 18,
 		hackerTagRegex: /^[a-zA-Z0-9]+$/,
 		universityShortIDRegex: new RegExp("\\b[a-zA-Z]{3}\\d{3}\\b"),

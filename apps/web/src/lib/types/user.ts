@@ -8,8 +8,6 @@ export type MajorOptionsType = (typeof c.registration.majors)[number];
 export type LevelOfStudyOptionsType =
 	(typeof c.registration.levelsOfStudy)[number];
 export type SchoolOptionsType = (typeof c.registration.schools)[number];
-export type SoftwareExperienceOptionsType =
-	(typeof c.registration.softwareExperienceOptions)[number];
 export type ShirtSizeOptionsType =
 	(typeof c.registration.shirtSizeOptions)[number];
 export type HeardFromOptionsType =

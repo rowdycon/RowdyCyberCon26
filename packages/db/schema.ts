@@ -197,9 +197,6 @@ export const userHackerData = sqliteTable("user_hacker_data", {
 	schoolID: text("school_id", { length: 50 }).notNull(),
 	levelOfStudy: text("level_of_study", { length: 50 }).notNull(),
 	hackathonsAttended: integer("hackathons_attended").notNull(),
-	softwareExperience: text("software_experience", {
-		length: 25,
-	}).notNull(),
 	heardFrom: text("heard_from", { length: 50 }),
 	GitHub: text("github", { length: 100 }),
 	LinkedIn: text("linkedin", { length: 100 }),
@@ -210,12 +207,6 @@ export const userHackerData = sqliteTable("user_hacker_data", {
 
 	// metadata
 	group: integer("group").notNull(),
-	hasAcceptedMLHCoC: integer("has_accepted_mlh_coc", {
-		mode: "boolean",
-	}).notNull(),
-	hasSharedDataWithMLH: integer("has_shared_data_with_mlh", {
-		mode: "boolean",
-	}).notNull(),
 	isEmailable: integer("is_emailable", { mode: "boolean" }).notNull(),
 });
 

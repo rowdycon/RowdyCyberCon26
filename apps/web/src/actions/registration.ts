@@ -28,13 +28,10 @@ export const registerHacker = authenticatedAction
 			schoolID,
 			levelOfStudy,
 			hackathonsAttended,
-			softwareExperience,
 			heardFrom,
 			GitHub,
 			LinkedIn,
 			PersonalWebsite,
-			hasAcceptedMLHCoC,
-			hasSharedDataWithMLH,
 			isEmailable,
 			...userData
 		} = parsedInput;
@@ -70,7 +67,6 @@ export const registerHacker = authenticatedAction
 					schoolID,
 					levelOfStudy,
 					hackathonsAttended,
-					softwareExperience,
 					heardFrom,
 					GitHub,
 					LinkedIn,
@@ -78,8 +74,6 @@ export const registerHacker = authenticatedAction
 					resume,
 					group:
 						totalUserCount[0].count % Object.keys(c.groups).length,
-					hasAcceptedMLHCoC,
-					hasSharedDataWithMLH,
 					isEmailable,
 				});
 			});
