@@ -1,11 +1,8 @@
-import { format, compareAsc } from "date-fns";
 import { EventType } from "@/lib/types/events";
-import { Badge } from "@/components/shadcn/ui/badge";
-import c from "config";
 import { headers } from "next/headers";
 import { getClientTimeZone } from "@/lib/utils/client/shared";
 import EventItem from "./EventItem";
-import { getRequestContext } from "@cloudflare/next-on-pages";
+
 interface DayProps {
 	title: string;
 	subtitle: string;
@@ -13,10 +10,10 @@ interface DayProps {
 }
 
 export default function Day({ title, subtitle, events }: DayProps) {
-	const { cf } = getRequestContext();
-	const userTimeZoneHeaderKey = cf.timezone;
+	const requestHeaders = headers();
+	const vercelTimezone = requestHeaders.get("x-vercel-ip-timezone");
 
-	const userTimeZone = getClientTimeZone(userTimeZoneHeaderKey);
+	const userTimeZone = getClientTimeZone(vercelTimezone ?? "UTC");
 
 	return (
 		<div className="flex min-h-[60vh] w-[92%] flex-col items-center rounded-xl bg-white px-2 pb-4 backdrop-blur transition dark:bg-white/[0.08] lg:w-full">

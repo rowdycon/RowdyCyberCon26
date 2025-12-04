@@ -4,12 +4,13 @@ import Balancer from "react-wrap-balancer";
 import { formatInTimeZone } from "date-fns-tz";
 import { Event } from "db/types";
 import { getClientTimeZone } from "@/lib/utils/client/shared";
-import { getRequestContext } from "@cloudflare/next-on-pages";
-export default function EventFull({ event }: { event: Event }) {
-	const { cf } = getRequestContext();
-	const userTimeZoneHeaderKey = cf.timezone;
+import { headers } from "next/headers";
 
-	const userTimeZone = getClientTimeZone(userTimeZoneHeaderKey);
+export default function EventFull({ event }: { event: Event }) {
+	const requestHeaders = headers();
+	const vercelTimezone = requestHeaders.get("x-vercel-ip-timezone");
+
+	const userTimeZone = getClientTimeZone(vercelTimezone ?? "UTC");
 	return (
 		<div className="relative w-screen">
 			<div

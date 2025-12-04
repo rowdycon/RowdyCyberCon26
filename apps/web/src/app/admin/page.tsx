@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { Overview } from "@/components/admin/landing/Overview";
 import {
 	Card,
@@ -8,10 +9,8 @@ import {
 } from "@/components/shadcn/ui/card";
 import { Users, UserCheck, User2, TimerReset, MailCheck } from "lucide-react";
 import type { User } from "db/types";
-import { notFound } from "next/navigation";
 import { getAllUsers } from "db/functions";
 import Link from "next/link";
-import { getRequestContext } from "@cloudflare/next-on-pages";
 import { formatInTimeZone } from "date-fns-tz";
 import { getClientTimeZone } from "@/lib/utils/client/shared";
 import { getCurrentUser } from "@/lib/utils/server/user";
@@ -27,9 +26,10 @@ export default async function Page() {
 		recentSignupCount,
 		recentRegisteredUsers,
 	} = getRecentRegistrationData(allUsers);
-	const { cf } = getRequestContext();
 
-	const timezone = getClientTimeZone(cf.timezone);
+	const requestHeaders = headers();
+	const vercelTimezone = requestHeaders.get("x-vercel-ip-timezone");
+	const timezone = getClientTimeZone(vercelTimezone ?? "UTC");
 
 	return (
 		<div className="mx-auto h-16 w-full max-w-7xl pt-44">
