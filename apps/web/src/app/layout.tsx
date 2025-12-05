@@ -1,8 +1,8 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { cookies } from "next/headers";
-import { Analytics } from "@vercel/analytics/react";
 import { defaultTheme } from "config";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function RootLayout({
 	children,
@@ -15,7 +15,7 @@ export default function RootLayout({
 			<html lang="en">
 				<body className={theme === "dark" ? "dark" : ""}>
 					{children}
-					<Analytics />
+					<SpeedInsights />
 				</body>
 			</html>
 		</ClerkProvider>
