@@ -60,11 +60,6 @@ export const hackerRegistrationFormValidator = z
 					.int({ message: "Value must be an integer" }),
 			),
 		gender: z.enum(c.registration.genderOptions, defaultSelectPrettyError),
-		race: z.enum(c.registration.raceOptions, defaultSelectPrettyError),
-		ethnicity: z.enum(
-			c.registration.ethnicityOptions,
-			defaultSelectPrettyError,
-		),
 		phoneNumber: z
 			.string()
 			.min(10)
@@ -89,19 +84,6 @@ export const hackerRegistrationFormValidator = z
 			c.registration.levelsOfStudy,
 			defaultSelectPrettyError,
 		),
-		hackathonsAttended: z
-			.number()
-			.min(0, { message: "Value must be positive or zero" })
-			.max(300, { message: "Value cannot not be more than 300" })
-			.int({ message: "Value must be an integer" })
-			.or(z.string())
-			.pipe(
-				z.coerce
-					.number()
-					.min(0, { message: "Value must be positive or zero" })
-					.max(300, { message: "Value cannot be more than 300" })
-					.int({ message: "Value must be an integer" }),
-			),
 		heardFrom: z.enum(
 			c.registration.heardFromOptions,
 			defaultSelectPrettyError,
@@ -179,10 +161,6 @@ export const hackerRegistrationValidatorLocalStorage =
 	userWithHackerDataInsertSchema
 		.extend({
 			age: z.number().or(z.string()).pipe(z.coerce.number()),
-			hackathonsAttended: z
-				.number()
-				.or(z.string())
-				.pipe(z.coerce.number()),
 			accommodationNote: z.string(),
 			skills: z
 				.array(

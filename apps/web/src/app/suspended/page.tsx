@@ -1,7 +1,5 @@
 import { getCurrentUser } from "@/lib/utils/server/user";
-import { auth } from "@clerk/nextjs/server";
 import { db, eq } from "db";
-import { getUser } from "db/functions";
 import { bannedUsers } from "db/schema";
 
 export default async function Page() {

@@ -1,4 +1,3 @@
-import { db, ilike, or, and, eq } from "db";
 import { DataTable } from "@/components/admin/users/UserDataTable";
 import { columns } from "@/components/admin/users/UserColumns";
 import { Button } from "@/components/shadcn/ui/button";

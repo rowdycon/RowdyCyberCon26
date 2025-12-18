@@ -1,9 +1,82 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "8d3401ea-653e-49d5-a664-790d98e2bab6",
+  "id": "38d7fa8f-163a-4ed1-9d4c-de254668a021",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "banned_users": {
+      "name": "banned_users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reason": {
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(current_timestamp)"
+        },
+        "banned_by_id": {
+          "name": "banned_by_id",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "banned_users_user_id_user_common_data_clerk_id_fk": {
+          "name": "banned_users_user_id_user_common_data_clerk_id_fk",
+          "tableFrom": "banned_users",
+          "tableTo": "user_common_data",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "clerk_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "banned_users_banned_by_id_user_common_data_clerk_id_fk": {
+          "name": "banned_users_banned_by_id_user_common_data_clerk_id_fk",
+          "tableFrom": "banned_users",
+          "tableTo": "user_common_data",
+          "columnsFrom": [
+            "banned_by_id"
+          ],
+          "columnsTo": [
+            "clerk_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "chat_messages": {
       "name": "chat_messages",
       "columns": {
@@ -433,51 +506,56 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
-    "invites": {
-      "name": "invites",
+    "roles": {
+      "name": "roles",
       "columns": {
-        "invitee_id": {
-          "name": "invitee_id",
-          "type": "text(255)",
-          "primaryKey": false,
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
-        "team_id": {
-          "name": "team_id",
+        "name": {
+          "name": "name",
           "type": "text(50)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "created_at": {
-          "name": "created_at",
+        "position": {
+          "name": "position",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "(current_timestamp)"
+          "autoincrement": false
         },
-        "status": {
-          "name": "status",
-          "type": "text",
+        "permissions": {
+          "name": "permissions",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'pending'"
+          "autoincrement": false
+        },
+        "color": {
+          "name": "color",
+          "type": "text(7)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "invites_invitee_id_team_id_pk": {
+      "indexes": {
+        "roles_name_unique": {
+          "name": "roles_name_unique",
           "columns": [
-            "invitee_id",
-            "team_id"
+            "name"
           ],
-          "name": "invites_invitee_id_team_id_pk"
+          "isUnique": true
         }
       },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
@@ -525,88 +603,6 @@
           "name": "scans_user_id_event_id_pk"
         }
       },
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "teams": {
-      "name": "teams",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text(50)",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "name": {
-          "name": "name",
-          "type": "text(255)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "tag": {
-          "name": "tag",
-          "type": "text(50)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "bio": {
-          "name": "bio",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "photo": {
-          "name": "photo",
-          "type": "text(400)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "(current_timestamp)"
-        },
-        "owner_id": {
-          "name": "owner_id",
-          "type": "text(255)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "devpost_url": {
-          "name": "devpost_url",
-          "type": "text(255)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "teams_id_unique": {
-          "name": "teams_id_unique",
-          "columns": [
-            "id"
-          ],
-          "isUnique": true
-        },
-        "teams_tag_unique": {
-          "name": "teams_tag_unique",
-          "columns": [
-            "tag"
-          ],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
@@ -768,20 +764,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "race": {
-          "name": "race",
-          "type": "text(75)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "ethnicity": {
-          "name": "ethnicity",
-          "type": "text(50)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "shirt_size": {
           "name": "shirt_size",
           "type": "text(5)",
@@ -878,13 +860,12 @@
           "autoincrement": false,
           "default": true
         },
-        "role": {
-          "name": "role",
-          "type": "text",
+        "role_id": {
+          "name": "role_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'hacker'"
+          "autoincrement": false
         },
         "checkin_timestamp": {
           "name": "checkin_timestamp",
@@ -926,7 +907,21 @@
           "isUnique": true
         }
       },
-      "foreignKeys": {},
+      "foreignKeys": {
+        "user_common_data_role_id_roles_id_fk": {
+          "name": "user_common_data_role_id_roles_id_fk",
+          "tableFrom": "user_common_data",
+          "tableTo": "roles",
+          "columnsFrom": [
+            "role_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
@@ -969,20 +964,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "hackathons_attended": {
-          "name": "hackathons_attended",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "software_experience": {
-          "name": "software_experience",
-          "type": "text(25)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "heard_from": {
           "name": "heard_from",
           "type": "text(50)",
@@ -1021,27 +1002,6 @@
         },
         "group": {
           "name": "group",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "team_id": {
-          "name": "team_id",
-          "type": "text(50)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "has_accepted_mlh_coc": {
-          "name": "has_accepted_mlh_coc",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "has_shared_data_with_mlh": {
-          "name": "has_shared_data_with_mlh",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,

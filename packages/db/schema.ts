@@ -11,7 +11,6 @@ more info: https://orm.drizzle.team/kit-docs/overview
 import {
 	integer,
 	text,
-	blob,
 	sqliteTable,
 	customType,
 	primaryKey,
@@ -103,8 +102,6 @@ export const userCommonData = sqliteTable("user_common_data", {
 	hackerTag: text("hacker_tag", { length: 50 }).notNull().unique(),
 	age: integer("age").notNull(),
 	gender: text("gender", { length: 50 }).notNull(),
-	race: text("race", { length: 75 }).notNull(),
-	ethnicity: text("ethnicity", { length: 50 }).notNull(),
 	shirtSize: text("shirt_size", { length: 5 }).notNull(),
 	dietRestrictions: text("diet_restrictions", { mode: "json" })
 		.notNull()
@@ -196,7 +193,6 @@ export const userHackerData = sqliteTable("user_hacker_data", {
 	major: text("major", { length: 200 }).notNull(),
 	schoolID: text("school_id", { length: 50 }).notNull(),
 	levelOfStudy: text("level_of_study", { length: 50 }).notNull(),
-	hackathonsAttended: integer("hackathons_attended").notNull(),
 	heardFrom: text("heard_from", { length: 50 }),
 	GitHub: text("github", { length: 100 }),
 	LinkedIn: text("linkedin", { length: 100 }),

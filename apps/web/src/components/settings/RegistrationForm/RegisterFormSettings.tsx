@@ -67,12 +67,10 @@ export default function RegisterFormSettings({
 	const form = useForm<z.infer<typeof registrationSettingsFormValidator>>({
 		resolver: zodResolver(registrationSettingsFormValidator),
 		defaultValues: {
-			hackathonsAttended: originalData.hackathonsAttended,
 			dietaryRestrictions: user.dietRestrictions as any,
 			isEmailable: originalData.isEmailable,
 			accommodationNote: user.accommodationNote || "",
 			age: user.age,
-			ethnicity: user.ethnicity as any,
 			gender: user.gender as any,
 			major: originalData.major,
 			github: originalData.GitHub ?? "",
@@ -80,7 +78,6 @@ export default function RegisterFormSettings({
 			levelOfStudy: originalData.levelOfStudy as any,
 			linkedin: originalData.LinkedIn ?? "",
 			personalWebsite: originalData.PersonalWebsite ?? "",
-			race: user.race as any,
 			shirtSize: user.shirtSize as any,
 			schoolID: originalData.schoolID,
 			university: originalData.university,
@@ -280,70 +277,6 @@ export default function RegisterFormSettings({
 													</SelectItem>
 													<SelectItem value="PREFERNOTSAY">
 														Prefer not to say
-													</SelectItem>
-												</SelectGroup>
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="race"
-								render={({ field }) => (
-									<FormItem className="col-span-2">
-										<FormLabel>Race</FormLabel>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger className="w-full">
-													<SelectValue placeholder="Select a Race" />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												<SelectGroup>
-													{c.registration.raceOptions.map(
-														(option) => (
-															<SelectItem
-																value={option}
-																key={option}
-															>
-																{option}
-															</SelectItem>
-														),
-													)}
-												</SelectGroup>
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="ethnicity"
-								render={({ field }) => (
-									<FormItem className="col-span-2">
-										<FormLabel>Ethnicity</FormLabel>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger className="w-full placeholder:text-muted-foreground">
-													<SelectValue placeholder="Select a Ethnicity" />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												<SelectGroup>
-													<SelectItem value="Hispanic or Latino">
-														Hispanic or Latino
-													</SelectItem>
-													<SelectItem value="Not Hispanic or Latino">
-														Not Hispanic or Latino
 													</SelectItem>
 												</SelectGroup>
 											</SelectContent>
@@ -702,21 +635,6 @@ export default function RegisterFormSettings({
 					</FormGroupWrapper>
 					<FormGroupWrapper title="Hackathon Experience">
 						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-3 md:gap-y-0">
-							<FormField
-								control={form.control}
-								name="hackathonsAttended"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>
-											# of Hackathons Attended
-										</FormLabel>
-										<FormControl>
-											<Input type="number" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
 							<FormField
 								control={form.control}
 								name="heardAboutEvent"

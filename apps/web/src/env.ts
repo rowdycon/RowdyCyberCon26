@@ -19,6 +19,7 @@ export const env = createEnv({
 		CLOUDFLARE_ACCOUNT_ID: z.string(),
 		R2_ACCESS_KEY_ID: z.string(),
 		R2_SECRET_ACCESS_KEY: z.string(),
+		R2_BUCKET_NAME: z.string(),
 		TURSO_AUTH_TOKEN: z.string(),
 		TURSO_DATABASE_URL: z.string(),
 		UPSTASH_REDIS_REST_TOKEN: z.string(),

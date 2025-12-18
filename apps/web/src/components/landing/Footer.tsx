@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
 	Instagram,
-	Twitter,
 	Github,
 	Linkedin,
 	Volume2,

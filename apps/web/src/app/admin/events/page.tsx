@@ -6,7 +6,6 @@ import { Button } from "@/components/shadcn/ui/button";
 import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { getAllEvents } from "db/functions";
-import FullScreenMessage from "@/components/shared/FullScreenMessage";
 import { userHasPermission } from "@/lib/utils/server/admin";
 import { PermissionType } from "@/lib/constants/permission";
 import { notFound } from "next/navigation";

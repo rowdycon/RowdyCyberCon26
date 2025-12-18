@@ -1,7 +1,5 @@
 "use client";
 
-import { title } from "process";
-
 const dummyTickets = [
 	{
 		title: "Ticket 1",

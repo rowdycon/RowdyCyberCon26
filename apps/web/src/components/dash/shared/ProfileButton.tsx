@@ -13,12 +13,11 @@ import {
 	AvatarImage,
 } from "@/components/shadcn/ui/avatar";
 import { Button } from "@/components/shadcn/ui/button";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { DropdownSwitcher } from "@/components/shared/ThemeSwitcher";
 import { getUser } from "db/functions";
-import { clientLogOut } from "@/lib/utils/server/user";
 
 export default async function ProfileButton() {
 	const clerkUser = await auth();

@@ -30,8 +30,6 @@ import { useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import { deleteEventAction } from "@/actions/admin/event-actions";
 import { toast } from "sonner";
-import { LoaderCircle } from "lucide-react";
-import { error } from "console";
 
 type EventRow = eventTableValidatorType & { isUserAdmin: boolean };
 

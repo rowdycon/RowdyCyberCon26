@@ -752,38 +752,12 @@ const countries = [
 	{ name: "Zimbabwe", code: "ZW" },
 ] as const;
 
-const raceOptions = [
-	"Asian Indian",
-	"Black or African",
-	"Chinese",
-	"Filipino",
-	"Guamanian or Chamorro",
-	"Hispanic / Latino / Spanish Origin",
-	"Japanese",
-	"Korean",
-	"Middle Eastern",
-	"Native American or Alaskan Native",
-	"Native Hawaiian",
-	"Samoan",
-	"Vietnamese",
-	"White",
-	"Other Asian (Thai, Cambodian, etc)",
-	"Other Pacific Islander",
-	"Other",
-	"Prefer Not to Answer",
-] as const;
-
 const genderOptions = [
 	"Male",
 	"Female",
 	"Non-binary",
 	"Other",
 	"Prefer Not To Say",
-] as const;
-
-const ethnicityOptions = [
-	"Hispanic or Latino",
-	"Not Hispanic or Latino",
 ] as const;
 
 const heardFromOptions = [
@@ -800,10 +774,10 @@ const shirtSizeOptions = ["S", "M", "L", "XL", "2XL", "3XL"] as const;
 
 const c = {
 	hackathonName: "Rowdy CyberCon",
-	itteration: "II",
+	itteration: "2026",
 	siteUrl: "https://rowdycybercon.org", // Do not have a trailing slash
 	defaultMetaDataDescription: "Your Metadata Description Here",
-	rsvpDefaultLimit: 500,
+	rsvpDefaultLimit: 400,
 	botName: "HackKit",
 	botParticipantRole: "Participant",
 	hackathonTimezone: "America/Chicago",
@@ -816,9 +790,7 @@ const c = {
 		levelsOfStudy,
 		dietaryRestrictionOptions,
 		countries,
-		raceOptions,
 		genderOptions,
-		ethnicityOptions,
 		heardFromOptions,
 		shirtSizeOptions,
 		minRequiredAge: 18,
@@ -881,8 +853,6 @@ const c = {
 	links: {
 		discord: "https://discord.gg/DDhMg6pXXF",
 		instagram: "https://www.instagram.com/rowdycybercon/",
-		// facebook: "https://facebook.com/rowdyhacks",
-		// twitter: "https://twitter.com/rowdyhacks",
 		github: "https://github.com/rowdycon",
 		guide: "https://rowdycon.notion.site/Guide-56f8318aeea7461bac459ae3fbc02273",
 	},
@@ -1014,7 +984,7 @@ const publicRoutes = [
 	/^\/sign-up(\/.*)?$/,
 ];
 
-const defaultRoleId = 2;
+const defaultRoleId = 3;
 
 export default c;
 export {

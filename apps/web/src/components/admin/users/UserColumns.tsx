@@ -8,15 +8,12 @@ import Link from "next/link";
 import { Button } from "@/components/shadcn/ui/button";
 import {
 	DropdownMenu,
-	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../../shadcn/ui/dropdown-menu";
 import { Input } from "@/components/shadcn/ui/input";
-import { MoreHorizontal, ArrowUpDown, User } from "lucide-react";
+import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 import type { Column, Row } from "@tanstack/react-table";
 import { dataTableFuzzyFilter } from "@/lib/utils/client/shared";
 import { Badge } from "@/components/shadcn/ui/badge";

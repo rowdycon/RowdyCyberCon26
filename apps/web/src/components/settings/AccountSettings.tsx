@@ -2,13 +2,11 @@
 
 import { Input } from "@/components/shadcn/ui/input";
 import { Button } from "@/components/shadcn/ui/button";
-import { Label } from "@/components/shadcn/ui/label";
 import { toast } from "sonner";
 import { useAction } from "next-safe-action/hooks";
 import { modifyAccountSettings } from "@/actions/user-profile-mod";
 import { Checkbox } from "@/components/shadcn/ui/checkbox";
 import { Loader2 } from "lucide-react";
-import { isProfane } from "no-profanity";
 import { modifyAccountSettingsSchema } from "@/validators/settings";
 import z from "zod";
 import { useForm } from "react-hook-form";

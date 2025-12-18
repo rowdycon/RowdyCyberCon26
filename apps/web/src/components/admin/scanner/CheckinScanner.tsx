@@ -20,7 +20,6 @@ import { Button } from "@/components/shadcn/ui/button";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { FIVE_MINUTES_IN_MILLISECONDS } from "@/lib/constants";
-import { ValidationErrors } from "next-safe-action";
 
 interface CheckinScannerProps {
 	hasScanned: boolean;

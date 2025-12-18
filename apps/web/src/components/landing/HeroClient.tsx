@@ -124,7 +124,7 @@ export default function HeroClient({
 					aria-live="polite"
 				>
 					{bootText.map((text, i) => (
-						<div key={text} className="flex items-center gap-2">
+						<div key={i} className="flex items-center gap-2">
 							<span className="text-green-500" aria-hidden="true">
 								✓
 							</span>
@@ -241,7 +241,7 @@ export default function HeroClient({
 							□
 						</button>
 						<button className="win98-titlebar-btn" tabIndex={-1}>
-							×
+							x
 						</button>
 					</div>
 				</div>

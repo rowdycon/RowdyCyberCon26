@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils/client/cn";
 import { Loader2 } from "lucide-react";
 interface LoadingProps {
 	className?: string;

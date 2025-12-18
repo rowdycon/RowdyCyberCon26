@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@custom-variant dark (&:is(.dark *));
 
 :root {
 	/* <CHANGE> Windows 98 Classic theme in OKLCH format for Tailwind v4 */

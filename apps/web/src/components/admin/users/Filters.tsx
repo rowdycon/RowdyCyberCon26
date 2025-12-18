@@ -3,17 +3,10 @@
 import {
 	Card,
 	CardContent,
-	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/shadcn/ui/card";
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from "@/components/shadcn/ui/accordion";
+import { Accordion } from "@/components/shadcn/ui/accordion";
 import FilterCategory from "./FilterCategory";
 
 type categoryMap = {
