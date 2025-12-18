@@ -1,6 +1,7 @@
 import { getPresignedUploadUrl } from "@/lib/utils/server/s3";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
+import { env } from "@/env";
 
 interface RequestBody {
 	location: string;
@@ -24,10 +25,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 		const randomSeq = crypto.randomUUID();
 		const [fileName, extension] = body.fileName.split(".");
 		const key = `${body.location}/${fileName}-${randomSeq}.${extension}`;
-		const url = await getPresignedUploadUrl(
-			process.env.R2_BUCKET_NAME!,
-			key,
-		);
+		const url = await getPresignedUploadUrl(env.R2_BUCKET_NAME!, key);
 
 		return NextResponse.json({ url, key });
 	} catch (error) {

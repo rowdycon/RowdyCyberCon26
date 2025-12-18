@@ -124,7 +124,6 @@ export default function RegisterForm({
 		const hackerFormData = localStorage.getItem(
 			HACKER_REGISTRATION_STORAGE_KEY,
 		);
-		console.log(hackerFormData);
 		if (hackerFormData) {
 			try {
 				const parsed = JSON.parse(hackerFormData);
@@ -278,7 +277,6 @@ export default function RegisterForm({
 		data: z.infer<typeof hackerRegistrationFormValidator>,
 	) {
 		setIsLoading(true);
-		console.log(data);
 		setErrorMessage(null);
 		if (!isAuthLoaded) {
 			setErrorMessage(

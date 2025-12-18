@@ -774,10 +774,10 @@ const shirtSizeOptions = ["S", "M", "L", "XL", "2XL", "3XL"] as const;
 
 const c = {
 	hackathonName: "Rowdy CyberCon",
-	itteration: "II",
+	itteration: "2026",
 	siteUrl: "https://rowdycybercon.org", // Do not have a trailing slash
 	defaultMetaDataDescription: "Your Metadata Description Here",
-	rsvpDefaultLimit: 500,
+	rsvpDefaultLimit: 400,
 	botName: "HackKit",
 	botParticipantRole: "Participant",
 	hackathonTimezone: "America/Chicago",
@@ -853,8 +853,6 @@ const c = {
 	links: {
 		discord: "https://discord.gg/DDhMg6pXXF",
 		instagram: "https://www.instagram.com/rowdycybercon/",
-		// facebook: "https://facebook.com/rowdyhacks",
-		// twitter: "https://twitter.com/rowdyhacks",
 		github: "https://github.com/rowdycon",
 		guide: "https://rowdycon.notion.site/Guide-56f8318aeea7461bac459ae3fbc02273",
 	},
