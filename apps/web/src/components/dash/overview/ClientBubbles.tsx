@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useTimer } from "react-timer-hook";
 import { Badge } from "@/components/shadcn/ui/badge";
 

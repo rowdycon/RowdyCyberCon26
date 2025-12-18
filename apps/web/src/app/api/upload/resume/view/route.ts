@@ -1,6 +1,5 @@
 import { getPresignedViewingUrl } from "@/lib/utils/server/s3";
 import { redirect } from "next/navigation";
-import { staticUploads } from "config";
 import { auth } from "@clerk/nextjs/server";
 
 export async function GET(request: Request) {

@@ -1,3 +1,13 @@
+CREATE TABLE `banned_users` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`user_id` text(255) NOT NULL,
+	`reason` text,
+	`created_at` integer DEFAULT (current_timestamp) NOT NULL,
+	`banned_by_id` text(255) NOT NULL,
+	FOREIGN KEY (`user_id`) REFERENCES `user_common_data`(`clerk_id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`banned_by_id`) REFERENCES `user_common_data`(`clerk_id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `chat_messages` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`chat_id` text NOT NULL,
@@ -66,7 +76,15 @@ CREATE TABLE `files` (
 --> statement-breakpoint
 CREATE UNIQUE INDEX `files_id_unique` ON `files` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `files_key_unique` ON `files` (`key`);--> statement-breakpoint
-
+CREATE TABLE `roles` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`name` text(50) NOT NULL,
+	`position` integer NOT NULL,
+	`permissions` integer NOT NULL,
+	`color` text(7)
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `roles_name_unique` ON `roles` (`name`);--> statement-breakpoint
 CREATE TABLE `scans` (
 	`updated_at` integer DEFAULT (current_timestamp) NOT NULL,
 	`user_id` text(255) NOT NULL,
@@ -99,8 +117,6 @@ CREATE TABLE `user_common_data` (
 	`hacker_tag` text(50) NOT NULL,
 	`age` integer NOT NULL,
 	`gender` text(50) NOT NULL,
-	`race` text(75) NOT NULL,
-	`ethnicity` text(50) NOT NULL,
 	`shirt_size` text(5) NOT NULL,
 	`diet_restrictions` text DEFAULT '[]' NOT NULL,
 	`accommodation_note` text,
@@ -114,10 +130,11 @@ CREATE TABLE `user_common_data` (
 	`is_fully_registered` integer DEFAULT false NOT NULL,
 	`signup_time` integer DEFAULT (current_timestamp) NOT NULL,
 	`is_searchable` integer DEFAULT true NOT NULL,
-	`role` text DEFAULT 'hacker' NOT NULL,
+	`role_id` integer NOT NULL,
 	`checkin_timestamp` integer,
 	`is_rsvped` integer DEFAULT false NOT NULL,
-	`is_approved` integer DEFAULT false NOT NULL
+	`is_approved` integer DEFAULT false NOT NULL,
+	FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `user_common_data_email_unique` ON `user_common_data` (`email`);--> statement-breakpoint
@@ -128,16 +145,12 @@ CREATE TABLE `user_hacker_data` (
 	`major` text(200) NOT NULL,
 	`school_id` text(50) NOT NULL,
 	`level_of_study` text(50) NOT NULL,
-	`hackathons_attended` integer NOT NULL,
-	`software_experience` text(25) NOT NULL,
 	`heard_from` text(50),
 	`github` text(100),
 	`linkedin` text(100),
 	`personal_website` text(100),
 	`resume` text(255) DEFAULT 'https://static.acmutsa.org/No%20Resume%20Provided.pdf' NOT NULL,
 	`group` integer NOT NULL,
-	`has_accepted_mlh_coc` integer NOT NULL,
-	`has_shared_data_with_mlh` integer NOT NULL,
 	`is_emailable` integer NOT NULL,
 	FOREIGN KEY (`clerk_id`) REFERENCES `user_common_data`(`clerk_id`) ON UPDATE no action ON DELETE cascade
 );

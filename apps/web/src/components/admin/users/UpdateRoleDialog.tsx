@@ -21,28 +21,29 @@ import { useAction } from "next-safe-action/hooks";
 import { updateRole } from "@/actions/admin/user-actions";
 import { useState } from "react";
 import { Badge } from "@/components/shadcn/ui/badge";
-import { db } from "db";
 import { titleCase } from "@/lib/utils/shared/string";
 
 interface UpdateRoleDialogProps {
 	userID: string;
 	name: string;
 	currentRoleId: number;
+	roles: { id: number; name: string }[];
 }
 
-export default async function UpdateRoleDialog({
+export default function UpdateRoleDialog({
 	userID,
 	currentRoleId,
 	name,
+	roles,
 }: UpdateRoleDialogProps) {
 	const [roleToSet, setRoleToSet] = useState(currentRoleId);
 	const [open, setOpen] = useState(false);
 
-	const roles = await db.query.roles.findMany();
-
-	const currentRoleName = titleCase(
-		roles.find((r) => r.id === currentRoleId)?.name.replace("_", " ") || "",
-	);
+	const getRoleName = (roleId: number) => {
+		return titleCase(
+			roles.find((r) => r.id === roleId)?.name.replace("_", " ") || "",
+		);
+	};
 
 	const { execute } = useAction(updateRole, {
 		async onSuccess() {
@@ -61,7 +62,7 @@ export default async function UpdateRoleDialog({
 			<DialogTrigger asChild>
 				<Button variant={"outline"}>Change Role</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px]">
+			<DialogContent className="bg-[#c0c0c0] sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>Update {name}'s Role</DialogTitle>
 					<DialogDescription>
@@ -72,9 +73,11 @@ export default async function UpdateRoleDialog({
 					<div className="flex">
 						<Select onValueChange={(v) => setRoleToSet(Number(v))}>
 							<SelectTrigger className="w-[180px]">
-								<SelectValue placeholder={currentRoleName} />
+								<SelectValue
+									placeholder={getRoleName(currentRoleId)}
+								/>
 							</SelectTrigger>
-							<SelectContent>
+							<SelectContent className="bg-[#c0c0c0]">
 								{roles.map(({ id, name }) => {
 									return (
 										<SelectItem key={id} value={String(id)}>
@@ -89,9 +92,9 @@ export default async function UpdateRoleDialog({
 				<DialogFooter>
 					{roleToSet !== currentRoleId ? (
 						<div className="flex h-full w-full items-center justify-center gap-x-2 self-end sm:justify-start">
-							<Badge>{currentRoleName}</Badge>
+							<Badge>{getRoleName(currentRoleId)}</Badge>
 							<span>&rarr;</span>
-							<Badge>{currentRoleName}</Badge>
+							<Badge>{getRoleName(roleToSet)}</Badge>
 						</div>
 					) : null}
 					<Button

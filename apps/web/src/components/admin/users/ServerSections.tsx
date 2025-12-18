@@ -1,7 +1,5 @@
 import UserInfoSection from "@/components/admin/users/UserInfoSection";
 import type { Hacker } from "db/types";
-import { Button } from "@/components/shadcn/ui/button";
-import Link from "next/link";
 import { clerkClient } from "@clerk/nextjs/server";
 import { titleCase } from "@/lib/utils/shared/string";
 
@@ -16,8 +14,6 @@ export function PersonalInfo({ user }: { user: Hacker }) {
 					value={titleCase(user.gender.toLowerCase())}
 				/>
 				<Cell title="Pronouns" value={user.pronouns} />
-				<Cell title="Race" value={user.race} />
-				<Cell title="Ethnicity" value={user.ethnicity} />
 				<Cell title="Age" value={user.age} />
 			</div>
 		</UserInfoSection>

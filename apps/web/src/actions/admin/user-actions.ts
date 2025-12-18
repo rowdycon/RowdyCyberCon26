@@ -1,7 +1,6 @@
 "use server";
 
 import { adminAction } from "@/lib/safe-action";
-import { returnValidationErrors } from "next-safe-action";
 import { z } from "zod";
 import { userCommonData, bannedUsers, roles } from "db/schema";
 import { db } from "db";

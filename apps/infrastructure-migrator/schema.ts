@@ -65,8 +65,6 @@ export const userCommonData = pgTable("user_common_data", {
 	hackerTag: varchar("hacker_tag", { length: 50 }).notNull().unique(),
 	age: integer("age").notNull(),
 	gender: varchar("gender", { length: 50 }).notNull(),
-	race: varchar("race", { length: 75 }).notNull(),
-	ethnicity: varchar("ethnicity", { length: 50 }).notNull(),
 	shirtSize: varchar("shirt_size", { length: 5 }).notNull(),
 	dietRestrictions: json("diet_restrictions").notNull(),
 	accommodationNote: text("accommodation_note"),
@@ -118,10 +116,6 @@ export const userHackerData = pgTable("user_hacker_data", {
 	major: varchar("major", { length: 200 }).notNull(),
 	schoolID: varchar("school_id", { length: 50 }).notNull(),
 	levelOfStudy: varchar("level_of_study", { length: 50 }).notNull(),
-	hackathonsAttended: integer("hackathons_attended").notNull(),
-	softwareExperience: varchar("software_experience", {
-		length: 25,
-	}).notNull(),
 	heardFrom: varchar("heard_from", { length: 50 }),
 	GitHub: varchar("github", { length: 100 }),
 	LinkedIn: varchar("linkedin", { length: 100 }),
@@ -132,8 +126,6 @@ export const userHackerData = pgTable("user_hacker_data", {
 
 	// metadata
 	group: integer("group").notNull(),
-	hasAcceptedMLHCoC: boolean("has_accepted_mlh_coc").notNull(),
-	hasSharedDataWithMLH: boolean("has_shared_data_with_mlh").notNull(),
 	isEmailable: boolean("is_emailable").notNull(),
 });
 

@@ -1,16 +1,11 @@
-import { auth } from "@clerk/nextjs/server";
 import c from "config";
 import { createQRpayload } from "@/lib/utils/shared/qr";
-
-// HackKit Bubbles
-
 import { Countdown } from "@/components/dash/overview/ClientBubbles";
 import {
 	Questions,
 	TitleBubble,
 	QuickQR,
 } from "@/components/dash/overview/ServerBubbles";
-import { getUser } from "db/functions";
 import { getCurrentUser } from "@/lib/utils/server/user";
 
 export default async function Page() {

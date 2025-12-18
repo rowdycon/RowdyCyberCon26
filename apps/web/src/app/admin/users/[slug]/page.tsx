@@ -16,7 +16,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 } from "@/components/shadcn/ui/dropdown-menu";
-import { auth } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import { userHasPermission } from "@/lib/utils/server/admin";
 import ApproveUserButton from "@/components/admin/users/ApproveUserButton";
@@ -39,6 +38,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	if (!subject) {
 		return <p className="text-center font-bold">User Not Found</p>;
 	}
+
+	const roles = await db.query.roles.findMany({
+		columns: { id: true, name: true },
+	});
 
 	const banInstance = await db.query.bannedUsers.findFirst({
 		where: eq(bannedUsers.userID, subject.clerkID),
@@ -83,6 +86,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 							name={`${subject.firstName} ${subject.lastName}`}
 							currentRoleId={subject.role_id}
 							userID={subject.clerkID}
+							roles={roles}
 						/>
 					</Restricted>
 
@@ -146,6 +150,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 									name={`${subject.firstName} ${subject.lastName}`}
 									currentRoleId={subject.role_id}
 									userID={subject.clerkID}
+									roles={roles}
 								/>
 							</div>
 

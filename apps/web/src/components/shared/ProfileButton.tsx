@@ -4,7 +4,6 @@ import {
 	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/shadcn/ui/dropdown-menu";
 import {
@@ -12,15 +11,12 @@ import {
 	AvatarFallback,
 	AvatarImage,
 } from "@/components/shadcn/ui/avatar";
-import { Button } from "@/components/shadcn/ui/button";
 import { auth } from "@clerk/nextjs/server";
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { DropdownSwitcher } from "@/components/shared/ThemeSwitcher";
 import DefaultDropdownTrigger from "../dash/shared/DefaultDropDownTrigger";
 import MobileNavBarLinks from "./MobileNavBarLinks";
 import { getUser } from "db/functions";
-import { clientLogOut } from "@/lib/utils/server/user";
 import Restricted from "../Restricted";
 import { PermissionType } from "@/lib/constants/permission";
 

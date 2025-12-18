@@ -28,7 +28,6 @@ import { parseAbsolute, getLocalTimeZone } from "@internationalized/date";
 import { useAction } from "next-safe-action/hooks";
 import { createEvent } from "@/actions/admin/event-actions";
 import { useCallback, useState } from "react";
-import { LoaderPinwheel } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ONE_HOUR_IN_MILLISECONDS } from "@/lib/constants";
 import { NewEventFormProps } from "@/lib/types/events";

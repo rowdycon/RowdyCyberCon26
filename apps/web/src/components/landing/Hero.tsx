@@ -1,17 +1,7 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import LandingButton from "./LandingButton";
 import { Skeleton } from "../shadcn/ui/skeleton";
 import HeroClient from "./HeroClient";
-
-function ButtonSkeleton() {
-	return (
-		<div className="win98-btn px-8 py-2">
-			<Skeleton className="h-4 w-24" />
-		</div>
-	);
-}
 
 export default function Hero() {
 	return (

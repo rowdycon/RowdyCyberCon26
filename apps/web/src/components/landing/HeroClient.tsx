@@ -241,7 +241,7 @@ export default function HeroClient({
 							□
 						</button>
 						<button className="win98-titlebar-btn" tabIndex={-1}>
-							×
+							x
 						</button>
 					</div>
 				</div>

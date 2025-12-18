@@ -1,7 +1,6 @@
 import { getPresignedUploadUrl } from "@/lib/utils/server/s3";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { staticUploads } from "config";
 
 interface RequestBody {
 	location: string;

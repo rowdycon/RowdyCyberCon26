@@ -11,7 +11,7 @@ export default function Partners() {
 						<div className="flex">
 							<button className="win98-titlebar-btn">_</button>
 							<button className="win98-titlebar-btn">□</button>
-							<button className="win98-titlebar-btn">×</button>
+							<button className="win98-titlebar-btn">x</button>
 						</div>
 					</div>
 					<div className="p-4">

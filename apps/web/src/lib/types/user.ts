@@ -1,9 +1,6 @@
 import c from "config";
 
 export type GenderOptionsType = (typeof c.registration.genderOptions)[number];
-export type EthnicityOptionsType =
-	(typeof c.registration.ethnicityOptions)[number];
-export type RaceOptionsType = (typeof c.registration.raceOptions)[number];
 export type MajorOptionsType = (typeof c.registration.majors)[number];
 export type LevelOfStudyOptionsType =
 	(typeof c.registration.levelsOfStudy)[number];

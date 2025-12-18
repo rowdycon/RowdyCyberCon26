@@ -57,31 +57,6 @@ export const registrationSettingsFormValidator = z.object({
 		z.literal("OTHER", defaultPrettyError),
 		z.literal("PREFERNOTSAY", defaultPrettyError),
 	]),
-	race: z.union([
-		z.literal("Asian Indian", defaultPrettyError),
-		z.literal("Asian (Other)", defaultPrettyError),
-		z.literal("Black or African", defaultPrettyError),
-		z.literal("Chinese", defaultPrettyError),
-		z.literal("Filipino", defaultPrettyError),
-		z.literal("Guamanian or Chamorro", defaultPrettyError),
-		z.literal("Hispanic / Latino / Spanish Origin", defaultPrettyError),
-		z.literal("Japanese", defaultPrettyError),
-		z.literal("Korean", defaultPrettyError),
-		z.literal("Middle Eastern", defaultPrettyError),
-		z.literal("Native American or Alaskan Native", defaultPrettyError),
-		z.literal("Native Hawaiian", defaultPrettyError),
-		z.literal("Samoan", defaultPrettyError),
-		z.literal("Vietnamese", defaultPrettyError),
-		z.literal("White", defaultPrettyError),
-		z.literal("Other Asian (Thai, Cambodian, etc)", defaultPrettyError),
-		z.literal("Other Pacific Islander", defaultPrettyError),
-		z.literal("Other", defaultPrettyError),
-		z.literal("Prefer Not to Answer", defaultPrettyError),
-	]),
-	ethnicity: z.union([
-		z.literal("Hispanic or Latino", defaultPrettyError),
-		z.literal("Not Hispanic or Latino", defaultPrettyError),
-	]),
 	phoneNumber: z.string().min(10).max(30, {
 		message: "Phone number must be less than 15 characters",
 	}),
@@ -102,23 +77,6 @@ export const registrationSettingsFormValidator = z.object({
 		z.literal("Senior", defaultPrettyError),
 		z.literal("Recent Grad", defaultPrettyError),
 		z.literal("Other", defaultPrettyError),
-	]),
-	hackathonsAttended: z
-		.number()
-		.min(0, { message: "Value must be positive or zero" })
-		.int({ message: "Value must be an integer" })
-		.or(z.string())
-		.pipe(
-			z.coerce
-				.number()
-				.min(0, { message: "Value must be positive or zero" })
-				.int({ message: "Value must be an integer" }),
-		),
-	softwareBuildingExperience: z.union([
-		z.literal("Beginner", defaultPrettyError),
-		z.literal("Intermediate", defaultPrettyError),
-		z.literal("Advanced", defaultPrettyError),
-		z.literal("Expert", defaultPrettyError),
 	]),
 	heardAboutEvent: z
 		.union([

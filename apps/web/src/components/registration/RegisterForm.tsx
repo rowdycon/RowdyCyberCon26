@@ -14,7 +14,6 @@ import {
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
-	SelectValue,
 	SelectGroup,
 } from "@/components/shadcn/ui/select";
 import { Input } from "@/components/shadcn/ui/input";
@@ -63,8 +62,6 @@ import type {
 	GenderOptionsType,
 	HeardFromOptionsType,
 	ShirtSizeOptionsType,
-	RaceOptionsType,
-	EthnicityOptionsType,
 	SchoolOptionsType,
 	LevelOfStudyOptionsType,
 	MajorOptionsType,
@@ -94,7 +91,6 @@ export default function RegisterForm({
 	const form = useForm<z.infer<typeof hackerRegistrationFormValidator>>({
 		resolver: zodResolver(hackerRegistrationFormValidator),
 		defaultValues: {
-			hackathonsAttended: 0,
 			dietRestrictions: [],
 			isSearchable: false,
 			bio: "",
@@ -103,7 +99,6 @@ export default function RegisterForm({
 			firstName: "",
 			lastName: "",
 			age: 0,
-			ethnicity: "" as EthnicityOptionsType,
 			gender: "" as GenderOptionsType,
 			major: "" as MajorOptionsType,
 			GitHub: "",
@@ -114,7 +109,6 @@ export default function RegisterForm({
 			PersonalWebsite: "",
 			discord: "",
 			pronouns: "",
-			race: "" as RaceOptionsType,
 			shirtSize: "" as ShirtSizeOptionsType,
 			schoolID: "",
 			university: "" as SchoolOptionsType,
@@ -138,14 +132,12 @@ export default function RegisterForm({
 					hackerRegistrationValidatorLocalStorage.safeParse(parsed);
 				if (res.success) {
 					const {
-						ethnicity,
 						gender,
 						major,
 						university,
 						dietRestrictions,
 						heardFrom,
 						levelOfStudy,
-						race,
 						skills,
 						shirtSize,
 						...remainingData
@@ -153,8 +145,6 @@ export default function RegisterForm({
 					setSkills(res.data.skills as Tag[]);
 					form.reset({
 						...form.formState.defaultValues,
-						ethnicity: ethnicity as EthnicityOptionsType,
-						race: race as RaceOptionsType,
 						gender: gender as GenderOptionsType,
 						university: university as SchoolOptionsType,
 						shirtSize: shirtSize as ShirtSizeOptionsType,
@@ -522,126 +512,6 @@ export default function RegisterForm({
 													<SelectContent className="bg-[#c0c0c0]">
 														<SelectGroup>
 															{c.registration.genderOptions.map(
-																(option) => (
-																	<SelectItem
-																		value={
-																			option
-																		}
-																		key={
-																			option
-																		}
-																	>
-																		{option}
-																	</SelectItem>
-																),
-															)}
-														</SelectGroup>
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="race"
-										render={({ field }) => (
-											<FormItem className="">
-												<FormLabel>
-													{formatRegistrationField(
-														"Race",
-														hackerRegistrationFormValidator.shape[
-															field.name
-														].isOptional(),
-													)}
-												</FormLabel>
-												<Select
-													onValueChange={
-														field.onChange
-													}
-													defaultValue={field.value}
-												>
-													<FormControl>
-														<SelectTrigger className="w-full placeholder:text-muted-foreground">
-															<div
-																className={clsx(
-																	"flex w-[95%] justify-start",
-																	{
-																		"text-muted-foreground":
-																			!field.value,
-																	},
-																)}
-															>
-																<p className="overflow-hidden text-ellipsis whitespace-nowrap">
-																	{field.value ||
-																		`Select a ${capitalizeFirstLetter(field.name)}`}
-																</p>
-															</div>
-														</SelectTrigger>
-													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
-														<SelectGroup className="max-h-[400px] w-[var(--radix-select-trigger-width)] overflow-y-scroll">
-															{c.registration.raceOptions.map(
-																(option) => (
-																	<SelectItem
-																		value={
-																			option
-																		}
-																		key={
-																			option
-																		}
-																	>
-																		{option}
-																	</SelectItem>
-																),
-															)}
-														</SelectGroup>
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="ethnicity"
-										render={({ field }) => (
-											<FormItem className="">
-												<FormLabel>
-													{formatRegistrationField(
-														"Ethnicity",
-														hackerRegistrationFormValidator.shape[
-															field.name
-														].isOptional(),
-													)}
-												</FormLabel>
-												<Select
-													onValueChange={
-														field.onChange
-													}
-													defaultValue={field.value}
-												>
-													<FormControl>
-														<SelectTrigger className="w-full placeholder:text-muted-foreground">
-															<div
-																className={clsx(
-																	"flex w-[95%] justify-start",
-																	{
-																		"text-muted-foreground":
-																			!field.value,
-																	},
-																)}
-															>
-																<p className="overflow-hidden text-ellipsis whitespace-nowrap">
-																	{field.value ||
-																		`Select a ${capitalizeFirstLetter(field.name)}`}
-																</p>
-															</div>
-														</SelectTrigger>
-													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
-														<SelectGroup>
-															{c.registration.ethnicityOptions.map(
 																(option) => (
 																	<SelectItem
 																		value={
@@ -1086,30 +956,6 @@ export default function RegisterForm({
 							</FormGroupWrapper>
 							<FormGroupWrapper title="Hackathon Experience">
 								<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-3 md:gap-y-0">
-									<FormField
-										control={form.control}
-										name="hackathonsAttended"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>
-													{formatRegistrationField(
-														"# of hackathons attended",
-														hackerRegistrationFormValidator.shape[
-															field.name
-														].isOptional(),
-													)}
-												</FormLabel>
-												<FormControl>
-													<Input
-														type="number"
-														{...field}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-
 									<FormField
 										control={form.control}
 										name="heardFrom"

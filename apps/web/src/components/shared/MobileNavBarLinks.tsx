@@ -1,8 +1,5 @@
 import { getAllNavItems } from "@/lib/utils/server/redis";
-import {
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-} from "@/components/shadcn/ui/dropdown-menu";
+import { DropdownMenuItem } from "@/components/shadcn/ui/dropdown-menu";
 import Link from "next/link";
 export default async function MobileNavBarLinks() {
 	const navLinks = await getAllNavItems();

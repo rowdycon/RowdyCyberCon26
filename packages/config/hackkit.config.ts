@@ -752,38 +752,12 @@ const countries = [
 	{ name: "Zimbabwe", code: "ZW" },
 ] as const;
 
-const raceOptions = [
-	"Asian Indian",
-	"Black or African",
-	"Chinese",
-	"Filipino",
-	"Guamanian or Chamorro",
-	"Hispanic / Latino / Spanish Origin",
-	"Japanese",
-	"Korean",
-	"Middle Eastern",
-	"Native American or Alaskan Native",
-	"Native Hawaiian",
-	"Samoan",
-	"Vietnamese",
-	"White",
-	"Other Asian (Thai, Cambodian, etc)",
-	"Other Pacific Islander",
-	"Other",
-	"Prefer Not to Answer",
-] as const;
-
 const genderOptions = [
 	"Male",
 	"Female",
 	"Non-binary",
 	"Other",
 	"Prefer Not To Say",
-] as const;
-
-const ethnicityOptions = [
-	"Hispanic or Latino",
-	"Not Hispanic or Latino",
 ] as const;
 
 const heardFromOptions = [
@@ -816,9 +790,7 @@ const c = {
 		levelsOfStudy,
 		dietaryRestrictionOptions,
 		countries,
-		raceOptions,
 		genderOptions,
-		ethnicityOptions,
 		heardFromOptions,
 		shirtSizeOptions,
 		minRequiredAge: 18,
@@ -1014,7 +986,7 @@ const publicRoutes = [
 	/^\/sign-up(\/.*)?$/,
 ];
 
-const defaultRoleId = 2;
+const defaultRoleId = 3;
 
 export default c;
 export {
