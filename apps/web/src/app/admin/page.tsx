@@ -32,20 +32,22 @@ export default async function Page() {
 	const timezone = getClientTimeZone(vercelTimezone ?? "UTC");
 
 	return (
-		<div className="mx-auto h-16 w-full max-w-7xl pt-44">
-			<div className="w-full px-2">
-				<h2 className="text-xl font-bold">Welcome,</h2>
-				<h1 className="text-5xl font-black text-hackathon">
+		<div className="mx-auto w-full max-w-7xl px-4 pt-32 lg:pt-44">
+			<div className="w-full">
+				<h2 className="text-lg font-bold md:text-xl">Welcome,</h2>
+				<h1 className="text-3xl font-black text-hackathon md:text-4xl lg:text-5xl">
 					{adminUser.firstName}
 				</h1>
 			</div>
-			<div className="grid grid-cols-4 gap-x-2 pt-10">
+
+			{/* Stats Grid - Responsive: 1 col mobile, 2 cols tablet, 4 cols desktop */}
+			<div className="grid grid-cols-1 gap-4 pt-6 sm:grid-cols-2 md:pt-8 lg:grid-cols-4 lg:pt-10">
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">
 							Registrations
 						</CardTitle>
-						<User2 />
+						<User2 className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">
@@ -58,7 +60,7 @@ export default async function Page() {
 						<CardTitle className="text-sm font-medium">
 							Teams
 						</CardTitle>
-						<Users />
+						<Users className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{0}</div>
@@ -69,7 +71,7 @@ export default async function Page() {
 						<CardTitle className="text-sm font-medium">
 							RSVPs
 						</CardTitle>
-						<MailCheck />
+						<MailCheck className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{rsvpCount}</div>
@@ -80,21 +82,23 @@ export default async function Page() {
 						<CardTitle className="text-sm font-medium">
 							Check-ins
 						</CardTitle>
-						<UserCheck />
+						<UserCheck className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{checkinCount}</div>
 					</CardContent>
 				</Card>
 			</div>
-			<div className="grid grid-cols-3 gap-x-2 py-2">
-				<Card className="col-span-2">
+
+			{/* Chart and Recent Users - Responsive: 1 col mobile, 3 cols desktop */}
+			<div className="grid grid-cols-1 gap-4 py-4 lg:grid-cols-3">
+				<Card className="lg:col-span-2">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<div>
-							<CardTitle className="text-md font-bold">
+							<CardTitle className="md:text-md text-base font-bold">
 								Registrations
-							</CardTitle>{" "}
-							<CardDescription>
+							</CardTitle>
+							<CardDescription className="text-xs md:text-sm">
 								{Object.values(recentSignupCount).reduce(
 									(a, b) => a + b,
 									0,
@@ -103,7 +107,7 @@ export default async function Page() {
 								days.
 							</CardDescription>
 						</div>
-						<User2 />
+						<User2 className="hidden h-4 w-4 text-muted-foreground sm:block" />
 					</CardHeader>
 					<CardContent>
 						<Overview rawData={recentSignupCount} />
@@ -112,30 +116,30 @@ export default async function Page() {
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<div>
-							<CardTitle className="text-md font-bold">
+							<CardTitle className="md:text-md text-base font-bold">
 								Recent Registrations
-							</CardTitle>{" "}
+							</CardTitle>
 						</div>
-						<TimerReset />
+						<TimerReset className="hidden h-4 w-4 text-muted-foreground sm:block" />
 					</CardHeader>
 					<CardContent>
 						<div className="flex flex-col space-y-2">
 							{recentRegisteredUsers.map((user) => (
 								<div
 									key={user.clerkID}
-									className="flex items-center justify-between"
+									className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between"
 								>
 									<Link
 										href={`/admin/users/${user.clerkID}`}
-										className="hover:underline"
+										className="font-medium hover:underline"
 									>
 										{user.firstName} {user.lastName}
 									</Link>
-									<span className="text-sm text-gray-500">
+									<span className="text-xs text-gray-500 sm:text-sm">
 										{formatInTimeZone(
 											user.signupTime,
 											timezone,
-											"MMMM dd h:mm a",
+											"MMM dd h:mm a",
 										)}
 									</span>
 								</div>
