@@ -11,7 +11,7 @@ export default function Hero() {
 				{/* Logo with glow effect */}
 				<div className="relative mx-auto h-[180px] w-[180px] md:h-[280px] md:w-[280px]">
 					<div className="absolute inset-0 animate-pulse rounded-full bg-[#000080] opacity-20 blur-2xl" />
-					{/* <Image
+					<Image
 						src="/img/logo/rowdyconlogo.png"
 						alt="RowdyCon Logo"
 						fill
@@ -19,7 +19,7 @@ export default function Hero() {
 						style={{ imageRendering: "pixelated" }}
 						priority
 						sizes="(max-width: 768px) 180px, 280px"
-					/> */}
+					/>
 				</div>
 
 				{/* Text Logo */}
