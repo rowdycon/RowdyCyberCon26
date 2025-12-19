@@ -1,27 +1,33 @@
 {
 	"partners": [
 		{
-			"name": "Alamo ISSS",
-			"logo": "Alamo ISSA.png",
-			"url": "https://cymanii.org/",
+			"name": "Alamo ISSA",
+			"logo": "alamo_issa.png",
+			"url": "https://www.alamoissa.org/",
 			"tier": "Gold Sponsor"
 		},
 		{
-			"name": "Cyber Texas",
-			"logo": "cybertexas logo.png",
-			"url": "https://cymanii.org/",
+			"name": "XP League",
+			"logo": "xp_league.png",
+			"url": "https://www.xpleague.com/texas-san-antonio-nw/",
 			"tier": "Gold Sponsor"
 		},
 		{
-			"name": "Delta",
-			"logo": "Delta Quadrant Solutions Png.png",
-			"url": "https://cymanii.org/",
+			"name": "SimSpace",
+			"logo": "simspace.png",
+			"url": "https://simspace.com/",
 			"tier": "Gold Sponsor"
 		},
 		{
-			"name": "Honors",
-			"logo": "Honors Logo.png",
-			"url": "https://cymanii.org/",
+			"name": "ISACA",
+			"logo": "isaca_logo.jpeg",
+			"url": "https://www.isaca.org/",
+			"tier": "Gold Sponsor"
+		},
+		{
+			"name": "UTSA School of Data Science",
+			"logo": "utsa_sds.png",
+			"url": "https://caicc.utsa.edu/",
 			"tier": "Gold Sponsor"
 		}
 	]
