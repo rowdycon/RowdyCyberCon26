@@ -12,10 +12,10 @@ const faqs: FAQ[] = [
 		answer: "There will be workshops, a massive Capture the Flag, a King of the Hill competition, free food, and the ability to network with students and employers!",
 	},
 	{
-		question: "Who can attend RowdyCon?",
+		question: "Who can attend RowdyCyberCon?",
 		answer: (
 			<>
-				RowdyCon is open to all students attending San Antonio-based
+				RowdyCyberCon is open to all students attending San Antonio-based
 				universities and colleges, regardless of major or skill level.
 				If you attend an online degree program that is based in San
 				Antonio, you are eligible to participate. We welcome anyone
@@ -37,7 +37,7 @@ const faqs: FAQ[] = [
 	},
 	{
 		question: "How much does it cost?",
-		answer: "RowdyCon is free to all San Antonio-based students! Breakfast, lunch, dinner, and snacks will be served, so come hungry!",
+		answer: "RowdyCyberCon is free to all San Antonio-based students! Breakfast, lunch, dinner, and snacks will be served, so come hungry!",
 	},
 	{
 		question: "Do I need experience to attend?",
