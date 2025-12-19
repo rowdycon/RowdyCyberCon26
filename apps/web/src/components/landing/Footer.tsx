@@ -162,7 +162,7 @@ export default function Footer() {
 									transform: "rotate(180deg)",
 								}}
 							>
-								RowdyCon 2026
+								RowdyCyberCon 2026
 							</span>
 						</div>
 
@@ -349,7 +349,7 @@ export default function Footer() {
 						}}
 					>
 						<span className="text-sm">🏠</span>
-						<span className="text-sm">RowdyCon 2026</span>
+						<span className="text-sm">RowdyCyberCon 2026</span>
 					</button>
 
 					{/* Spacer */}
@@ -430,3 +430,4 @@ export default function Footer() {
 		</>
 	);
 }
+
