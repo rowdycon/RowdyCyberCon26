@@ -38,7 +38,7 @@ const DESKTOP_ITEMS = [
 const BOOT_MESSAGES = [
 	"Starting Windows 98...",
 	"Loading system files...",
-	"Initializing RowdyCon.exe...",
+	"Initializing RowdyCyberCon.exe...",
 	"Loading CTF modules...",
 	"System ready!",
 ];
@@ -231,7 +231,7 @@ export default function HeroClient({
 						<span className="text-xs" aria-hidden="true">
 							🖥️
 						</span>
-						<span>RowdyCon.exe</span>
+						<span>RowdyCyberCon.exe</span>
 					</div>
 					<div className="flex" aria-hidden="true">
 						<button className="win98-titlebar-btn" tabIndex={-1}>
