@@ -7,7 +7,7 @@ export default function About() {
 			<div className="mx-auto max-w-6xl px-4">
 				<div className="win98-window mb-8 bg-[#C0C0C0]">
 					<div className="win98-titlebar">
-						<span>About RowdyCon</span>
+						<span>About RowdyCyberCon</span>
 						<div className="flex">
 							<button className="win98-titlebar-btn">_</button>
 							<button className="win98-titlebar-btn">□</button>
@@ -23,7 +23,7 @@ export default function About() {
 							</div>
 							<div className="win98-inset p-4">
 								<p className="text-sm">
-									RowdyCon is a one-day cybersecurity
+									RowdyCyberCon is a one-day cybersecurity
 									conference where San Antonio area based
 									students can learn{" "}
 									<strong>
@@ -104,7 +104,7 @@ export default function About() {
 							</div>
 							<div className="win98-inset p-4">
 								<p className="mb-4 text-sm">
-									RowdyCon is very grateful for the amazing
+									RowdyCyberCon is very grateful for the amazing
 									support of our partners. If you or your
 									organization are interested in becoming a
 									partner, click the link below to explore our
