@@ -92,5 +92,3 @@ export default async function DashLayout({ children }: DashLayoutProps) {
 		</>
 	);
 }
-
-export const runtime = "edge";

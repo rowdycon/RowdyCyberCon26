@@ -92,5 +92,3 @@ function Cell({
 		</div>
 	);
 }
-
-export const runtime = "edge";

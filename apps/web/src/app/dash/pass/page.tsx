@@ -356,5 +356,3 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 		</div>
 	);
 }
-
-export const runtime = "edge";

@@ -192,5 +192,3 @@ function getRecentRegistrationData(users: User[]) {
 		recentRegisteredUsers,
 	};
 }
-
-export const runtime = "edge";

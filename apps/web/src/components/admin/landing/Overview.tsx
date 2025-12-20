@@ -1,14 +1,6 @@
 "use client";
 
-import {
-	Bar,
-	BarChart,
-	ResponsiveContainer,
-	XAxis,
-	YAxis,
-	Tooltip,
-	CartesianGrid,
-} from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { parseISO, format } from "date-fns";
 
 type DateNumberMap = { [key: string]: number };
@@ -55,5 +47,4 @@ export function Overview({ rawData }: OverviewProps) {
 	);
 }
 
-export const runtime = "edge";
 export const revalidate = 30;
