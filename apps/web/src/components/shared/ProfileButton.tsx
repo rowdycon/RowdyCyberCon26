@@ -71,7 +71,6 @@ export default async function ProfileButton() {
 						</Link>
 						<MobileNavBarLinks />
 						<div className="my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
-						{/* <DropdownSwitcher /> */}
 						<Link href={`/bug-report`}>
 							<DropdownMenuItem className="cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-lg text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
 								Report a Bug
@@ -134,7 +133,6 @@ export default async function ProfileButton() {
 						</Link>
 					</DropdownMenuGroup>
 					<div className="mx-1 my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
-					{/* <DropdownSwitcher /> */}
 					<SignOutButton redirectUrl={"/"}>
 						<DropdownMenuItem className="text-md m-1 cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-[#800000] hover:bg-[#800000] hover:text-white focus:bg-[#800000] focus:text-white">
 							Sign out
