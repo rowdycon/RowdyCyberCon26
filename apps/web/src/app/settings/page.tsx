@@ -11,6 +11,7 @@ export default async function Page() {
 	const user = await getUser(userId);
 	if (!user) return redirect("/sign-in");
 	const { email, ...userData } = user;
+
 	return (
 		<main>
 			<Header tag="Account" />

@@ -60,7 +60,9 @@ export default function UpdateRoleDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={"outline"}>Change Role</Button>
+				<Button variant={"outline"} size={"sm"} className="w-full">
+					Change Role
+				</Button>
 			</DialogTrigger>
 			<DialogContent className="bg-[#c0c0c0] sm:max-w-[425px]">
 				<DialogHeader>
@@ -72,7 +74,7 @@ export default function UpdateRoleDialog({
 				<div className="grid gap-4 py-4">
 					<div className="flex">
 						<Select onValueChange={(v) => setRoleToSet(Number(v))}>
-							<SelectTrigger className="w-[180px]">
+							<SelectTrigger className="w-full">
 								<SelectValue
 									placeholder={getRoleName(currentRoleId)}
 								/>

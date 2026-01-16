@@ -126,7 +126,7 @@ export default function CheckinScanner({
 
 	return (
 		<>
-			<div className="flex h-dvh flex-col items-center justify-center pt-32">
+			<div className="flex flex-col items-center justify-center">
 				<div className="flex w-screen flex-col items-center justify-center gap-5">
 					<div className="mx-auto aspect-square w-screen max-w-[500px] overflow-hidden">
 						<Scanner

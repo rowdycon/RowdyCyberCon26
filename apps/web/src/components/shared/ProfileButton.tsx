@@ -19,6 +19,7 @@ import MobileNavBarLinks from "./MobileNavBarLinks";
 import { getUser } from "db/functions";
 import Restricted from "../Restricted";
 import { PermissionType } from "@/lib/constants/permission";
+import c from "config";
 
 export default async function ProfileButton() {
 	const clerkUser = await auth();
@@ -70,7 +71,7 @@ export default async function ProfileButton() {
 							</DropdownMenuItem>
 						</Link>
 						<MobileNavBarLinks />
-						<div className="my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
+
 						<Link href={`/bug-report`}>
 							<DropdownMenuItem className="cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-lg text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
 								Report a Bug
@@ -200,8 +201,14 @@ export default async function ProfileButton() {
 						</p>
 					</div>
 				</DropdownMenuLabel>
+
 				<div className="mx-1 my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
 				<DropdownMenuGroup className="p-1">
+					<Link href={"/dash"}>
+						<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
+							Dashboard
+						</DropdownMenuItem>
+					</Link>
 					<Link href={`/@${user.hackerTag}`}>
 						<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
 							Profile
@@ -213,6 +220,12 @@ export default async function ProfileButton() {
 						</DropdownMenuItem>
 					</Link>
 
+					<Link href={c.links.guide} target="_blank">
+						<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
+							Survival Guide
+						</DropdownMenuItem>
+					</Link>
+
 					<Restricted user={user} permissions={PermissionType.ADMIN}>
 						<Link href={`/admin`}>
 							<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 font-bold text-[#000080] hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
@@ -221,20 +234,24 @@ export default async function ProfileButton() {
 						</Link>
 					</Restricted>
 
-					<MobileNavBarLinks />
 					<div className="my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
+					<MobileNavBarLinks />
+
 					<Link href={`/bug-report`}>
 						<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
 							Report a Bug
 						</DropdownMenuItem>
 					</Link>
+
 					<Link href={"/settings"}>
 						<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
 							Settings
 						</DropdownMenuItem>
 					</Link>
 				</DropdownMenuGroup>
+
 				<div className="mx-1 my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
+
 				<SignOutButton redirectUrl={"/"}>
 					<DropdownMenuItem className="text-md m-1 cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-[#800000] hover:bg-[#800000] hover:text-white focus:bg-[#800000] focus:text-white">
 						Sign out

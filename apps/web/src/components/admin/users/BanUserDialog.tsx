@@ -39,7 +39,9 @@ export default function BanUserDialog({ userID, name }: BanUserDialogProps) {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={"destructive"}>Ban</Button>
+				<Button variant={"outline"} size={"sm"} className="w-full">
+					Ban
+				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>

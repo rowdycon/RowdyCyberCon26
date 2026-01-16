@@ -24,7 +24,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/shadcn/ui/textarea";
 import c from "config";
 import { DateTimePicker } from "@/components/shadcn/ui/date-time-picker/date-time-picker";
-import { parseAbsolute, getLocalTimeZone } from "@internationalized/date";
+import {
+	parseAbsolute,
+	getLocalTimeZone,
+	fromDate,
+} from "@internationalized/date";
 import { useAction } from "next-safe-action/hooks";
 import { createEvent } from "@/actions/admin/event-actions";
 import { useCallback, useState } from "react";
@@ -55,7 +59,6 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 			let description: string;
 
 			if (error.validationErrors?._errors) {
-				// User is not super admin
 				description = error.validationErrors._errors[0];
 			} else {
 				description = error.serverError || "An unknown error occurred";
@@ -144,7 +147,7 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 						</FormItem>
 					)}
 				/>
-				<div className="grid grid-cols-2 gap-x-2">
+				<div className="flex flex-col gap-x-2 md:grid md:grid-cols-2">
 					<FormField
 						control={form.control}
 						name="type"
@@ -160,7 +163,7 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 											<SelectValue placeholder="Select a Event Type" />
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent>
+									<SelectContent className="bg-[#c0c0c0]">
 										<SelectGroup>
 											{Object.keys(c.eventTypes).map(
 												(type) => (
@@ -196,7 +199,8 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 						)}
 					/>
 				</div>
-				<div className="grid grid-cols-2 gap-x-2">
+
+				<div className="flex flex-col gap-x-2 md:grid md:grid-cols-2">
 					<FormField
 						control={form.control}
 						name="startTime"
@@ -246,9 +250,9 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 								<FormLabel>Event End</FormLabel>
 								<DateTimePicker
 									value={
-										!!field.value
-											? parseAbsolute(
-													field.value.toISOString(),
+										field.value
+											? fromDate(
+													field.value,
 													userLocalTimeZone,
 												)
 											: null

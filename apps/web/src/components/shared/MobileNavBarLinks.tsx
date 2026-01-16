@@ -1,6 +1,7 @@
 import { getAllNavItems } from "@/lib/utils/server/redis";
 import { DropdownMenuItem } from "@/components/shadcn/ui/dropdown-menu";
 import Link from "next/link";
+
 export default async function MobileNavBarLinks() {
 	const navLinks = await getAllNavItems();
 
@@ -10,13 +11,16 @@ export default async function MobileNavBarLinks() {
 				return (
 					<div key={nav.name}>
 						{nav.enabled ? (
-							<Link href={nav.url}>
-								<DropdownMenuItem>{nav.name}</DropdownMenuItem>
+							<Link href={nav.url} target="_blank">
+								<DropdownMenuItem className="text-md cursor-pointer rounded-none bg-[#c0c0c0] px-6 py-1.5 text-black hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white">
+									{nav.name}
+								</DropdownMenuItem>
 							</Link>
 						) : null}
 					</div>
 				);
 			})}
+			<div className="my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
 		</div>
 	);
 }

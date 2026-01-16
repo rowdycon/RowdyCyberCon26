@@ -15,14 +15,14 @@ const faqs: FAQ[] = [
 		question: "Who can attend RowdyCyberCon?",
 		answer: (
 			<>
-				RowdyCyberCon is open to all students attending San Antonio-based
-				universities and colleges, regardless of major or skill level.
-				If you attend an online degree program that is based in San
-				Antonio, you are eligible to participate. We welcome anyone
-				interested in learning more about cybersecurity. We have
-				workshops and opportunities accessible for every level including
-				beginners! Volunteers not fitting those qualifications are
-				welcomed and can sign up{" "}
+				RowdyCyberCon is open to all students attending San
+				Antonio-based universities and colleges, regardless of major or
+				skill level. If you attend an online degree program that is
+				based in San Antonio, you are eligible to participate. We
+				welcome anyone interested in learning more about cybersecurity.
+				We have workshops and opportunities accessible for every level
+				including beginners! Volunteers not fitting those qualifications
+				are welcomed and can sign up{" "}
 				<a
 					href="https://forms.gle/G8t8UQxiQLGbFLVE9"
 					target="_blank"
@@ -127,7 +127,7 @@ export default function WorkWithUs() {
 	return (
 		<section className="mb-12 w-full py-8" id="FAQ">
 			<div className="mx-auto max-w-6xl px-4">
-				<div className="win98-window bg-[#C0C0C0]">
+				<div className="win98-window bg-[#c0c0c0]">
 					<div className="win98-titlebar">
 						<span>Frequently Asked Questions</span>
 						<div className="flex">

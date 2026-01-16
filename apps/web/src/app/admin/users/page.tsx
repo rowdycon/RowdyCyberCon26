@@ -8,7 +8,6 @@ import { userHasPermission } from "@/lib/utils/server/admin";
 import { PermissionType } from "@/lib/constants/permission";
 import { getCurrentUser } from "@/lib/utils/server/user";
 
-// This begs a question where we might want to have an option later on to sort by the role as we might want different things
 export default async function Page() {
 	const user = await getCurrentUser();
 	if (!userHasPermission(user, PermissionType.VIEW_USERS)) return notFound();
@@ -16,37 +15,28 @@ export default async function Page() {
 	const userData = await getAllUsers();
 
 	return (
-		<div className="mx-auto max-w-7xl px-5 pt-40">
-			<div className="mb-5 grid w-full grid-cols-2">
-				<div className="flex items-center">
-					<div>
-						<h2 className="text-3xl font-bold tracking-tight">
-							Users
-						</h2>
-						<p className="text-sm text-muted-foreground">
-							Total Users: {userData.length}
-						</p>
-					</div>
+		<div className="mx-auto max-w-7xl px-5">
+			<div className="mb-5 flex w-full justify-between">
+				<div className="flex flex-col items-start justify-start">
+					<h2 className="text-3xl font-bold tracking-tight">Users</h2>
+					<p className="text-sm text-muted-foreground">
+						Total Users: {userData.length}
+					</p>
 				</div>
 				<div className="flex items-center justify-end">
 					<a download href="/api/admin/export">
 						<Button className="flex gap-x-1">
 							<FolderInput />
-							Export
+							<span>Export</span>
 						</Button>
 					</a>
 				</div>
 			</div>
-			<div className="flex w-full justify-center">
-				{userData && userData.length > 0 ? (
-					<>
-						<DataTable columns={columns} data={userData} />
-					</>
-				) : (
-					<div className="flex w-full items-center justify-center">
-						<h1>No Results :(</h1>
-					</div>
-				)}
+			<div className="w-full">
+				<DataTable columns={columns} data={userData} />
+			</div>
+			<div className="flex w-full min-w-0 justify-center">
+				<div className="w-full min-w-0 overflow-x-auto"></div>
 			</div>
 		</div>
 	);

@@ -154,7 +154,7 @@ export default function EditEventForm({
 						</FormItem>
 					)}
 				/>
-				<div className="grid grid-cols-2 gap-x-2">
+				<div className="flex flex-col gap-x-2 md:grid md:grid-cols-2">
 					<FormField
 						control={form.control}
 						name="type"
@@ -170,7 +170,7 @@ export default function EditEventForm({
 											<SelectValue placeholder="Select a Event Type" />
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent>
+									<SelectContent className="bg-[#c0c0c0]">
 										<SelectGroup>
 											{Object.keys(c.eventTypes).map(
 												(type) => (
@@ -206,7 +206,7 @@ export default function EditEventForm({
 						)}
 					/>
 				</div>
-				<div className="grid grid-cols-2 gap-x-2">
+				<div className="flex flex-col gap-x-2 md:grid md:grid-cols-2">
 					<FormField
 						control={form.control}
 						name="startTime"

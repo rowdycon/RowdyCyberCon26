@@ -32,8 +32,8 @@ export function EventDataTable<TData, TValue>({
 	});
 
 	return (
-		<div className="rounded-md border">
-			<Table>
+		<div className="relative w-full overflow-x-auto">
+			<Table className="min-w-full border">
 				<TableHeader>
 					{table.getHeaderGroups().map((headerGroup) => (
 						<TableRow key={headerGroup.id}>

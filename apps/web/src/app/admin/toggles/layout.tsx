@@ -16,8 +16,9 @@ export default async function Layout({ children }: ToggleLayoutProps) {
 		return notFound();
 
 	return (
-		<div className="mx-auto grid max-w-5xl grid-cols-5 gap-x-3 pt-44">
-			<div className="min-h-screen">
+		<div className="mx-3 flex max-w-5xl flex-col gap-4 px-4 md:mx-auto md:flex-row md:gap-x-6">
+			{/* Sidebar */}
+			<div className="flex shrink-0 flex-row gap-2 md:w-56 md:flex-col">
 				<ToggleItem name="Toggles" path="/admin/toggles" />
 				<ToggleItem name="Landing Page" path="/admin/toggles/landing" />
 
@@ -31,7 +32,9 @@ export default async function Layout({ children }: ToggleLayoutProps) {
 					/>
 				</Restricted>
 			</div>
-			<div className="col-span-4">{children}</div>
+
+			{/* Main content */}
+			<div className="min-w-0 flex-1">{children}</div>
 		</div>
 	);
 }
