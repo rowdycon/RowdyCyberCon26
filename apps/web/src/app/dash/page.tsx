@@ -17,14 +17,14 @@ export default async function Page() {
 	});
 
 	return (
-		<div className="mx-auto min-h-[calc(100%-7rem)] max-w-7xl py-10">
+		<div className="mx-auto mb-5 min-h-[calc(100%-7rem)] max-w-7xl md:mx-10">
 			<div className="w-full px-2">
 				<h2 className="text-xl font-bold">Welcome,</h2>
 				<h1 className="text-5xl font-black text-hackathon">
 					{user.firstName}
 				</h1>
 			</div>
-			<div className="rows-[] grid w-full grid-cols-1 gap-2 px-2 pt-10 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+			<div className="grid w-full grid-cols-1 gap-2 px-2 pt-10 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
 				<QuickQR qrPayload={qrPayload} />
 				<TitleBubble />
 				<Countdown

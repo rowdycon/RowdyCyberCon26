@@ -48,32 +48,39 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	});
 
 	return (
-		<main className="mx-auto max-w-5xl pt-44">
+		<main className="mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
 			{!!banInstance && (
-				<div className="absolute left-0 top-28 w-screen bg-destructive p-2 text-center">
-					<strong>
-						This user has been suspended, reason for suspension:{" "}
-					</strong>
+				<div className="sticky top-0 z-50 -mx-4 mb-4 w-screen bg-destructive p-3 text-center text-sm sm:-mx-6 sm:w-auto sm:rounded-md lg:-mx-8">
+					<strong>This user has been suspended:</strong>{" "}
 					{banInstance.reason}
 				</div>
 			)}
-			<div className="mb-5 grid w-full grid-cols-3">
-				<div className="flex items-center">
-					<div>
-						<h2 className="flex items-center gap-x-2 text-3xl font-bold tracking-tight">
-							<Info />
-							User Info
-						</h2>
-						{/* <p className="text-sm text-muted-foreground">{users.length} Total Users</p> */}
-					</div>
+
+			<div className="mb-6 grid w-full grid-cols-1 gap-4 sm:mb-8 lg:grid-cols-3">
+				{/* Title */}
+				<div className="flex items-center justify-center sm:justify-start">
+					<h2 className="flex items-center gap-x-2 text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl">
+						<Info className="h-5 w-5 sm:h-6 sm:w-6" />
+						User Info
+					</h2>
 				</div>
-				<div className="col-span-2 hidden items-center justify-end gap-2 md:flex">
-					<Link href={`/@${subject.hackerTag}`} target="_blank">
-						<Button variant={"outline"}>Hacker Profile</Button>
+
+				{/* Desktop Actions */}
+				<div className="hidden items-center justify-evenly gap-x-2 lg:col-span-2 lg:flex">
+					<Link
+						href={`/@${subject.hackerTag}`}
+						target="_blank"
+						className="w-full"
+					>
+						<Button variant="outline" size="sm" className="w-full">
+							Hacker Profile
+						</Button>
 					</Link>
 
-					<Link href={`mailto:${subject.email}`}>
-						<Button variant={"outline"}>Email Hacker</Button>
+					<Link href={`mailto:${subject.email}`} className="w-full">
+						<Button variant="outline" size="sm" className="w-full">
+							Email Hacker
+						</Button>
 					</Link>
 
 					<Restricted
@@ -117,73 +124,168 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						/>
 					)}
 				</div>
-				<div className="col-span-2 flex items-center justify-end pr-4 md:hidden">
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<Button variant={"outline"}>Admin Actions</Button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent
-							align="end"
-							className="min-w-[160px]"
-						>
-							<DropdownMenuItem className="justify-center">
-								<Link
-									href={`/@${subject.hackerTag}`}
-									target="_blank"
-								>
-									<Button variant={"outline"}>
-										Hacker Profile
-									</Button>
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuSeparator />
-							<DropdownMenuItem className="justify-center">
-								<Link href={`mailto:${subject.email}`}>
-									<Button variant={"outline"}>
-										Email Hacker
-									</Button>
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuSeparator />
-							<div className="cursor-pointer rounded-sm px-2 py-1.5 text-center text-sm hover:bg-accent">
-								<UpdateRoleDialog
-									name={`${subject.firstName} ${subject.lastName}`}
-									currentRoleId={subject.role_id}
-									userID={subject.clerkID}
-									roles={roles}
-								/>
-							</div>
 
-							{(c.featureFlags.core
-								.requireUsersApproval as boolean) && (
-								<ApproveUserButton
-									userIDToUpdate={subject.clerkID}
-									currentApproval={subject.isApproved}
+				{/* Tablet Actions - Horizontal Buttons */}
+				<div className="hidden grid-cols-2 gap-2 sm:grid lg:hidden">
+					<Link
+						href={`/@${subject.hackerTag}`}
+						target="_blank"
+						className="w-full"
+					>
+						<Button variant="outline" size="sm" className="w-full">
+							Hacker Profile
+						</Button>
+					</Link>
+
+					<Link href={`mailto:${subject.email}`} className="w-full">
+						<Button variant="outline" size="sm" className="w-full">
+							Email Hacker
+						</Button>
+					</Link>
+
+					<Restricted
+						user={admin}
+						permissions={PermissionType.CHANGE_USER_ROLES}
+						targetRolePosition={subject.role.position}
+						position="higher"
+					>
+						<UpdateRoleDialog
+							name={`${subject.firstName} ${subject.lastName}`}
+							currentRoleId={subject.role_id}
+							userID={subject.clerkID}
+							roles={roles}
+						/>
+					</Restricted>
+
+					<Restricted
+						user={admin}
+						permissions={PermissionType.BAN_USERS}
+						targetRolePosition={subject.role.position}
+						position="higher"
+					>
+						{!!banInstance ? (
+							<RemoveUserBanDialog
+								name={`${subject.firstName} ${subject.lastName}`}
+								reason={banInstance.reason!}
+								userID={subject.clerkID}
+							/>
+						) : (
+							<BanUserDialog
+								name={`${subject.firstName} ${subject.lastName}`}
+								userID={subject.clerkID}
+							/>
+						)}
+					</Restricted>
+
+					{(c.featureFlags.core.requireUsersApproval as boolean) && (
+						<div className="col-span-2">
+							<ApproveUserButton
+								userIDToUpdate={subject.clerkID}
+								currentApproval={subject.isApproved}
+							/>
+						</div>
+					)}
+				</div>
+
+				{/* Mobile Actions */}
+				<div className="flex flex-col gap-2 sm:hidden">
+					<div className="flex gap-2">
+						<Link
+							href={`/@${subject.hackerTag}`}
+							target="_blank"
+							className="flex-1"
+						>
+							<Button
+								variant="outline"
+								size="sm"
+								className="w-full"
+							>
+								Profile
+							</Button>
+						</Link>
+
+						<Link
+							href={`mailto:${subject.email}`}
+							className="flex-1"
+						>
+							<Button
+								variant="outline"
+								size="sm"
+								className="w-full"
+							>
+								Email
+							</Button>
+						</Link>
+					</div>
+
+					<div className="flex gap-2">
+						<Restricted
+							user={admin}
+							permissions={PermissionType.CHANGE_USER_ROLES}
+							targetRolePosition={subject.role.position}
+							position="higher"
+						>
+							<UpdateRoleDialog
+								name={`${subject.firstName} ${subject.lastName}`}
+								currentRoleId={subject.role_id}
+								userID={subject.clerkID}
+								roles={roles}
+							/>
+						</Restricted>
+
+						<Restricted
+							user={admin}
+							permissions={PermissionType.BAN_USERS}
+							targetRolePosition={subject.role.position}
+							position="higher"
+						>
+							{!!banInstance ? (
+								<RemoveUserBanDialog
+									name={`${subject.firstName} ${subject.lastName}`}
+									reason={banInstance.reason!}
+									userID={subject.clerkID}
+								/>
+							) : (
+								<BanUserDialog
+									name={`${subject.firstName} ${subject.lastName}`}
+									userID={subject.clerkID}
 								/>
 							)}
-						</DropdownMenuContent>
-					</DropdownMenu>
+						</Restricted>
+
+						{(c.featureFlags.core
+							.requireUsersApproval as boolean) && (
+							<ApproveUserButton
+								userIDToUpdate={subject.clerkID}
+								currentApproval={subject.isApproved}
+							/>
+						)}
+					</div>
 				</div>
 			</div>
-			<div className="mt-20 grid min-h-[500px] w-full grid-cols-3">
-				<div className="flex h-full w-full max-w-[250px] flex-col items-center">
-					<div className="relative aspect-square h-min w-full overflow-hidden rounded-full">
+
+			<div className="mt-6 grid w-full grid-cols-1 gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-3">
+				{/* Sidebar */}
+				<div className="flex flex-col items-center lg:items-start">
+					<div className="relative aspect-square w-32 overflow-hidden rounded-full sm:w-40 lg:w-full lg:max-w-[220px]">
 						<Image
-							className="object-cover object-center"
+							className="object-cover"
 							fill
 							src={subject.profilePhoto}
 							alt={`Profile Photo for ${subject.firstName} ${subject.lastName}`}
 						/>
 					</div>
-					<h1 className="mt-4 text-3xl font-semibold">
+
+					<h1 className="mt-4 text-center text-xl font-semibold sm:text-2xl lg:text-left lg:text-3xl">
 						{subject.firstName} {subject.lastName}
 					</h1>
-					<h2 className="font-mono text-muted-foreground">
+
+					<h2 className="text-center font-mono text-sm text-muted-foreground sm:text-base lg:text-left">
 						@{subject.hackerTag}
 					</h2>
-					{/* <p className="mt-5 text-sm">{team.bio}</p> */}
-					<div className="mt-5 flex gap-x-2">
-						<Badge className="no-select">
+
+					<div className="mt-4 flex flex-wrap justify-center gap-2 lg:justify-start">
+						<Badge className="text-xs sm:text-sm">
 							Joined{" "}
 							{subject.signupTime
 								.toDateString()
@@ -191,15 +293,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
 								.slice(1)
 								.join(" ")}
 						</Badge>
+
 						{subject.isRSVPed && (
-							<Badge className="no-select bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-padding text-center hover:from-teal-500 hover:to-blue-600">
+							<Badge className="bg-gradient-to-r from-teal-400 to-blue-500 text-xs sm:text-sm">
 								<CalendarCheck className="mr-1 h-3 w-3" />
 								RSVP
 							</Badge>
 						)}
 					</div>
 				</div>
-				<div className="col-span-2 overflow-x-hidden">
+
+				{/* Content */}
+				<div className="space-y-4 overflow-x-hidden sm:space-y-6 lg:col-span-2">
 					<PersonalInfo user={subject} />
 					<ProfileInfo user={subject} />
 					<AccountInfo user={subject} />

@@ -105,13 +105,15 @@ export default async function Navbar({ className }: NavbarProps) {
 								</span>
 							</div>
 						</Link>
-						<div className="hidden md:flex">
-							<NavBarLinksGrouper />
-						</div>
 					</div>
 
 					{/* Right - Action buttons and profile */}
 					<div className="flex items-center gap-1">
+						<div className="hidden text-xs md:flex">
+							<NavBarLinksGrouper />
+						</div>
+						<div className="mx-1 hidden h-5 w-[2px] border-l border-r border-l-[#808080] border-r-[#ffffff] md:block" />
+
 						{/* Toolbar buttons */}
 						<div className="mr-2 hidden items-center gap-0.5 md:flex">
 							{user ? (

@@ -4,7 +4,13 @@ import { cn } from "@/lib/utils/client/cn";
 import c from "config";
 import { formatInTimeZone } from "date-fns-tz";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { Fragment } from "react";
+
+type EventRowProps = { event: Event; userTimeZone: string };
+type ScheduleTimelineProps = {
+	schedule: Event[];
+	timezone: string;
+};
 
 const daysOfWeek = [
 	"Sunday",
@@ -29,46 +35,43 @@ function splitByDay(schedule: Event[]) {
 	return days;
 }
 
-type ScheduleTimelineProps = {
-	schedule: Event[];
-	timezone: string;
-};
-
 export default function ScheduleTimeline({
 	schedule,
 	timezone,
 }: ScheduleTimelineProps) {
 	return (
-		<div className="mx-auto mt-5 w-3/4">
-			<table className="p-4">
+		<div className="mx-auto mt-6 max-w-6xl overflow-x-auto">
+			<table className="w-full border-collapse">
 				<tbody>
 					{Array.from(splitByDay(schedule).entries()).map(
-						([dayName, arr]): ReactNode => (
-							<>
-								<tr key={dayName + " title"} className="py-8">
-									<td></td>
+						([dayName, arr], idx) => (
+							<Fragment key={idx}>
+								<tr key={dayName} className="align-middle">
+									<td className="hidden sm:table-cell"></td>
+
 									<td
-										className="w-1"
+										className="hidden w-1 sm:table-cell"
 										style={{
-											// background: `radial-gradient(circle, hsl(var(--background)) 0%, hsl(var(--secondary)) 90%)`,
-											backgroundColor: `hsl(var(--secondary))`,
+											backgroundColor:
+												"hsl(var(--secondary))",
 										}}
-									></td>
-									<td>
-										<h2 className="ml-16 w-full border-b py-4 text-6xl font-black">
+									/>
+
+									<td className="pb-4 pt-8">
+										<h2 className="border-b pb-3 text-2xl font-black sm:ml-16 sm:text-4xl md:text-5xl">
 											{dayName}
 										</h2>
 									</td>
 								</tr>
-								{arr?.map(
-									(event): ReactNode => (
-										<EventRow
-											event={event}
-											userTimeZone={timezone}
-										/>
-									),
-								)}
-							</>
+
+								{arr.map((event) => (
+									<EventRow
+										key={event.id}
+										event={event}
+										userTimeZone={timezone}
+									/>
+								))}
+							</Fragment>
 						),
 					)}
 				</tbody>
@@ -77,15 +80,11 @@ export default function ScheduleTimeline({
 	);
 }
 
-type EventRowProps = { event: Event; userTimeZone: string };
 export function EventRow({ event, userTimeZone }: EventRowProps) {
 	const startTimeFormatted = formatInTimeZone(
 		event.startTime,
 		userTimeZone,
 		"hh:mm a",
-		{
-			useAdditionalDayOfYearTokens: true,
-		},
 	);
 
 	const endTimeFormatted = formatInTimeZone(
@@ -99,49 +98,53 @@ export function EventRow({ event, userTimeZone }: EventRowProps) {
 
 	const href = `/schedule/${event.id}`;
 	const color = (c.eventTypes as Record<string, string>)[event.type];
+
 	return (
 		<Link href={href} legacyBehavior>
-			<tr className="cursor-pointer text-center text-xl text-foreground">
-				<td className="pr-16">{`${startTimeFormatted} - ${endTimeFormatted}`}</td>
+			<tr className="group cursor-pointer border-b last:border-b-0 sm:border-none">
+				{/* Time */}
+				<td className="text-md hidden pr-4 text-right align-middle font-medium text-muted-foreground sm:table-cell">
+					{startTimeFormatted}
+					<span className="mx-0.5 opacity-60">-</span>
+					{endTimeFormatted}
+				</td>
+
+				{/* Timeline dot */}
 				<td
-					className={"relative h-20 w-1"}
+					className="relative hidden h-20 w-1 sm:table-cell"
 					style={{
 						background: `radial-gradient(circle, ${color} 0%, hsl(var(--secondary)) 99%)`,
-						// backgroundColor: color,
 					}}
 				>
-					{isLive ? (
-						<div
-							className={cn(
-								"pulsatingDot absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full",
-							)}
-							style={{
-								backgroundColor: color,
-							}}
-						/>
-					) : (
-						<div
-							className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-							style={{
-								backgroundColor: color,
-							}}
-						>
-							<div className="absolute inset-1 h-2 w-2 rounded-full bg-background"></div>
-						</div>
-					)}
+					<div
+						className={cn(
+							"absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full",
+							isLive && "animate-pulse",
+						)}
+						style={{ backgroundColor: color }}
+					/>
 				</td>
-				<td className="pl-16">
-					<div className="flex flex-wrap items-center justify-start gap-x-2 text-left text-3xl">
-						{event.title}{" "}
-						<Badge
-							variant={"outline"}
-							className="h-fit"
-							style={{
-								borderColor: color,
-							}}
-						>
-							<p className="text-sm">{event.type}</p>
-						</Badge>
+
+				{/* Content */}
+				<td className="py-4 sm:pl-8">
+					<div className="space-y-1">
+						{/* Mobile time */}
+						<p className="text-sm font-medium text-muted-foreground sm:hidden">
+							{startTimeFormatted}
+							<span className="mx-0.5 opacity-60">-</span>
+							{endTimeFormatted}
+						</p>
+
+						<div className="flex flex-wrap items-center gap-2 text-lg font-semibold sm:text-2xl">
+							{event.title}
+							<Badge
+								variant="outline"
+								className="text-xs"
+								style={{ borderColor: color }}
+							>
+								{event.type}
+							</Badge>
+						</div>
 					</div>
 				</td>
 			</tr>

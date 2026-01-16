@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { Volume2, ChevronRight } from "lucide-react";
 import {
-	Instagram,
-	Github,
-	Linkedin,
-	Volume2,
-	ChevronRight,
-} from "lucide-react";
+	DiscordIcon,
+	GitHubIcon,
+	LinkedinIcon,
+	InstagramIcon,
+	Windows98Icon,
+} from "./FooterIcons";
+import { Button } from "../shadcn/ui/button";
 
 export default function Footer() {
 	const [time, setTime] = useState<string>("");
@@ -136,13 +137,17 @@ export default function Footer() {
 
 	const socialLinks = [
 		{
-			icon: Instagram,
+			icon: InstagramIcon,
 			label: "Instagram",
 			href: "https://www.instagram.com/rowdycybercon/",
 		},
-		{ icon: Github, label: "GitHub", href: "https://github.com/rowdycon" },
 		{
-			icon: Linkedin,
+			icon: GitHubIcon,
+			label: "GitHub",
+			href: "https://github.com/rowdycon",
+		},
+		{
+			icon: LinkedinIcon,
 			label: "LinkedIn",
 			href: "https://www.linkedin.com/company/utsa-rowdycon/",
 		},
@@ -191,61 +196,48 @@ export default function Footer() {
 						</div>
 
 						{/* Menu content */}
-						<div className="flex-1 bg-[#C0C0C0]">
+						<div className="flex-1 overflow-hidden bg-[#c0c0c0]">
 							{/* Menu sections with submenus */}
 							{menuSections.map((section) => (
-								<div
-									key={section.id}
-									className="relative"
-									{...(isMobile
-										? {
-												onClick: () =>
-													handleSubmenuClick(
-														section.id,
-													),
-											}
-										: {
-												onMouseEnter: () =>
-													setActiveSubmenu(
-														section.id,
-													),
-												onMouseLeave: () =>
-													setActiveSubmenu(null),
-											})}
-								>
+								<div key={section.id}>
 									<div
-										className={`group flex cursor-pointer items-center justify-between ${isMobile ? "px-2 py-3" : "px-3 py-2"} hover:bg-[#000080] hover:text-white`}
+										className={`group flex cursor-pointer items-center justify-between ${isMobile ? "px-2 py-3" : "px-3 py-2"} hover:bg-[#000080] hover:text-white ${
+											activeSubmenu === section.id &&
+											isMobile
+												? "bg-[#000080] text-white"
+												: ""
+										}`}
+										onClick={() =>
+											isMobile &&
+											handleSubmenuClick(section.id)
+										}
+										onMouseEnter={() =>
+											!isMobile &&
+											setActiveSubmenu(section.id)
+										}
+										onMouseLeave={() =>
+											!isMobile && setActiveSubmenu(null)
+										}
 									>
-										<span
-											className={`${isMobile ? "text-xs" : "text-sm"} font-medium`}
-										>
+										<span className="text-sm font-medium">
 											{section.title}
 										</span>
 										<ChevronRight
-											className={`${isMobile ? "h-3 w-3" : "h-4 w-4"} opacity-60`}
+											className={`${isMobile ? "h-3 w-3" : "h-4 w-4"} opacity-60 transition-transform ${
+												activeSubmenu === section.id &&
+												isMobile
+													? "rotate-90"
+													: ""
+											}`}
 										/>
 									</div>
 
-									{/* Submenu */}
-									{activeSubmenu === section.id && (
-										<div
-											className={`win98-window ${
-												isMobile
-													? "relative left-0 ml-0 mt-1 w-full"
-													: "absolute bottom-0 left-full ml-0.5 w-56"
-											}`}
-											style={{
-												boxShadow: isMobile
-													? "inset 2px 2px 0 rgba(0,0,0,0.2)"
-													: "4px 4px 0 rgba(0,0,0,0.3)",
-												maxHeight: isMobile
-													? "200px"
-													: "300px",
-											}}
-										>
-											<div className="scrollbar-thin max-h-full overflow-y-auto bg-[#C0C0C0] py-1">
+									{/* Submenu - Mobile (collapsible) */}
+									{isMobile &&
+										activeSubmenu === section.id && (
+											<div className="border-t border-[#808080] bg-[#D4D0C8]">
 												{section.items.map((item) => (
-													<Link
+													<a
 														key={item.label}
 														href={item.href}
 														target="_blank"
@@ -258,22 +250,64 @@ export default function Footer() {
 																null,
 															);
 														}}
+														className="flex cursor-pointer items-center gap-2 px-4 py-2 text-sm hover:bg-[#000080] hover:text-white"
 													>
-														<div
-															className={`flex cursor-pointer items-center gap-2 ${isMobile ? "px-2 py-2 text-xs" : "px-3 py-1.5 text-sm"} hover:bg-[#000080] hover:text-white`}
-														>
-															<span>
-																{item.icon}
-															</span>
-															<span>
-																{item.label}
-															</span>
-														</div>
-													</Link>
+														<span>{item.icon}</span>
+														<span className="text-xs">
+															{item.label}
+														</span>
+													</a>
 												))}
 											</div>
-										</div>
-									)}
+										)}
+
+									{/* Submenu - Desktop (flyout) */}
+									{!isMobile &&
+										activeSubmenu === section.id && (
+											<div
+												className="win98-window absolute bottom-0 left-full ml-0.5 w-56"
+												style={{
+													boxShadow:
+														"4px 4px 0 rgba(0,0,0,0.3)",
+													maxHeight: "300px",
+												}}
+												onMouseEnter={() =>
+													setActiveSubmenu(section.id)
+												}
+												onMouseLeave={() =>
+													setActiveSubmenu(null)
+												}
+											>
+												<div className="scrollbar-thin max-h-full overflow-y-auto bg-[#c0c0c0] py-1">
+													{section.items.map(
+														(item) => (
+															<a
+																key={item.label}
+																href={item.href}
+																target="_blank"
+																rel="noopener noreferrer"
+																onClick={() => {
+																	setShowStartMenu(
+																		false,
+																	);
+																	setActiveSubmenu(
+																		null,
+																	);
+																}}
+																className="flex cursor-pointer items-center gap-2 px-3 py-1.5 text-sm hover:bg-[#000080] hover:text-white"
+															>
+																<span>
+																	{item.icon}
+																</span>
+																<span>
+																	{item.label}
+																</span>
+															</a>
+														),
+													)}
+												</div>
+											</div>
+										)}
 								</div>
 							))}
 
@@ -281,39 +315,33 @@ export default function Footer() {
 							<div className="mx-2 my-1 border-b border-t border-[#808080] border-b-white" />
 
 							{/* Quick links */}
-							<Link
+							<a
 								href="https://discord.gg/G66gERwNgK"
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={() => setShowStartMenu(false)}
+								className={`flex cursor-pointer items-center gap-2 ${isMobile ? "px-2 py-3 text-xs" : "px-3 py-2 text-sm"} hover:bg-[#000080] hover:text-white`}
 							>
-								<div
-									className={`flex cursor-pointer items-center gap-2 ${isMobile ? "px-2 py-3 text-xs" : "px-3 py-2 text-sm"} hover:bg-[#000080] hover:text-white`}
-								>
-									<span>💬</span>
-									<span className="font-medium">
-										Join Discord
-									</span>
-								</div>
-							</Link>
+								<span>💬</span>
+								<span className="font-medium">
+									Join Discord
+								</span>
+							</a>
 
 							{/* Divider */}
 							<div className="mx-2 my-1 border-b border-t border-[#808080] border-b-white" />
 
 							{/* Credits */}
-							<Link
+							<a
 								href="https://github.com/acmutsa/HackKit"
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={() => setShowStartMenu(false)}
+								className={`flex cursor-pointer items-center gap-2 ${isMobile ? "px-2 py-3 text-xs" : "px-3 py-2 text-sm"} text-[#808080] hover:bg-[#000080] hover:text-white`}
 							>
-								<div
-									className={`flex cursor-pointer items-center gap-2 ${isMobile ? "px-2 py-3 text-xs" : "px-3 py-2 text-sm"} text-[#808080] hover:bg-[#000080] hover:text-white`}
-								>
-									<span>🛠️</span>
-									<span>Powered by HackKit</span>
-								</div>
-							</Link>
+								<span>🛠️</span>
+								<span>Powered by HackKit</span>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -321,35 +349,18 @@ export default function Footer() {
 
 			{/* Taskbar */}
 			<footer
-				className={`fixed bottom-0 left-0 right-0 z-40 ${isMobile ? "h-12" : "h-10"} border-t-2 border-[#DFDFDF] bg-[#C0C0C0] shadow-lg`}
+				className={`fixed bottom-0 left-0 right-0 z-40 ${isMobile ? "h-12" : "h-10"} border-t-2 border-[#DFDFDF] bg-[#c0c0c0] shadow-lg`}
 			>
 				<div className="flex h-full items-center gap-1 px-1">
 					{/* Start Button */}
 					<button
-						className={`win98-btn flex ${isMobile ? "h-9" : "h-7"} items-center ${isMobile ? "gap-1 px-2" : "gap-1.5 px-2"} font-bold transition-all ${
-							showStartMenu ? "bg-[#C0C0C0] shadow-inner" : ""
-						}`}
+						className={`win98-btn flex h-7 w-7 items-center justify-center`}
 						onClick={() => {
 							setShowStartMenu(!showStartMenu);
 							setActiveSubmenu(null);
 						}}
-						style={
-							showStartMenu
-								? {
-										boxShadow:
-											"inset 1px 1px 2px rgba(0,0,0,0.3)",
-									}
-								: {}
-						}
 					>
-						<div
-							className={`${isMobile ? "h-5 w-5" : "h-5 w-5"} rounded-sm`}
-							style={{
-								background:
-									"linear-gradient(135deg, #FF0000 0%, #FF8000 25%, #00FF00 50%, #0080FF 75%, #8000FF 100%)",
-							}}
-						/>
-						{!isMobile && <span className="text-sm">Start</span>}
+						<Windows98Icon className="h-7" />
 					</button>
 
 					{/* Divider */}
@@ -360,27 +371,25 @@ export default function Footer() {
 					{/* Quick Launch - only on desktop */}
 					{!isMobile && (
 						<>
-							<div className="flex items-center gap-1">
-								<Link
-									href="https://discord.gg/G66gERwNgK"
-									target="_blank"
-									rel="noopener noreferrer"
+							<a
+								href="https://discord.gg/G66gERwNgK"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Button
+									className="win98-btn flex h-7 w-7 items-center justify-center"
+									title="Discord"
 								>
-									<button
-										className="win98-btn flex h-7 w-7 items-center justify-center text-sm"
-										title="Discord"
-									>
-										💬
-									</button>
-								</Link>
-							</div>
+									<DiscordIcon className="h-6" />
+								</Button>
+							</a>
 
 							{/* Divider */}
 							<div className="mx-1 h-6 w-px bg-[#808080]" />
 
 							{/* Active window indicator */}
 							<button
-								className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 bg-[#C0C0C0] px-3"
+								className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 bg-[#c0c0c0] px-3"
 								style={{
 									boxShadow:
 										"inset 1px 1px 2px rgba(0,0,0,0.2)",
@@ -404,7 +413,7 @@ export default function Footer() {
 							.slice(0, isMobile ? 1 : socialLinks.length)
 							.map(({ icon: Icon, label, href }) => (
 								<div key={label} className="relative">
-									<Link
+									<a
 										href={href}
 										target="_blank"
 										rel="noopener noreferrer"
@@ -418,7 +427,7 @@ export default function Footer() {
 										<Icon
 											className={`${isMobile ? "h-5 w-5" : "h-4 w-4"} cursor-pointer transition-colors hover:text-[#000080]`}
 										/>
-									</Link>
+									</a>
 									{showTooltip === label && !isMobile && (
 										<div className="absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap border border-black bg-[#FFFFE1] px-2 py-1 text-xs">
 											{label}
@@ -429,7 +438,7 @@ export default function Footer() {
 
 						{/* Discord */}
 						<div className="relative">
-							<Link
+							<a
 								href="https://discord.gg/G66gERwNgK"
 								target="_blank"
 								rel="noopener noreferrer"
@@ -438,14 +447,8 @@ export default function Footer() {
 								}
 								onMouseLeave={() => setShowTooltip(null)}
 							>
-								<svg
-									className={`${isMobile ? "h-5 w-5" : "h-4 w-4"} cursor-pointer transition-colors hover:text-[#5865F2]`}
-									viewBox="0 0 24 24"
-									fill="currentColor"
-								>
-									<path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z" />
-								</svg>
-							</Link>
+								<DiscordIcon className="h-5" />
+							</a>
 							{showTooltip === "Discord" && !isMobile && (
 								<div className="absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap border border-black bg-[#FFFFE1] px-2 py-1 text-xs">
 									Discord
@@ -468,7 +471,7 @@ export default function Footer() {
 
 						{/* Clock */}
 						<div
-							className={`cursor-default select-none ${isMobile ? "text-xs" : "text-xs"}`}
+							className={`cursor-default select-none ${isMobile ? "text-xs" : "text-xs"} relative`}
 							title={date}
 							onMouseEnter={() =>
 								!isMobile && setShowTooltip("clock")

@@ -32,7 +32,7 @@ export default async function Page() {
 	const timezone = getClientTimeZone(vercelTimezone ?? "UTC");
 
 	return (
-		<div className="mx-auto w-full max-w-7xl px-4 pt-32 lg:pt-44">
+		<div className="mx-auto w-full max-w-7xl px-4">
 			<div className="w-full">
 				<h2 className="text-lg font-bold md:text-xl">Welcome,</h2>
 				<h1 className="text-3xl font-black text-hackathon md:text-4xl lg:text-5xl">

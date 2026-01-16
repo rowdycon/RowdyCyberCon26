@@ -19,12 +19,13 @@ export default async function Page() {
 	}
 
 	const events = await getAllEvents();
-	const isUserAuthorized = userHasPermission(
+	const hasCreateEventPermission = userHasPermission(
 		user,
 		PermissionType.CREATE_EVENTS,
 	);
+
 	return (
-		<div className="mx-auto max-w-7xl px-5 pt-44">
+		<div className="mx-auto max-w-7xl px-5">
 			<div className="mb-5 grid w-full grid-cols-2">
 				<div className="flex items-center">
 					<div>
@@ -36,7 +37,7 @@ export default async function Page() {
 						</p>
 					</div>
 				</div>
-				{isUserAuthorized && (
+				{hasCreateEventPermission && (
 					<div className="flex items-center justify-end">
 						<Link href="/admin/events/new">
 							<Button className="flex gap-x-1">
@@ -51,7 +52,7 @@ export default async function Page() {
 				columns={columns}
 				data={events.map((ev) => ({
 					...ev,
-					isUserAdmin: isUserAuthorized,
+					isUserAdmin: hasCreateEventPermission,
 				}))}
 			/>
 		</div>

@@ -5,7 +5,7 @@ export default function About() {
 		<section className="w-full py-8" id="About">
 			{/* Who are we section */}
 			<div className="mx-auto max-w-6xl px-4">
-				<div className="win98-window mb-8 bg-[#C0C0C0]">
+				<div className="win98-window mb-8 bg-[#c0c0c0]">
 					<div className="win98-titlebar">
 						<span>About RowdyCyberCon</span>
 						<div className="flex">
@@ -45,7 +45,7 @@ export default function About() {
 				</div>
 
 				{/* Volunteering section */}
-				{/* <div className="win98-window mb-8 bg-[#C0C0C0]">
+				{/* <div className="win98-window mb-8 bg-[#c0c0c0]">
 					<div className="win98-titlebar">
 						<span>Volunteer Opportunities</span>
 						<div className="flex">
@@ -86,7 +86,7 @@ export default function About() {
 				</div> */}
 
 				{/* Partnering section */}
-				<div className="win98-window bg-[#C0C0C0]">
+				<div className="win98-window bg-[#c0c0c0]">
 					<div className="win98-titlebar">
 						<span>Partnership Information</span>
 						<div className="flex">
@@ -104,11 +104,11 @@ export default function About() {
 							</div>
 							<div className="win98-inset p-4">
 								<p className="mb-4 text-sm">
-									RowdyCyberCon is very grateful for the amazing
-									support of our partners. If you or your
-									organization are interested in becoming a
-									partner, click the link below to explore our
-									Partner Packet for more information.
+									RowdyCyberCon is very grateful for the
+									amazing support of our partners. If you or
+									your organization are interested in becoming
+									a partner, click the link below to explore
+									our Partner Packet for more information.
 								</p>
 								<div className="flex justify-center">
 									<Link

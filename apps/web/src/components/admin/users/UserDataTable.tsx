@@ -23,6 +23,7 @@ import { Input } from "@/components/shadcn/ui/input";
 import { Button } from "@/components/shadcn/ui/button";
 import { useEffect, useState } from "react";
 import { dataTableFuzzyFilter } from "@/lib/utils/client/shared";
+
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
@@ -61,26 +62,22 @@ export function DataTable<TData, TValue>({
 	}, [columnFilters]);
 
 	return (
-		<div>
-			<div className="space-y-3 rounded-md border">
-				<div className="px-4 pt-4">
-					<Input
-						placeholder="Filter users..."
-						value={globalFilter}
-						onChange={(event) => {
-							// we want to set our global filter
-							setGlobalFilter(event.target.value);
-						}}
-						className="max-w-sm"
-					/>
-				</div>
-				<Table>
+		<div className="flex w-full flex-col">
+			<div className="mt-4">
+				<Input
+					placeholder="Filter users..."
+					value={globalFilter}
+					onChange={(event) => {
+						setGlobalFilter(event.target.value);
+					}}
+					className="max-w-sm"
+				/>
+			</div>
+			<div className="relative w-full overflow-x-auto">
+				<Table className="min-w-full border">
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow
-								key={headerGroup.id}
-								className="hover:bg-inherit"
-							>
+							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
 									return (
 										<TableHead

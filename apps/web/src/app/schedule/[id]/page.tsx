@@ -3,7 +3,6 @@ import { eq } from "db/drizzle";
 import { events } from "db/schema";
 import FullScreenMessage from "@/components/shared/FullScreenMessage";
 import EventDetails from "@/components/events/admin/EventDetails";
-import Navbar from "@/components/shared/Navbar";
 
 export default async function Page({ params }: { params: { id: string } }) {
 	if (!params || !params.id || isNaN(parseInt(params.id))) {
@@ -31,9 +30,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 	}
 
 	return (
-		<>
-			<Navbar />
+		<div className="mx-3">
 			<EventDetails event={event} />
-		</>
+		</div>
 	);
 }

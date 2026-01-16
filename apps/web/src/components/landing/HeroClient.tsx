@@ -219,28 +219,32 @@ export default function HeroClient({
 
 			{/* Retro window frame */}
 			<div
-				className={`win98-window relative z-10 mx-4 w-full max-w-5xl p-1 transition-all duration-700 ${
-					isLoaded
-						? "translate-y-0 opacity-100"
-						: "translate-y-8 opacity-0"
-				}`}
+				className={`win98-window relative z-10 mx-2 flex max-h-[90vh] w-full max-w-5xl flex-col p-1 transition-all duration-700 sm:mx-4 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
 			>
 				{/* Title bar */}
-				<div className="win98-titlebar mb-0">
-					<div className="flex items-center gap-1">
-						<span className="text-xs" aria-hidden="true">
-							🖥️
-						</span>
-						<span>RowdyCyberCon.exe</span>
+				<div className="win98-titlebar flex items-center justify-between px-2 py-1 text-xs sm:text-sm">
+					<div className="flex items-center gap-1 truncate">
+						<span aria-hidden="true">🖥️</span>
+						<span className="truncate">RowdyCyberCon.exe</span>
 					</div>
-					<div className="flex" aria-hidden="true">
-						<button className="win98-titlebar-btn" tabIndex={-1}>
+
+					<div className="flex shrink-0">
+						<button
+							className="win98-titlebar-btn h-5 w-5 sm:h-6 sm:w-6"
+							tabIndex={-1}
+						>
 							_
 						</button>
-						<button className="win98-titlebar-btn" tabIndex={-1}>
+						<button
+							className="win98-titlebar-btn h-5 w-5 sm:h-6 sm:w-6"
+							tabIndex={-1}
+						>
 							□
 						</button>
-						<button className="win98-titlebar-btn" tabIndex={-1}>
+						<button
+							className="win98-titlebar-btn h-5 w-5 sm:h-6 sm:w-6"
+							tabIndex={-1}
+						>
 							x
 						</button>
 					</div>
@@ -248,7 +252,7 @@ export default function HeroClient({
 
 				{/* Window content */}
 				<div
-					className="relative overflow-hidden p-6 md:p-10"
+					className="relative flex-1 overflow-y-auto p-4 sm:p-6 md:p-10"
 					style={{
 						background:
 							"linear-gradient(135deg, #c0c0c0 0%, #d4d4d4 50%, #c0c0c0 100%)",
@@ -260,31 +264,19 @@ export default function HeroClient({
 						aria-hidden="true"
 						style={{
 							backgroundImage: `
-                repeating-linear-gradient(0deg, #000080 0px, #000080 1px, transparent 1px, transparent 4px),
-                repeating-linear-gradient(90deg, #000080 0px, #000080 1px, transparent 1px, transparent 4px)
-              `,
+          repeating-linear-gradient(0deg, #000080 0px, #000080 1px, transparent 1px, transparent 4px),
+          repeating-linear-gradient(90deg, #000080 0px, #000080 1px, transparent 1px, transparent 4px)
+        `,
 							backgroundSize: "4px 4px",
 							animation: "gridScroll 20s linear infinite",
 						}}
 					/>
 
-					{/* Corner decorations */}
-					<div
-						className="absolute left-2 top-2 h-2 w-2 bg-[#000080] opacity-20"
-						aria-hidden="true"
-					/>
-					<div
-						className="absolute right-2 top-2 h-2 w-2 bg-[#008080] opacity-20"
-						aria-hidden="true"
-					/>
-					<div
-						className="absolute bottom-2 left-2 h-2 w-2 bg-[#008080] opacity-20"
-						aria-hidden="true"
-					/>
-					<div
-						className="absolute bottom-2 right-2 h-2 w-2 bg-[#000080] opacity-20"
-						aria-hidden="true"
-					/>
+					{/* Corner decorations (hidden on very small screens if desired) */}
+					<div className="absolute left-2 top-2 hidden h-2 w-2 bg-[#000080] opacity-20 sm:block" />
+					<div className="absolute right-2 top-2 hidden h-2 w-2 bg-[#008080] opacity-20 sm:block" />
+					<div className="absolute bottom-2 left-2 hidden h-2 w-2 bg-[#008080] opacity-20 sm:block" />
+					<div className="absolute bottom-2 right-2 hidden h-2 w-2 bg-[#000080] opacity-20 sm:block" />
 
 					<div className="relative z-10">{children}</div>
 				</div>

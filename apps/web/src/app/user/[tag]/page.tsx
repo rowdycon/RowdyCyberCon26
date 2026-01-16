@@ -3,7 +3,8 @@ import Image from "next/image";
 import RoleBadge from "@/components/dash/shared/RoleBadge";
 import { Balancer } from "react-wrap-balancer";
 import Link from "next/link";
-import { Github, Linkedin, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
+import { GitHubIcon, LinkedinIcon } from "@/components/landing/FooterIcons";
 import Navbar from "@/components/shared/Navbar";
 import { getHackerByTag } from "db/functions";
 
@@ -239,7 +240,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 																	"#ffffff",
 															}}
 														>
-															<Github className="h-4 w-4" />
+															<GitHubIcon className="h-4 w-4" />
 															<span className="underline">
 																{
 																	user
@@ -271,7 +272,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 																	"#ffffff",
 															}}
 														>
-															<Linkedin className="h-4 w-4" />
+															<LinkedinIcon className="h-4 w-4" />
 															<span className="underline">
 																{
 																	user

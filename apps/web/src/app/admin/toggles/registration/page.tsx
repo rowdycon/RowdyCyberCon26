@@ -23,12 +23,13 @@ export default async function Page() {
 		return notFound();
 
 	return (
-		<div>
-			<div className="flex items-center justify-start pb-10">
-				<h2 className="text-3xl font-bold tracking-tight">
+		<div className="space-y-8">
+			<div>
+				<h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
 					Registration & Sign-in
 				</h2>
 			</div>
+
 			<RegistrationToggles
 				defaultRegistrationEnabled={parseRedisBoolean(
 					defaultRegistrationEnabled,

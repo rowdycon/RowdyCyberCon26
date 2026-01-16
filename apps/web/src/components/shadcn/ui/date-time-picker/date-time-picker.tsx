@@ -36,6 +36,7 @@ const DateTimePicker = React.forwardRef<
 		calendarProps,
 	} = useDatePicker(props, state, ref);
 	const { buttonProps } = useButton(_buttonProps, buttonRef);
+
 	useInteractOutside({
 		ref: contentRef,
 		onInteractOutside: (e) => {
@@ -65,7 +66,11 @@ const DateTimePicker = React.forwardRef<
 						<CalendarIcon className="h-5 w-5" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent ref={contentRef} className="w-full">
+				<PopoverContent
+					ref={contentRef}
+					className="w-full"
+					align="center"
+				>
 					<div {...dialogProps} className="space-y-3">
 						<Calendar {...calendarProps} />
 						{!!state.hasTime && (
