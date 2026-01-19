@@ -79,7 +79,7 @@ export const columns: ColumnDef<userValidatorType>[] = [
 		),
 		// row.original.isRSVPed ?
 		cell: ({ row }) => (
-			<Badge className="no-select border-2" variant="outline">
+			<Badge className="border-2" variant="outline">
 				<div
 					className={`mx-0 h-2 w-2 rounded-full ${row.original.isRSVPed ? "bg-green-400" : "bg-red-400"}`}
 				/>
@@ -151,7 +151,7 @@ function UserDropDownActions({ row }: { row: Row<userValidatorType> }) {
 					<MoreHorizontal size={20} />
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end" className="bg-[#c0c0c0]">
+			<DropdownMenuContent align="end">
 				<DropdownMenuItem>
 					<Link href={`/admin/users/${user.clerkID}`}>View User</Link>
 				</DropdownMenuItem>

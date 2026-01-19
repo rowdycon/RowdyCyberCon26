@@ -507,7 +507,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup>
 															{c.registration.genderOptions.map(
 																(option) => (
@@ -572,7 +572,7 @@ export default function RegisterForm({
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
-													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto bg-[#c0c0c0] p-0">
+													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto p-0">
 														<Command>
 															<CommandInput placeholder="Search countries..." />
 															<CommandList>
@@ -687,7 +687,7 @@ export default function RegisterForm({
 														</PopoverTrigger>
 													</FormControl>
 													<PopoverContent
-														className="no-scrollbar max-h-[400px] w-[--radix-popover-trigger-width] overflow-y-auto bg-[#c0c0c0] p-0"
+														className="no-scrollbar max-h-[400px] w-[--radix-popover-trigger-width] overflow-y-auto p-0"
 														onFocusOutside={() =>
 															console.log(
 																"closing",
@@ -826,7 +826,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup className="max-h-[400px] w-[calc(var(--radix-select-trigger-width)+10rem)] overflow-y-scroll">
 															{c.registration.levelsOfStudy.map(
 																(level) => (
@@ -894,7 +894,7 @@ export default function RegisterForm({
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
-													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto bg-[#c0c0c0] p-0">
+													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto p-0">
 														<Command>
 															<CommandInput placeholder="Search major..." />
 															<CommandList className="">
@@ -991,7 +991,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup className="max-h-[400px] w-[var(--radix-select-trigger-width)]">
 															{c.registration.heardFromOptions.map(
 																(option) => (
@@ -1055,7 +1055,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup>
 															{c.registration.shirtSizeOptions.map(
 																(option) => (
@@ -1317,7 +1317,7 @@ export default function RegisterForm({
 														uploadedFile
 															? ""
 															: "cursor-pointer"
-													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white bg-[#c0c0c0]`}
+													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white`}
 												>
 													<input
 														type="file"

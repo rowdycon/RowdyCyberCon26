@@ -70,7 +70,7 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 		<div className="relative">
 			{/* Lanyard hole at top */}
 			<div
-				className="absolute left-1/2 top-0 z-10 h-12 w-12 -translate-x-1/2 -translate-y-6 rounded-full border-4 border-[#808080] bg-[#c0c0c0]"
+				className="absolute left-1/2 top-0 z-10 h-12 w-12 -translate-x-1/2 -translate-y-6 rounded-full border-4 border-[#808080] bg-background"
 				style={{
 					boxShadow:
 						"inset 2px 2px 4px rgba(0,0,0,0.3), 2px 2px 4px rgba(0,0,0,0.2)",
@@ -99,7 +99,7 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 				</div>
 
 				{/* Content */}
-				<div className="bg-[#c0c0c0] p-3">
+				<div className="bg-background p-3">
 					{/* Header section with gradient */}
 					<div
 						className="mb-3 border-2 p-3"
@@ -326,13 +326,13 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 					</div>
 
 					{/* Status bar at bottom */}
-					<div className="win98-status mt-3">
-						<div className="win98-status-field flex flex-1 items-center gap-2">
+					<div className="mt-3 flex border">
+						<div className="flex flex-1 items-center gap-2 px-2 py-0.5">
 							<span className="text-xs">✓</span>
 							<span className="text-xs">Valid Credential</span>
 						</div>
-						<div className="win98-status-field">
-							<span className="text-xs">
+						<div>
+							<span className="px-2 py-0.5 text-xs">
 								ID: {user.hackerTag}
 							</span>
 						</div>

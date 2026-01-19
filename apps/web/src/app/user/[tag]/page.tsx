@@ -65,9 +65,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 						<div className="bg-[#c0c0c0] p-2">
 							{/* Tabs */}
 							<div className="mb-2 flex border-b-2 border-white">
-								<button className="win98-tab win98-tab-active">
-									General
-								</button>
+								<button className="win98-tab">General</button>
 								<button className="win98-tab">Contact</button>
 								<button className="win98-tab">Details</button>
 							</div>
@@ -350,7 +348,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 
 				{/* Desktop-style file icon decoration */}
 				<div className="fixed bottom-8 left-8 hidden md:block">
-					<div className="win98-icon">
+					<div className="flex cursor-pointer flex-col items-center">
 						<div className="mb-1 text-4xl">💾</div>
 						<div className="text-xs">User Profile</div>
 					</div>

@@ -170,7 +170,7 @@ export default function EditEventForm({
 											<SelectValue placeholder="Select a Event Type" />
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent className="bg-[#c0c0c0]">
+									<SelectContent>
 										<SelectGroup>
 											{Object.keys(c.eventTypes).map(
 												(type) => (

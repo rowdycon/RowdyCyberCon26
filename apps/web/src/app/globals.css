@@ -1,489 +1,115 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+	--color-sidebar-ring: var(--sidebar-ring);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar: var(--sidebar);
+	--color-chart-5: var(--chart-5);
+	--color-chart-4: var(--chart-4);
+	--color-chart-3: var(--chart-3);
+	--color-chart-2: var(--chart-2);
+	--color-chart-1: var(--chart-1);
+	--color-ring: var(--ring);
+	--color-input: var(--input);
+	--color-border: var(--border);
+	--color-destructive: var(--destructive);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-popover: var(--popover);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+}
 
 :root {
-	/* <CHANGE> Windows 98 Classic theme in OKLCH format for Tailwind v4 */
-	/* Windows 98 Classic Gray: #C0C0C0 */
-	--background: oklch(0.803 0.004 264.052); /* Classic Windows gray */
-	--foreground: oklch(0 0 0); /* Black text */
-
-	/* Navy blue for title bars and primary elements: #000080 */
-	--primary: oklch(0.298 0.133 264.052);
-	--primary-foreground: oklch(1 0 0); /* White */
-
-	/* Gray tones */
-	--secondary: oklch(0.803 0.004 264.052); /* Same as background */
-	--secondary-foreground: oklch(0 0 0); /* Black */
-
-	--muted: oklch(0.803 0.004 264.052);
-	--muted-foreground: oklch(0 0 0);
-
-	--accent: oklch(0.298 0.133 264.052); /* Navy */
-	--accent-foreground: oklch(1 0 0); /* White */
-
-	--card: oklch(0.803 0.004 264.052);
-	--card-foreground: oklch(0 0 0);
-
-	--popover: oklch(0.803 0.004 264.052);
-	--popover-foreground: oklch(0 0 0);
-
-	/* Maroon for errors: #800000 */
-	--destructive: oklch(0.298 0.133 29.234);
-	--destructive-foreground: oklch(1 0 0);
-
-	/* Dark gray borders: #808080 */
-	--border: oklch(0.568 0.004 264.052);
-	--input: oklch(1 0 0); /* White input fields */
-	--ring: oklch(0 0 0);
-
+	--radius: 0.625rem;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.141 0.005 285.823);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.141 0.005 285.823);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.141 0.005 285.823);
+	--primary: oklch(0.21 0.006 285.885);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.967 0.001 286.375);
+	--secondary-foreground: oklch(0.21 0.006 285.885);
+	--muted: oklch(0.967 0.001 286.375);
+	--muted-foreground: oklch(0.552 0.016 285.938);
+	--accent: oklch(0.967 0.001 286.375);
+	--accent-foreground: oklch(0.21 0.006 285.885);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.92 0.004 286.32);
+	--input: oklch(0.92 0.004 286.32);
+	--ring: oklch(0.705 0.015 286.067);
 	--chart-1: oklch(0.646 0.222 41.116);
 	--chart-2: oklch(0.6 0.118 184.704);
 	--chart-3: oklch(0.398 0.07 227.392);
 	--chart-4: oklch(0.828 0.189 84.429);
 	--chart-5: oklch(0.769 0.188 70.08);
-
-	--radius: 0rem; /* No rounded corners in Win98! */
-
-	--sidebar: oklch(0.803 0.004 264.052);
-	--sidebar-foreground: oklch(0 0 0);
-	--sidebar-primary: oklch(0.298 0.133 264.052);
-	--sidebar-primary-foreground: oklch(1 0 0);
-	--sidebar-accent: oklch(0.803 0.004 264.052);
-	--sidebar-accent-foreground: oklch(0 0 0);
-	--sidebar-border: oklch(0.568 0.004 264.052);
-	--sidebar-ring: oklch(0 0 0);
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.141 0.005 285.823);
+	--sidebar-primary: oklch(0.21 0.006 285.885);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.967 0.001 286.375);
+	--sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+	--sidebar-border: oklch(0.92 0.004 286.32);
+	--sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
 .dark {
-	/* <CHANGE> Inverted Windows 98 theme for dark mode */
-	/* Dark background with light text for readability */
-	--background: oklch(0.2 0 0); /* Dark gray */
-	--foreground: oklch(0.95 0 0); /* Light gray text */
-
-	/* Lighter navy for dark mode */
-	--primary: oklch(0.5 0.15 264.052);
-	--primary-foreground: oklch(1 0 0);
-
-	--secondary: oklch(0.3 0 0);
-	--secondary-foreground: oklch(0.95 0 0);
-
-	--muted: oklch(0.3 0 0);
-	--muted-foreground: oklch(0.7 0 0);
-
-	--accent: oklch(0.5 0.15 264.052);
-	--accent-foreground: oklch(1 0 0);
-
-	--card: oklch(0.25 0 0);
-	--card-foreground: oklch(0.95 0 0);
-
-	--popover: oklch(0.25 0 0);
-	--popover-foreground: oklch(0.95 0 0);
-
-	--destructive: oklch(0.5 0.2 29.234);
-	--destructive-foreground: oklch(1 0 0);
-
-	--border: oklch(0.4 0 0);
-	--input: oklch(0.3 0 0);
-	--ring: oklch(0.5 0 0);
-
+	--background: oklch(0.141 0.005 285.823);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.21 0.006 285.885);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.21 0.006 285.885);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.92 0.004 286.32);
+	--primary-foreground: oklch(0.21 0.006 285.885);
+	--secondary: oklch(0.274 0.006 286.033);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.274 0.006 286.033);
+	--muted-foreground: oklch(0.705 0.015 286.067);
+	--accent: oklch(0.274 0.006 286.033);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.552 0.016 285.938);
 	--chart-1: oklch(0.488 0.243 264.376);
 	--chart-2: oklch(0.696 0.17 162.48);
 	--chart-3: oklch(0.769 0.188 70.08);
 	--chart-4: oklch(0.627 0.265 303.9);
 	--chart-5: oklch(0.645 0.246 16.439);
-
-	--sidebar: oklch(0.25 0 0);
-	--sidebar-foreground: oklch(0.95 0 0);
-	--sidebar-primary: oklch(0.5 0.15 264.052);
-	--sidebar-primary-foreground: oklch(1 0 0);
-	--sidebar-accent: oklch(0.3 0 0);
-	--sidebar-accent-foreground: oklch(0.95 0 0);
-	--sidebar-border: oklch(0.4 0 0);
-	--sidebar-ring: oklch(0.5 0 0);
-}
-
-@theme inline {
-	--font-sans: "Geist", "Geist Fallback";
-	--font-mono: "Geist Mono", "Geist Mono Fallback";
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--color-card: var(--card);
-	--color-card-foreground: var(--card-foreground);
-	--color-popover: var(--popover);
-	--color-popover-foreground: var(--popover-foreground);
-	--color-primary: var(--primary);
-	--color-primary-foreground: var(--primary-foreground);
-	--color-secondary: var(--secondary);
-	--color-secondary-foreground: var(--secondary-foreground);
-	--color-muted: var(--muted);
-	--color-muted-foreground: var(--muted-foreground);
-	--color-accent: var(--accent);
-	--color-accent-foreground: var(--accent-foreground);
-	--color-destructive: var(--destructive);
-	--color-destructive-foreground: var(--destructive-foreground);
-	--color-border: var(--border);
-	--color-input: var(--input);
-	--color-ring: var(--ring);
-	--color-chart-1: var(--chart-1);
-	--color-chart-2: var(--chart-2);
-	--color-chart-3: var(--chart-3);
-	--color-chart-4: var(--chart-4);
-	--color-chart-5: var(--chart-5);
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
-	--color-sidebar: var(--sidebar);
-	--color-sidebar-foreground: var(--sidebar-foreground);
-	--color-sidebar-primary: var(--sidebar-primary);
-	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-	--color-sidebar-accent: var(--sidebar-accent);
-	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-	--color-sidebar-border: var(--sidebar-border);
-	--color-sidebar-ring: var(--sidebar-ring);
-}
-
-html {
-	scroll-behavior: smooth;
-}
-
-@layer components {
-	/* Classic Windows 98 button */
-	.win98-btn {
-		@apply relative border-2 bg-background px-4 py-2 text-foreground;
-		border-style: solid;
-		border-top-color: oklch(0.873 0.004 264.052);
-		border-left-color: oklch(0.873 0.004 264.052);
-		border-right-color: oklch(0.568 0.004 264.052);
-		border-bottom-color: oklch(0.568 0.004 264.052);
-		box-shadow: inset -1px -1px oklch(0 0 0);
-		font-family: "MS Sans Serif", Arial, sans-serif;
-		font-size: 12px;
-		font-weight: 700;
-		min-width: 75px;
-		text-align: center;
-	}
-
-	.win98-btn:active {
-		border-top-color: oklch(0.568 0.004 264.052);
-		border-left-color: oklch(0.568 0.004 264.052);
-		border-right-color: oklch(0.873 0.004 264.052);
-		border-bottom-color: oklch(0.873 0.004 264.052);
-		box-shadow: inset 1px 1px oklch(0 0 0);
-		padding-left: 18px;
-		padding-top: 10px;
-		padding-right: 14px;
-		padding-bottom: 6px;
-	}
-
-	/* Windows 98 window */
-	.win98-window {
-		@apply border-2 bg-card text-card-foreground;
-		border-style: solid;
-		border-top-color: oklch(0.873 0.004 264.052);
-		border-left-color: oklch(0.873 0.004 264.052);
-		border-right-color: oklch(0 0 0);
-		border-bottom-color: oklch(0 0 0);
-		box-shadow:
-			inset -1px -1px oklch(0.568 0.004 264.052),
-			inset 1px 1px oklch(1 0 0);
-	}
-
-	/* Windows 98 title bar */
-	.win98-titlebar {
-		background: linear-gradient(
-			to right,
-			oklch(0.298 0.133 264.052),
-			oklch(0.5 0.15 220)
-		);
-		@apply flex items-center justify-between px-1 py-0.5 text-white;
-		font-size: 11px;
-		font-weight: bold;
-		height: 18px;
-	}
-
-	.win98-titlebar-inactive {
-		background: linear-gradient(
-			to right,
-			oklch(0.568 0.004 264.052),
-			oklch(0.803 0.004 264.052)
-		);
-	}
-
-	/* Windows 98 title bar buttons */
-	.win98-titlebar-btn {
-		@apply flex h-3.5 w-4 items-center justify-center border bg-background;
-		border-style: solid;
-		border-top-color: oklch(1 0 0);
-		border-left-color: oklch(1 0 0);
-		border-right-color: oklch(0 0 0);
-		border-bottom-color: oklch(0 0 0);
-		font-family: "Marlett", Arial;
-		font-size: 10px;
-		margin-left: 2px;
-	}
-
-	.win98-titlebar-btn:active {
-		border-top-color: oklch(0 0 0);
-		border-left-color: oklch(0 0 0);
-		border-right-color: oklch(1 0 0);
-		border-bottom-color: oklch(1 0 0);
-	}
-
-	/* Windows 98 inset field */
-	.win98-inset {
-		@apply border-2 bg-input;
-		border-style: solid;
-		border-top-color: oklch(0.568 0.004 264.052);
-		border-left-color: oklch(0.568 0.004 264.052);
-		border-right-color: oklch(0.873 0.004 264.052);
-		border-bottom-color: oklch(0.873 0.004 264.052);
-		box-shadow:
-			inset -1px -1px oklch(1 0 0),
-			inset 1px 1px oklch(0 0 0);
-	}
-
-	/* Windows 98 menu bar */
-	.win98-menu {
-		@apply border-b-2 border-white bg-background px-1;
-		box-shadow: 0 1px 0 oklch(0.568 0.004 264.052);
-		font-size: 11px;
-	}
-
-	/* Windows 98 status bar */
-	.win98-status {
-		@apply flex border-t border-white bg-background;
-		box-shadow: inset 0 1px 0 oklch(0.568 0.004 264.052);
-		font-size: 11px;
-	}
-
-	.win98-status-field {
-		@apply border px-2 py-0.5;
-		border-style: solid;
-		border-top-color: oklch(0.568 0.004 264.052);
-		border-left-color: oklch(0.568 0.004 264.052);
-		border-right-color: oklch(1 0 0);
-		border-bottom-color: oklch(1 0 0);
-	}
-
-	/* Windows 98 desktop */
-	.win98-desktop {
-		@apply min-h-screen bg-background;
-		position: relative;
-	}
-
-	/* Windows 98 icon */
-	.win98-icon {
-		@apply flex cursor-pointer flex-col items-center p-2;
-		color: white;
-		text-shadow: 1px 1px 1px oklch(0 0 0);
-		font-size: 11px;
-	}
-
-	.win98-icon:hover {
-		background-color: oklch(0.298 0.133 264.052 / 0.5);
-		outline: 1px dotted white;
-	}
-
-	/* Windows 98 scrollbar */
-	.win98-scrollbar {
-		scrollbar-width: 16px;
-		scrollbar-color: oklch(0.803 0.004 264.052) oklch(0.95 0 0);
-	}
-
-	.win98-scrollbar::-webkit-scrollbar {
-		width: 16px;
-		height: 16px;
-	}
-
-	.win98-scrollbar::-webkit-scrollbar-track {
-		background: oklch(0.803 0.004 264.052);
-		border: 1px solid oklch(0.568 0.004 264.052);
-	}
-
-	.win98-scrollbar::-webkit-scrollbar-thumb {
-		background: oklch(0.803 0.004 264.052);
-		border: 1px solid;
-		border-color: oklch(1 0 0) oklch(0.568 0.004 264.052)
-			oklch(0.568 0.004 264.052) oklch(1 0 0);
-		box-shadow: inset 1px 1px 0 oklch(0.873 0.004 264.052);
-	}
-
-	.win98-scrollbar::-webkit-scrollbar-button {
-		background: oklch(0.803 0.004 264.052);
-		border: 1px solid;
-		border-color: oklch(1 0 0) oklch(0.568 0.004 264.052)
-			oklch(0.568 0.004 264.052) oklch(1 0 0);
-		box-shadow: inset 1px 1px 0 oklch(0.873 0.004 264.052);
-		width: 16px;
-		height: 16px;
-	}
-
-	/* Windows 98 checkbox */
-	.win98-checkbox {
-		@apply h-3 w-3 border bg-input;
-		border-style: solid;
-		border-top-color: oklch(0.568 0.004 264.052);
-		border-left-color: oklch(0.568 0.004 264.052);
-		border-right-color: oklch(0.873 0.004 264.052);
-		border-bottom-color: oklch(0.873 0.004 264.052);
-		box-shadow:
-			inset -1px -1px oklch(1 0 0),
-			inset 1px 1px oklch(0 0 0);
-	}
-
-	/* Windows 98 tab */
-	.win98-tab {
-		@apply border-2 border-b-0 bg-background px-4 py-1;
-		border-style: solid;
-		border-top-color: oklch(1 0 0);
-		border-left-color: oklch(1 0 0);
-		border-right-color: oklch(0.568 0.004 264.052);
-		margin-right: -2px;
-		position: relative;
-		top: 1px;
-		font-size: 11px;
-	}
-
-	.win98-tab-active {
-		@apply bg-background;
-		z-index: 10;
-		padding-bottom: 3px;
-	}
-
-	.win98-bg {
-		background: linear-gradient(
-			135deg,
-			#008080 0%,
-			#0a4a4a 25%,
-			#005a5a 50%,
-			#003838 75%,
-			#004848 100%
-		);
-		/* Add subtle noise texture for authenticity */
-		background-image: linear-gradient(
-				135deg,
-				#008080 0%,
-				#0a4a4a 25%,
-				#005a5a 50%,
-				#003838 75%,
-				#004848 100%
-			),
-			repeating-linear-gradient(
-				0deg,
-				transparent,
-				transparent 2px,
-				rgba(0, 0, 0, 0.05) 2px,
-				rgba(0, 0, 0, 0.05) 4px
-			);
-	}
-
-	/* Alternative: Classic Windows 98 clouds wallpaper style */
-	.win98-bg-clouds {
-		background: linear-gradient(
-			180deg,
-			#5a9fd4 0%,
-			#7db9e8 50%,
-			#ffffff 100%
-		);
-		background-image: radial-gradient(
-				ellipse at 20% 30%,
-				rgba(255, 255, 255, 0.8) 0%,
-				transparent 50%
-			),
-			radial-gradient(
-				ellipse at 60% 20%,
-				rgba(255, 255, 255, 0.6) 0%,
-				transparent 50%
-			),
-			radial-gradient(
-				ellipse at 80% 40%,
-				rgba(255, 255, 255, 0.7) 0%,
-				transparent 50%
-			),
-			linear-gradient(180deg, #5a9fd4 0%, #7db9e8 50%, #ffffff 100%);
-	}
-
-	/* Alternative: Retro dithered pattern */
-	.win98-bg-dither {
-		background-color: #008080;
-		background-image: repeating-linear-gradient(
-				45deg,
-				transparent,
-				transparent 10px,
-				rgba(0, 128, 128, 0.3) 10px,
-				rgba(0, 128, 128, 0.3) 20px
-			),
-			repeating-linear-gradient(
-				-45deg,
-				transparent,
-				transparent 10px,
-				rgba(0, 64, 64, 0.2) 10px,
-				rgba(0, 64, 64, 0.2) 20px
-			);
-	}
-}
-
-.no-select {
-	user-drag: none;
-	-webkit-user-drag: none;
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-}
-
-.parallax-effect-img {
-	transform-style: preserve-3d;
-	transform: perspective(1000px);
-}
-
-.event-pass-img {
-	transform: translateZ(40px);
-}
-
-.pulsatingDot {
-	/* animation: pulseDot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -.4s infinite; */
-	/* border-radius: 50%; */
-	/* box-sizing: border-box; */
-	transform-origin: center;
-}
-
-.pulsatingDot:before {
-	animation: pulseRing 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-	/* background-color: var(--pulsating-dot, #00BEFF); */
-	background-color: hsl(var(--hackathon-primary));
-	border-radius: 45px;
-	content: "";
-	display: block;
-	height: 300%;
-	left: -100%;
-	position: relative;
-	top: -100%;
-	width: 300%;
-}
-
-@keyframes pulseRing {
-	0% {
-		transform: scale(0.5);
-	}
-
-	80%,
-	100% {
-		opacity: 0;
-	}
-}
-
-@keyframes pulseDot {
-	0%,
-	100% {
-		transform: scale(1);
-	}
-
-	50% {
-		transform: scale(1.1);
-	}
+	--sidebar: oklch(0.21 0.006 285.885);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.274 0.006 286.033);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
 @layer base {
@@ -493,119 +119,4 @@ html {
 	body {
 		@apply bg-background text-foreground;
 	}
-
-	/* Added Windows 98 desktop pattern texture for authentic retro feel */
-	body::before {
-		content: "";
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		opacity: 0.03;
-		background-image: repeating-linear-gradient(
-			45deg,
-			transparent,
-			transparent 2px,
-			rgba(0, 0, 0, 1) 2px,
-			rgba(0, 0, 0, 1) 4px
-		);
-		z-index: 0;
-	}
-}
-
-/* Windows 98 Desktop Background Styles - Add to globals.css */
-
-/* Hero window content animations */
-@keyframes gridScroll {
-	0% {
-		transform: translate(0, 0);
-	}
-	100% {
-		transform: translate(4px, 4px);
-	}
-}
-
-@keyframes glowPulse {
-	0% {
-		opacity: 0.5;
-		transform: scale(1);
-	}
-	100% {
-		opacity: 1;
-		transform: scale(1.1);
-	}
-}
-
-@keyframes pixelShimmer {
-	0%,
-	100% {
-		opacity: 0.1;
-	}
-	50% {
-		opacity: 0.3;
-	}
-}
-
-/* Classic Windows 98 teal desktop background */
-.win98-desktop-bg {
-	/* The iconic Windows 98 teal color */
-	background-color: #008080;
-
-	/* Alternative: Add subtle dithered pattern like classic Win98 */
-	background-image: linear-gradient(45deg, #007878 25%, transparent 25%),
-		linear-gradient(-45deg, #007878 25%, transparent 25%),
-		linear-gradient(45deg, transparent 75%, #007878 75%),
-		linear-gradient(-45deg, transparent 75%, #007878 75%);
-	background-size: 2px 2px;
-	background-position:
-		0 0,
-		0 1px,
-		1px -1px,
-		-1px 0px;
-}
-
-/* Alternative: Solid teal without pattern */
-.win98-desktop-bg-solid {
-	background-color: #008080;
-}
-
-/* Alternative: Classic blue gradient (later Windows versions) */
-.win98-desktop-bg-blue {
-	background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
-}
-
-/* Alternative: Dark mode compatible version */
-.dark .win98-desktop-bg {
-	background-color: #004040;
-	background-image: linear-gradient(45deg, #003838 25%, transparent 25%),
-		linear-gradient(-45deg, #003838 25%, transparent 25%),
-		linear-gradient(45deg, transparent 75%, #003838 75%),
-		linear-gradient(-45deg, transparent 75%, #003838 75%);
-	background-size: 2px 2px;
-}
-
-/* Optional: Add CRT screen curvature effect */
-.win98-crt-effect {
-	box-shadow:
-		inset 0 0 100px rgba(0, 0, 0, 0.3),
-		inset 0 0 50px rgba(0, 0, 0, 0.2);
-}
-
-/* Optional: Vignette effect for old monitor feel */
-.win98-vignette::before {
-	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: radial-gradient(
-		ellipse at center,
-		transparent 60%,
-		rgba(0, 0, 0, 0.4) 100%
-	);
-	pointer-events: none;
-	z-index: 100;
 }

@@ -91,7 +91,7 @@ export default function CreateRoleDialog({
 					<Button>Create New Role</Button>
 				</DialogTrigger>
 
-				<DialogContent className="max-h-[90vh] w-[95vw] max-w-2xl overflow-y-auto bg-[#c0c0c0]">
+				<DialogContent className="max-h-[90vh] w-[95vw] max-w-2xl overflow-y-auto">
 					<DialogHeader>
 						<DialogTitle>Create New Role</DialogTitle>
 					</DialogHeader>

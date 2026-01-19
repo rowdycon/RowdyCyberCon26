@@ -371,33 +371,24 @@ export default function Footer() {
 					{/* Quick Launch - only on desktop */}
 					{!isMobile && (
 						<>
-							<a
-								href="https://discord.gg/G66gERwNgK"
-								target="_blank"
-								rel="noopener noreferrer"
+							<Button
+								className="win98-btn h-7 w-7"
+								title="Discord"
 							>
-								<Button
-									className="win98-btn flex h-7 w-7 items-center justify-center"
-									title="Discord"
+								<a
+									href="https://discord.gg/G66gERwNgK"
+									target="_blank"
+									rel="noopener noreferrer"
 								>
 									<DiscordIcon className="h-6" />
-								</Button>
-							</a>
-
-							{/* Divider */}
-							<div className="mx-1 h-6 w-px bg-[#808080]" />
+								</a>
+							</Button>
 
 							{/* Active window indicator */}
-							<button
-								className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 bg-[#c0c0c0] px-3"
-								style={{
-									boxShadow:
-										"inset 1px 1px 2px rgba(0,0,0,0.2)",
-								}}
-							>
+							<Button className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 px-3">
 								<span className="text-sm">🏠</span>
 								<span className="text-sm">RowdyCon 2026</span>
-							</button>
+							</Button>
 						</>
 					)}
 
