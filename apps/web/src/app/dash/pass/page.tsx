@@ -12,6 +12,7 @@ import {
 } from "@/components/shadcn/ui/drawer";
 import { getHacker } from "db/functions";
 import { Hacker } from "db/types";
+import WinTitleBar from "@/components/shared/WinTitleBar";
 
 interface EventPassProps {
 	user: Hacker;
@@ -80,26 +81,13 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 			{/* Main ID Badge */}
 			<div className="win98-window w-[380px] max-w-[95vw]">
 				{/* Title bar */}
-				<div className="win98-titlebar">
-					<div className="flex items-center gap-1">
-						<Image
-							src={c.icon.svg}
-							height={14}
-							width={14}
-							alt=""
-							className="pixelated"
-						/>
-						<span>Security Credentials</span>
-					</div>
-					<div className="flex">
-						<button className="win98-titlebar-btn">_</button>
-						<button className="win98-titlebar-btn">□</button>
-						<button className="win98-titlebar-btn">×</button>
-					</div>
-				</div>
+				<WinTitleBar
+					title="Security Credentials"
+					imagePath={c.icon.svg}
+				/>
 
 				{/* Content */}
-				<div className="bg-background p-3">
+				<div className="bg-card p-3">
 					{/* Header section with gradient */}
 					<div
 						className="mb-3 border-2 p-3"
@@ -138,7 +126,7 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 							{/* Left - Photo */}
 							<div className="flex flex-col items-center">
 								<div
-									className="mb-2 border-2 bg-[#c0c0c0] p-1"
+									className="mb-2 border-2 bg-card p-1"
 									style={{
 										borderTopColor: "#808080",
 										borderLeftColor: "#808080",
@@ -257,7 +245,7 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 							{/* Logo and branding */}
 							<div className="flex items-center gap-2">
 								<div
-									className="border-2 bg-[#c0c0c0] p-2"
+									className="border-2 bg-card p-2"
 									style={{
 										borderTopColor: "#ffffff",
 										borderLeftColor: "#ffffff",
@@ -303,14 +291,9 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 										/>
 									</button>
 								</DrawerTrigger>
-								<DrawerContent className="flex h-[90%] w-full items-center justify-center bg-[#c0c0c0] focus-visible:outline-none">
+								<DrawerContent className="flex h-[90%] w-full items-center justify-center bg-card focus-visible:outline-none">
 									<div className="win98-window max-w-md">
-										<div className="win98-titlebar">
-											<span>Scan QR Code</span>
-											<button className="win98-titlebar-btn">
-												×
-											</button>
-										</div>
+										<WinTitleBar title="Scan QR Code" />
 										<div className="bg-white p-8">
 											<QRCode
 												className="h-full w-full"
@@ -326,33 +309,19 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 					</div>
 
 					{/* Status bar at bottom */}
-					<div className="mt-3 flex border">
+					<div className="border-panel mt-3 flex border-2 text-sm">
 						<div className="flex flex-1 items-center gap-2 px-2 py-0.5">
-							<span className="text-xs">✓</span>
-							<span className="text-xs">Valid Credential</span>
+							<span>✓</span>
+							<span>Valid Credential</span>
 						</div>
 						<div>
-							<span className="px-2 py-0.5 text-xs">
+							<span className="px-2 py-0.5">
 								ID: {user.hackerTag}
 							</span>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			{/* Security hologram effect overlay */}
-			<div
-				className="pointer-events-none absolute inset-0 opacity-10"
-				style={{
-					background: `repeating-linear-gradient(
-						45deg,
-						transparent,
-						transparent 10px,
-						rgba(0, 0, 128, 0.1) 10px,
-						rgba(0, 0, 128, 0.1) 20px
-					)`,
-				}}
-			/>
 		</div>
 	);
 }

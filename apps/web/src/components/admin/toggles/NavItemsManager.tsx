@@ -4,7 +4,6 @@ import type { NavItemToggleType } from "@/validators/shared/navitemtoggle";
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableCell,
 	TableHead,
 	TableHeader,
@@ -53,7 +52,7 @@ export function NavItemsManager({ navItems }: NavItemsManagerProps) {
 
 	return (
 		<div className="pt-10">
-			<Table>
+			<Table className="bg-panel rounded-sm border-card">
 				{/* <TableCaption>A list of your recent invoices.</TableCaption> */}
 				{/* TODO: FIX MASSIVE BUG WHERE IF ENCODED IS DIFFERENT IT WILL ALL BREAK */}
 				<TableHeader>
@@ -168,7 +167,7 @@ export function AddNavItemDialog() {
 					Add Item
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px]">
+			<DialogContent className="bg-panel sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>New Item</DialogTitle>
 					<DialogDescription>
@@ -254,7 +253,7 @@ function EditNavItemDialog({
 			<DialogTrigger asChild>
 				<Button>Edit Item</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px]">
+			<DialogContent className="bg-panel sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>Edit Item</DialogTitle>
 					<DialogDescription>

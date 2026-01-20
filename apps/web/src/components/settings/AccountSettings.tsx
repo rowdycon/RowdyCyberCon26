@@ -83,7 +83,7 @@ export default function AccountSettings({
 		<main>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(handleSubmit)}>
-					<div className="rounded-lg border-2 border-muted px-5 py-10">
+					<div className="bg-panel rounded-lg border-2 border-muted px-5 py-10">
 						<h2 className="pb-5 text-3xl font-semibold">
 							Personal Information
 						</h2>
@@ -134,7 +134,7 @@ export default function AccountSettings({
 										<FormLabel>Hacker Tag</FormLabel>
 										<FormControl>
 											<div className="mt-2 flex">
-												<div className="flex h-10 w-10 items-center justify-center rounded-l bg-accent text-lg font-light text-primary">
+												<div className="flex h-10 w-10 items-center justify-center rounded-l bg-card text-lg font-light text-primary">
 													@
 												</div>
 												<Input
@@ -152,7 +152,7 @@ export default function AccountSettings({
 								control={form.control}
 								name="isSearchable"
 								render={({ field }) => (
-									<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+									<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border bg-background p-4 shadow">
 										<FormControl>
 											<Checkbox
 												checked={field.value}

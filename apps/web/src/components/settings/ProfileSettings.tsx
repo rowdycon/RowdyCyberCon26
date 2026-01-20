@@ -94,7 +94,7 @@ export default function ProfileSettings({
 			<ProfilePhotoSettings profilePhoto={profilePhoto} />
 			<Form {...form}>
 				<form
-					className="mt-5 rounded-lg border-2 border-muted px-5 py-10"
+					className="bg-panel mt-5 rounded-lg border-2 border-muted px-5 py-10"
 					onSubmit={form.handleSubmit(handleUpdate)}
 				>
 					<h2 className="pb-5 text-3xl font-semibold">
@@ -126,7 +126,7 @@ export default function ProfileSettings({
 									<FormControl>
 										<Textarea
 											placeholder="shadcn"
-											className="resize-none"
+											className="resize-none bg-background"
 											{...field}
 										/>
 									</FormControl>

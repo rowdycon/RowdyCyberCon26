@@ -42,7 +42,7 @@ export default async function Page() {
 
 			{/* Stats Grid - Responsive: 1 col mobile, 2 cols tablet, 4 cols desktop */}
 			<div className="grid grid-cols-1 gap-4 pt-6 sm:grid-cols-2 md:pt-8 lg:grid-cols-4 lg:pt-10">
-				<Card>
+				<Card className="bg-panel">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">
 							Registrations
@@ -55,7 +55,7 @@ export default async function Page() {
 						</div>
 					</CardContent>
 				</Card>
-				<Card>
+				<Card className="bg-panel">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">
 							Teams
@@ -66,7 +66,7 @@ export default async function Page() {
 						<div className="text-2xl font-bold">{0}</div>
 					</CardContent>
 				</Card>
-				<Card>
+				<Card className="bg-panel">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">
 							RSVPs
@@ -77,7 +77,7 @@ export default async function Page() {
 						<div className="text-2xl font-bold">{rsvpCount}</div>
 					</CardContent>
 				</Card>
-				<Card>
+				<Card className="bg-panel">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">
 							Check-ins
@@ -92,7 +92,7 @@ export default async function Page() {
 
 			{/* Chart and Recent Users - Responsive: 1 col mobile, 3 cols desktop */}
 			<div className="grid grid-cols-1 gap-4 py-4 lg:grid-cols-3">
-				<Card className="lg:col-span-2">
+				<Card className="bg-panel lg:col-span-2">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<div>
 							<CardTitle className="md:text-md text-base font-bold">
@@ -113,7 +113,7 @@ export default async function Page() {
 						<Overview rawData={recentSignupCount} />
 					</CardContent>
 				</Card>
-				<Card>
+				<Card className="bg-panel">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<div>
 							<CardTitle className="md:text-md text-base font-bold">

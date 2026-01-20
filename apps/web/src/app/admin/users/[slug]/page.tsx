@@ -72,13 +72,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						target="_blank"
 						className="w-full"
 					>
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="border-panel w-full"
+						>
 							Hacker Profile
 						</Button>
 					</Link>
 
 					<Link href={`mailto:${subject.email}`} className="w-full">
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="border-panel w-full"
+						>
 							Email Hacker
 						</Button>
 					</Link>
@@ -132,13 +140,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						target="_blank"
 						className="w-full"
 					>
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="border-panel w-full"
+						>
 							Hacker Profile
 						</Button>
 					</Link>
 
 					<Link href={`mailto:${subject.email}`} className="w-full">
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="border-panel w-full"
+						>
 							Email Hacker
 						</Button>
 					</Link>
@@ -198,7 +214,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 							<Button
 								variant="outline"
 								size="sm"
-								className="w-full"
+								className="border-panel w-full"
 							>
 								Profile
 							</Button>
@@ -211,7 +227,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 							<Button
 								variant="outline"
 								size="sm"
-								className="w-full"
+								className="border-panel w-full"
 							>
 								Email
 							</Button>

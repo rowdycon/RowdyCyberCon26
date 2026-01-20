@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import WinTitleBar from "../shared/WinTitleBar";
 
 interface FAQ {
 	question: string;
@@ -117,7 +118,7 @@ const faqs: FAQ[] = [
 	},
 ];
 
-export default function WorkWithUs() {
+export default function FrequentQuestions() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
 	const toggleFAQ = (index: number) => {
@@ -127,15 +128,8 @@ export default function WorkWithUs() {
 	return (
 		<section className="mb-12 w-full py-8" id="FAQ">
 			<div className="mx-auto max-w-6xl px-4">
-				<div className="win98-window bg-[#c0c0c0]">
-					<div className="win98-titlebar">
-						<span>Frequently Asked Questions</span>
-						<div className="flex">
-							<button className="win98-titlebar-btn">_</button>
-							<button className="win98-titlebar-btn">□</button>
-							<button className="win98-titlebar-btn">×</button>
-						</div>
-					</div>
+				<div className="mb-8 border-2 bg-card text-card-foreground">
+					<WinTitleBar title="Frequently Asked Questions" />
 
 					<div className="p-4">
 						<div className="win98-inset win98-scrollbar max-h-[500px] overflow-y-auto p-4">
@@ -163,8 +157,8 @@ export default function WorkWithUs() {
 
 									{/* Answer panel */}
 									{openIndex === index && (
-										<div className="ml-6 mt-1">
-											<div className="border border-[#808080] bg-white p-3 text-sm">
+										<div className="mt-1">
+											<div className="border border-[#808080] bg-gray-200 p-3 text-sm">
 												{faq.answer}
 											</div>
 										</div>

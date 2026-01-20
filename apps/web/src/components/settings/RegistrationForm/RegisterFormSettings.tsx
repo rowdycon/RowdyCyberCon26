@@ -225,7 +225,7 @@ export default function RegisterFormSettings({
 	});
 
 	return (
-		<div>
+		<div className="bg-panel rounded-md border-card p-6">
 			<Form {...form}>
 				<form
 					className="space-y-6"
@@ -257,11 +257,11 @@ export default function RegisterFormSettings({
 											defaultValue={field.value}
 										>
 											<FormControl>
-												<SelectTrigger className="w-full">
+												<SelectTrigger className="w-full bg-background">
 													<SelectValue placeholder="Select a Gender" />
 												</SelectTrigger>
 											</FormControl>
-											<SelectContent className="bg-[#c0c0c0]">
+											<SelectContent>
 												<SelectGroup>
 													<SelectItem value="MALE">
 														Male
@@ -573,7 +573,7 @@ export default function RegisterFormSettings({
 											defaultValue={field.value}
 										>
 											<FormControl>
-												<SelectTrigger className="w-full placeholder:text-muted-foreground">
+												<SelectTrigger className="w-full bg-background placeholder:text-muted-foreground">
 													<SelectValue placeholder="Level of Study" />
 												</SelectTrigger>
 											</FormControl>
@@ -649,7 +649,7 @@ export default function RegisterFormSettings({
 											defaultValue={field.value}
 										>
 											<FormControl>
-												<SelectTrigger className="w-full placeholder:text-muted-foreground">
+												<SelectTrigger className="w-full bg-background placeholder:text-muted-foreground">
 													<SelectValue placeholder="Heard From..." />
 												</SelectTrigger>
 											</FormControl>
@@ -695,7 +695,7 @@ export default function RegisterFormSettings({
 											defaultValue={field.value}
 										>
 											<FormControl>
-												<SelectTrigger className="w-full placeholder:text-muted-foreground">
+												<SelectTrigger className="w-full bg-background placeholder:text-muted-foreground">
 													<SelectValue placeholder="Shirt Size" />
 												</SelectTrigger>
 											</FormControl>
@@ -806,7 +806,7 @@ export default function RegisterFormSettings({
 										<FormControl>
 											<Textarea
 												placeholder="List any accessibility concerns here..."
-												className="h-[80%] resize-none"
+												className="h-[80%] resize-none bg-background"
 												{...field}
 											/>
 										</FormControl>
@@ -876,7 +876,7 @@ export default function RegisterFormSettings({
 									<FormControl>
 										<div
 											{...getRootProps()}
-											className={`border-2${
+											className={`bg-background border-2${
 												uploadedFile
 													? ""
 													: "cursor-pointer"

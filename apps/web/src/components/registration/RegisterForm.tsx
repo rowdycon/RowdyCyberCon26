@@ -341,7 +341,7 @@ export default function RegisterForm({
 					isLoading={isLoading}
 				/>
 			) : (
-				<div className="relative">
+				<div className="bg-panel relative rounded-md p-6">
 					<Form {...form}>
 						<form
 							onSubmit={form.handleSubmit(onSubmit)}
@@ -490,7 +490,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -809,7 +809,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full placeholder:text-muted-foreground">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -855,7 +855,6 @@ export default function RegisterForm({
 										name="major"
 										render={({ field }) => (
 											<FormItem
-												//
 												className={`col-span-2 ${isLocalUniversitySelected ? "md:col-span-2 lg:col-span-3" : "md:col-span-1 lg:col-span-2"} flex flex-col`}
 											>
 												<FormLabel>
@@ -974,7 +973,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full placeholder:text-muted-foreground">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -1038,7 +1037,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -1177,7 +1176,7 @@ export default function RegisterForm({
 												<FormControl>
 													<Textarea
 														placeholder="List any accessibility concerns here..."
-														className="h-[80%] resize-none"
+														className="h-[80%] resize-none bg-background"
 														{...field}
 														value={field.value}
 														onChange={
@@ -1317,7 +1316,7 @@ export default function RegisterForm({
 														uploadedFile
 															? ""
 															: "cursor-pointer"
-													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white`}
+													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white bg-background`}
 												>
 													<input
 														type="file"
@@ -1366,7 +1365,7 @@ export default function RegisterForm({
 												</FormLabel>
 												<FormControl>
 													<div className="flex">
-														<div className="flex h-10 w-10 items-center justify-center rounded-l bg-accent text-lg font-light text-primary">
+														<div className="flex h-10 w-10 items-center justify-center rounded-l bg-card text-lg font-light text-primary">
 															@
 														</div>
 														<Input
@@ -1445,7 +1444,7 @@ export default function RegisterForm({
 												<FormControl>
 													<Textarea
 														placeholder="Hello! I'm..."
-														className="resize-none"
+														className="resize-none bg-background"
 														{...field}
 													/>
 												</FormControl>
@@ -1520,7 +1519,7 @@ export default function RegisterForm({
 									control={form.control}
 									name="isSearchable"
 									render={({ field }) => (
-										<FormItem className="mx-auto flex max-w-[600px] flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+										<FormItem className="mx-auto flex max-w-[600px] flex-row items-start space-x-3 space-y-0 rounded-md border bg-card p-4">
 											<FormControl>
 												<Checkbox
 													checked={field.value}

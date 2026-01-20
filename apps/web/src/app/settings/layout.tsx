@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import c from "config";
 import ProfileButton from "@/components/shared/ProfileButton";
+import { Separator } from "@/components/shadcn/ui/separator";
 
 export default async function SettingsLayout({
 	children,
@@ -47,6 +48,7 @@ export default async function SettingsLayout({
 				</div>
 				<ProfileButton />
 			</div>
+			<Separator />
 			<div className="mx-3 grid max-w-5xl grid-cols-5 gap-x-3 py-12 md:mx-auto">
 				<div className="col-span-5 mb-10 flex items-center gap-x-2 text-3xl font-bold">
 					<Settings />

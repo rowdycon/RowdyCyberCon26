@@ -122,7 +122,10 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 						<FormItem>
 							<FormLabel>Description</FormLabel>
 							<FormControl>
-								<Textarea {...field} />
+								<Textarea
+									{...field}
+									className="bg-background"
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -159,7 +162,7 @@ export default function NewEventForm({ defaultDate }: NewEventFormProps) {
 									defaultValue={field.value}
 								>
 									<FormControl>
-										<SelectTrigger className="w-full">
+										<SelectTrigger className="w-full bg-background">
 											<SelectValue placeholder="Select a Event Type" />
 										</SelectTrigger>
 									</FormControl>

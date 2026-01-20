@@ -4,6 +4,7 @@ import { PermissionType } from "@/lib/constants/permission";
 import { userHasPermission } from "@/lib/utils/server/admin";
 import { getCurrentUser } from "@/lib/utils/server/user";
 import { notFound } from "next/navigation";
+import { Separator } from "@/components/shadcn/ui/separator";
 
 interface ToggleLayoutProps {
 	children: React.ReactNode;
@@ -18,10 +19,11 @@ export default async function Layout({ children }: ToggleLayoutProps) {
 	return (
 		<div className="mx-3 flex max-w-5xl flex-col gap-4 px-4 md:mx-auto md:flex-row md:gap-x-6">
 			{/* Sidebar */}
-			<div className="flex shrink-0 flex-row gap-2 md:w-56 md:flex-col">
+			<div className="bg-panel flex shrink-0 flex-row gap-2 rounded-md border-card p-4 md:w-56 md:flex-col">
 				<ToggleItem name="Toggles" path="/admin/toggles" />
+				<Separator className="bg-card" />
 				<ToggleItem name="Landing Page" path="/admin/toggles/landing" />
-
+				<Separator className="bg-card" />
 				<Restricted
 					permissions={[PermissionType.MANAGE_REGISTRATION]}
 					user={user}

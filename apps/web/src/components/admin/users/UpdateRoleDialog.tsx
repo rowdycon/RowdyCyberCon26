@@ -60,7 +60,11 @@ export default function UpdateRoleDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={"outline"} size={"sm"} className="w-full">
+				<Button
+					variant={"outline"}
+					size={"sm"}
+					className="border-panel w-full"
+				>
 					Change Role
 				</Button>
 			</DialogTrigger>

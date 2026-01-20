@@ -32,7 +32,7 @@ export default async function Page() {
 					</a>
 				</div>
 			</div>
-			<div className="w-full">
+			<div className="w-full rounded-sm p-4">
 				<DataTable columns={columns} data={userData} />
 			</div>
 			<div className="flex w-full min-w-0 justify-center">
