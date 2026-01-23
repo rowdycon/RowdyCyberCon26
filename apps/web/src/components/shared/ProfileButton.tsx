@@ -133,6 +133,7 @@ export default async function ProfileButton() {
 							</DropdownMenuItem>
 						</Link>
 					</DropdownMenuGroup>
+
 					<div className="mx-1 my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
 					<SignOutButton redirectUrl={"/"}>
 						<DropdownMenuItem className="text-md m-1 cursor-pointer rounded-none px-6 py-1.5 text-[#800000] hover:bg-[#800000] hover:text-white focus:bg-[#800000] focus:text-white">
@@ -159,7 +160,7 @@ export default async function ProfileButton() {
 							"inset -1px -1px #808080, inset 1px 1px #dfdfdf",
 					}}
 				>
-					<Avatar className="h-6 w-6 border-2 border-[#808080]">
+					<Avatar className="h-7 w-7 border-2 border-[#808080]">
 						<AvatarImage
 							src={user.profilePhoto}
 							alt={`@${user.hackerTag}`}
@@ -233,8 +234,8 @@ export default async function ProfileButton() {
 							</DropdownMenuItem>
 						</Link>
 					</Restricted>
-
 					<div className="my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
+
 					<MobileNavBarLinks />
 
 					<Link href={`/bug-report`}>

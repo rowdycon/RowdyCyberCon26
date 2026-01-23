@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { Overview } from "@/components/admin/landing/Overview";
 import {
 	Card,
@@ -12,8 +11,8 @@ import type { User } from "db/types";
 import { getAllUsers } from "db/functions";
 import Link from "next/link";
 import { formatInTimeZone } from "date-fns-tz";
-import { getClientTimeZone } from "@/lib/utils/client/shared";
 import { getCurrentUser } from "@/lib/utils/server/user";
+import { getLocalTimeZone } from "@internationalized/date";
 
 export default async function Page() {
 	const adminUser = await getCurrentUser();
@@ -27,9 +26,7 @@ export default async function Page() {
 		recentRegisteredUsers,
 	} = getRecentRegistrationData(allUsers);
 
-	const requestHeaders = headers();
-	const vercelTimezone = requestHeaders.get("x-vercel-ip-timezone");
-	const timezone = getClientTimeZone(vercelTimezone ?? "UTC");
+	const timezone = getLocalTimeZone();
 
 	return (
 		<div className="mx-auto w-full max-w-7xl px-4">

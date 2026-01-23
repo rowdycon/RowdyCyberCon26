@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
 			/>
 
 			<div className="relative w-full overflow-x-auto">
-				<Table className="bg-panel min-w-full border">
+				<Table className="min-w-full border bg-panel">
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>

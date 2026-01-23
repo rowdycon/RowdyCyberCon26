@@ -191,6 +191,7 @@ function UserTableHeader({
 				{hasFilter && <SortColumnButton name={name} column={column} />}
 			</div>
 			<Input
+				className="border-card"
 				value={(column.getFilterValue() ?? "") as string}
 				onChange={(e) => column.setFilterValue(e.target.value)}
 				placeholder="search..."

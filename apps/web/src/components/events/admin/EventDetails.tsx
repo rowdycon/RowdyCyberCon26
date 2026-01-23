@@ -3,14 +3,10 @@ import { Badge } from "@/components/shadcn/ui/badge";
 import Balancer from "react-wrap-balancer";
 import { formatInTimeZone } from "date-fns-tz";
 import { Event } from "db/types";
-import { getClientTimeZone } from "@/lib/utils/client/shared";
-import { headers } from "next/headers";
+import { getLocalTimeZone } from "@internationalized/date";
 
 export default function EventFull({ event }: { event: Event }) {
-	const requestHeaders = headers();
-	const vercelTimezone = requestHeaders.get("x-vercel-ip-timezone");
-
-	const userTimeZone = getClientTimeZone(vercelTimezone ?? "UTC");
+	const userTimeZone = getLocalTimeZone();
 
 	return (
 		<div className="relative w-full overflow-x-hidden">

@@ -9,7 +9,6 @@
 	--primary: 240 100% 25%; /* blue */
 	--primary-foreground: 0 0% 100%; /* White */
 
-	/* Gray tones */
 	--secondary: 0 0% 75%;
 	--secondary-foreground: 0 0% 0%;
 
@@ -25,19 +24,16 @@
 	--popover: 0 0% 75%;
 	--popover-foreground: 0 0% 0%;
 
-	/* Maroon errors: #800000 */
-	--destructive: 0 100% 25%;
+	--destructive: 0 92% 38%;
 	--destructive-foreground: 0 0% 100%;
 
-	--panel: 40 8% 82%; /* Win98 system face */
+	--panel: 40 8% 82%;
 	--panel-foreground: 0 0% 0%;
 
-	/* Dark gray borders: #808080 */
 	--border: 0 0% 70%;
-	--input: 0 0% 100%; /* White inputs */
+	--input: 0 0% 100%;
 	--ring: 0 0% 0%;
 
-	/* Charts (kept vibrant but Win98-friendly) */
 	--chart-1: 20 90% 55%;
 	--chart-2: 190 50% 45%;
 	--chart-3: 215 35% 35%;
@@ -46,7 +42,6 @@
 
 	--radius: 0.75rem;
 
-	/* Sidebar */
 	--sidebar: 0 0% 75%;
 	--sidebar-foreground: 0 0% 0%;
 	--sidebar-primary: 240 100% 25%;

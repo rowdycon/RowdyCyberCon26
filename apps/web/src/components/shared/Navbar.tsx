@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import c from "config";
 import ProfileButton from "./ProfileButton";
 import { currentUser } from "@clerk/nextjs/server";

@@ -17,26 +17,35 @@ export default async function Layout({ children }: ToggleLayoutProps) {
 		return notFound();
 
 	return (
-		<div className="mx-3 flex max-w-5xl flex-col gap-4 px-4 md:mx-auto md:flex-row md:gap-x-6">
-			{/* Sidebar */}
-			<div className="bg-panel flex shrink-0 flex-row gap-2 rounded-md border-card p-4 md:w-56 md:flex-col">
-				<ToggleItem name="Toggles" path="/admin/toggles" />
-				<Separator className="bg-card" />
-				<ToggleItem name="Landing Page" path="/admin/toggles/landing" />
-				<Separator className="bg-card" />
-				<Restricted
-					permissions={[PermissionType.MANAGE_REGISTRATION]}
-					user={user}
-				>
-					<ToggleItem
-						name="Registration & RSVP"
-						path="/admin/toggles/registration"
-					/>
-				</Restricted>
-			</div>
+		<div className="mx-auto max-w-5xl px-3 py-4">
+			<div className="flex flex-col gap-4 md:flex-row md:gap-6">
+				{/* Sidebar */}
+				<div className="flex gap-2 overflow-x-auto rounded-md border-card bg-panel p-3 md:w-56 md:flex-col md:overflow-visible md:p-4">
+					<ToggleItem name="Toggles" path="/admin/toggles" />
 
-			{/* Main content */}
-			<div className="min-w-0 flex-1">{children}</div>
+					<Separator className="hidden bg-card md:block" />
+
+					<ToggleItem
+						name="Landing Page"
+						path="/admin/toggles/landing"
+					/>
+
+					<Separator className="hidden bg-card md:block" />
+
+					<Restricted
+						permissions={[PermissionType.MANAGE_REGISTRATION]}
+						user={user}
+					>
+						<ToggleItem
+							name="Registration & RSVP"
+							path="/admin/toggles/registration"
+						/>
+					</Restricted>
+				</div>
+
+				{/* Main content */}
+				<div className="min-w-0 flex-1">{children}</div>
+			</div>
 		</div>
 	);
 }

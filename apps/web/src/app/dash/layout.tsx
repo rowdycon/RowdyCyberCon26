@@ -57,9 +57,7 @@ export default async function DashLayout({ children }: DashLayoutProps) {
 						<DashNavItem key={name} name={name} path={path} />
 					))}
 				</div>
-				<div className="mt-10 flex w-full justify-center">
-					{children}
-				</div>
+				{children}
 			</TRPCReactProvider>
 		</>
 	);

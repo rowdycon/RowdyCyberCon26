@@ -20,7 +20,6 @@ export default async function MobileNavBarLinks() {
 					</div>
 				);
 			})}
-			<div className="my-1 h-[2px] border-b border-t border-b-white border-t-[#808080]" />
 		</div>
 	);
 }

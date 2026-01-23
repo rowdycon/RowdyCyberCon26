@@ -37,6 +37,11 @@ import { Switch } from "@/components/shadcn/ui/switch";
 interface NavItemsManagerProps {
 	navItems: NavItemToggleType[];
 }
+interface EditNavItemDialogProps {
+	existingName: string;
+	existingUrl: string;
+	existingEnabled: boolean;
+}
 
 export function NavItemsManager({ navItems }: NavItemsManagerProps) {
 	const { execute, result, status } = useAction(removeItem, {
@@ -52,7 +57,7 @@ export function NavItemsManager({ navItems }: NavItemsManagerProps) {
 
 	return (
 		<div className="pt-10">
-			<Table className="bg-panel rounded-sm border-card">
+			<Table className="rounded-sm border-card bg-panel">
 				{/* <TableCaption>A list of your recent invoices.</TableCaption> */}
 				{/* TODO: FIX MASSIVE BUG WHERE IF ENCODED IS DIFFERENT IT WILL ALL BREAK */}
 				<TableHeader>
@@ -60,7 +65,7 @@ export function NavItemsManager({ navItems }: NavItemsManagerProps) {
 						<TableHead className="w-[100px]">Name</TableHead>
 						<TableHead>Link</TableHead>
 						<TableHead>Enabled</TableHead>
-						<TableHead className="text-right">Options</TableHead>
+						<TableHead>Options</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
@@ -75,16 +80,12 @@ export function NavItemsManager({ navItems }: NavItemsManagerProps) {
 								</Link>
 							</TableCell>
 							<TableCell>
-								{/* <Switch
-									checked={item.enabled}
-									onCheckedChange={(checked) => didToggle(item.name, checked)}
-								/> */}
 								<ToggleSwitch
 									itemStatus={item.enabled}
 									name={item.name}
 								/>
 							</TableCell>
-							<TableCell className="space-x-2 space-y-2 text-right">
+							<TableCell className="flex w-full flex-col gap-y-1 md:flex-row md:gap-x-2">
 								<EditNavItemDialog
 									existingName={item.name}
 									existingUrl={item.url}
@@ -142,13 +143,8 @@ export function AddNavItemDialog() {
 	const [url, setUrl] = useState<string | null>(null);
 	const [open, setOpen] = useState(false);
 
-	const {
-		execute,
-		result,
-		status: createStatus,
-	} = useAction(setItem, {
+	const { execute, status: createStatus } = useAction(setItem, {
 		onSuccess: () => {
-			console.log("Success");
 			setOpen(false);
 			toast.success("NavItem created successfully!");
 		},
@@ -162,69 +158,72 @@ export function AddNavItemDialog() {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button>
-					<Plus className="mr-1" />
+				<Button className="w-full sm:w-auto">
+					<Plus className="mr-1 h-4 w-4" />
 					Add Item
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="bg-panel sm:max-w-[425px]">
+
+			<DialogContent className="w-[95vw] max-w-md bg-panel sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>New Item</DialogTitle>
 					<DialogDescription>
-						Create a item to show in the non-dashboard navbar
+						Create an item to show in the non-dashboard navbar
 					</DialogDescription>
 				</DialogHeader>
-				<div className="grid gap-4 py-4">
-					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="name" className="text-right">
+
+				<div className="space-y-4 py-2">
+					{/* Name */}
+					<div className="flex flex-col gap-1 sm:grid sm:grid-cols-4 sm:items-center sm:gap-4">
+						<Label htmlFor="name" className="sm:text-right">
 							Name
 						</Label>
 						<Input
-							onChange={(e) => setName(e.target.value)}
 							id="name"
 							placeholder="A Cool Hyperlink"
-							className="col-span-3"
+							onChange={(e) => setName(e.target.value)}
+							className="sm:col-span-3"
 						/>
 					</div>
-					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="name" className="text-right">
+
+					{/* URL */}
+					<div className="flex flex-col gap-1 sm:grid sm:grid-cols-4 sm:items-center sm:gap-4">
+						<Label htmlFor="url" className="sm:text-right">
 							URL
 						</Label>
 						<Input
-							onChange={(e) => setUrl(e.target.value)}
-							id="name"
+							id="url"
 							placeholder="https://example.com/"
-							className="col-span-3"
+							onChange={(e) => setUrl(e.target.value)}
+							className="sm:col-span-3"
 						/>
 					</div>
 				</div>
-				<DialogFooter>
+
+				<DialogFooter className="flex-col gap-2 sm:flex-row">
 					<Button
+						disabled={isLoading}
 						onClick={() => {
-							console.log("Running Action");
 							if (!name || !url)
-								return alert("Please fill out all fields.");
+								return toast.error(
+									"Please fill out all fields.",
+								);
 
 							execute({ name, url });
 						}}
+						className="relative w-full sm:w-auto"
 					>
 						{isLoading && (
-							<Loader2
-								className={"absolute z-50 h-4 w-4 animate-spin"}
-							/>
+							<Loader2 className="absolute h-4 w-4 animate-spin" />
 						)}
-						<p className={`${isLoading && "invisible"}`}>Create</p>
+						<span className={isLoading ? "invisible" : ""}>
+							Create
+						</span>
 					</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);
-}
-
-interface EditNavItemDialogProps {
-	existingName: string;
-	existingUrl: string;
-	existingEnabled: boolean;
 }
 
 function EditNavItemDialog({
@@ -251,9 +250,9 @@ function EditNavItemDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button>Edit Item</Button>
+				<Button>Edit</Button>
 			</DialogTrigger>
-			<DialogContent className="bg-panel sm:max-w-[425px]">
+			<DialogContent className="w-[95vw] max-w-md bg-panel sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>Edit Item</DialogTitle>
 					<DialogDescription>
