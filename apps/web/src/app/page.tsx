@@ -6,7 +6,7 @@ import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/shared/Navbar";
 
 import { Oswald } from "next/font/google";
-import WorkWithUs from "@/components/landing/WorkWithUs";
+import FrequentQuestions from "@/components/landing/FrequentQuestions";
 
 const oswald = Oswald({
 	variable: "--font-oswald",
@@ -24,7 +24,7 @@ export default function Home() {
 				<Hero />
 				<About />
 				<Partners />
-				<WorkWithUs />
+				<FrequentQuestions />
 				<Footer />
 			</main>
 		</div>

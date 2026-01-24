@@ -1,19 +1,14 @@
 import Link from "next/link";
+import WinTitleBar from "../shared/WinTitleBar";
 
 export default function About() {
 	return (
 		<section className="w-full py-8" id="About">
 			{/* Who are we section */}
 			<div className="mx-auto max-w-6xl px-4">
-				<div className="win98-window mb-8 bg-[#c0c0c0]">
-					<div className="win98-titlebar">
-						<span>About RowdyCyberCon</span>
-						<div className="flex">
-							<button className="win98-titlebar-btn">_</button>
-							<button className="win98-titlebar-btn">□</button>
-							<button className="win98-titlebar-btn">x</button>
-						</div>
-					</div>
+				<div className="mb-8 border-2 bg-card text-card-foreground">
+					<WinTitleBar title="About RowdyCyberCon" />
+
 					<div className="p-4">
 						<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 							<div>
@@ -45,7 +40,7 @@ export default function About() {
 				</div>
 
 				{/* Volunteering section */}
-				{/* <div className="win98-window mb-8 bg-[#c0c0c0]">
+				{/* <div className="win98-window mb-8 bg-card">
 					<div className="win98-titlebar">
 						<span>Volunteer Opportunities</span>
 						<div className="flex">
@@ -86,15 +81,9 @@ export default function About() {
 				</div> */}
 
 				{/* Partnering section */}
-				<div className="win98-window bg-[#c0c0c0]">
-					<div className="win98-titlebar">
-						<span>Partnership Information</span>
-						<div className="flex">
-							<button className="win98-titlebar-btn">_</button>
-							<button className="win98-titlebar-btn">□</button>
-							<button className="win98-titlebar-btn">×</button>
-						</div>
-					</div>
+				<div className="mb-8 border-2 bg-card text-card-foreground">
+					<WinTitleBar title="Partnership Information" />
+
 					<div className="p-4">
 						<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 							<div>

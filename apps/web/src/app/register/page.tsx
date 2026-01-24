@@ -27,8 +27,8 @@ export default async function Page() {
 		return (
 			<>
 				<Navbar />
-				<main className="overflow-x-hidden dark:bg-zinc-950">
-					<div className="mx-auto min-h-screen max-w-5xl px-5 pb-10 pt-[20vh] font-sans dark:text-white">
+				<main className="overflow-x-hidden">
+					<div className="mx-auto min-h-screen max-w-5xl px-5 py-10">
 						<h1 className="text-6xl font-black md:text-8xl">
 							Register
 						</h1>

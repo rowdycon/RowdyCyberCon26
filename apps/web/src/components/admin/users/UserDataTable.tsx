@@ -63,18 +63,17 @@ export function DataTable<TData, TValue>({
 
 	return (
 		<div className="flex w-full flex-col">
-			<div className="mt-4">
-				<Input
-					placeholder="Filter users..."
-					value={globalFilter}
-					onChange={(event) => {
-						setGlobalFilter(event.target.value);
-					}}
-					className="max-w-sm"
-				/>
-			</div>
+			<Input
+				placeholder="Filter users..."
+				value={globalFilter}
+				onChange={(event) => {
+					setGlobalFilter(event.target.value);
+				}}
+				className="my-4 max-w-sm border-card"
+			/>
+
 			<div className="relative w-full overflow-x-auto">
-				<Table className="min-w-full border">
+				<Table className="min-w-full border bg-panel">
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>

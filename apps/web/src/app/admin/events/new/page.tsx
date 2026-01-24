@@ -15,7 +15,7 @@ export default async function Page() {
 		<div className="mx-2 max-w-3xl md:mx-auto">
 			<h1 className="text-3xl font-bold">New Event</h1>
 
-			<div className="my-2 rounded-xl border border-muted p-5">
+			<div className="bg-panel my-2 rounded-xl border border-muted p-5">
 				<NewEventForm defaultDate={defaultDate} />
 			</div>
 		</div>

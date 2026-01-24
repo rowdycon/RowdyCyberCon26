@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import WinTitleBar from "../shared/WinTitleBar";
 
 interface FloatingIcon {
 	id: number;
@@ -222,42 +223,10 @@ export default function HeroClient({
 				className={`win98-window relative z-10 mx-2 flex max-h-[90vh] w-full max-w-5xl flex-col p-1 transition-all duration-700 sm:mx-4 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
 			>
 				{/* Title bar */}
-				<div className="win98-titlebar flex items-center justify-between px-2 py-1 text-xs sm:text-sm">
-					<div className="flex items-center gap-1 truncate">
-						<span aria-hidden="true">🖥️</span>
-						<span className="truncate">RowdyCyberCon.exe</span>
-					</div>
-
-					<div className="flex shrink-0">
-						<button
-							className="win98-titlebar-btn h-5 w-5 sm:h-6 sm:w-6"
-							tabIndex={-1}
-						>
-							_
-						</button>
-						<button
-							className="win98-titlebar-btn h-5 w-5 sm:h-6 sm:w-6"
-							tabIndex={-1}
-						>
-							□
-						</button>
-						<button
-							className="win98-titlebar-btn h-5 w-5 sm:h-6 sm:w-6"
-							tabIndex={-1}
-						>
-							x
-						</button>
-					</div>
-				</div>
+				<WinTitleBar title="🖥️ RowdyCyberCon.exe" />
 
 				{/* Window content */}
-				<div
-					className="relative flex-1 overflow-y-auto p-4 sm:p-6 md:p-10"
-					style={{
-						background:
-							"linear-gradient(135deg, #c0c0c0 0%, #d4d4d4 50%, #c0c0c0 100%)",
-					}}
-				>
+				<div className="relative flex-1 overflow-y-auto p-4 sm:p-6 md:p-10">
 					{/* Animated grid background */}
 					<div
 						className="pointer-events-none absolute inset-0 opacity-[0.03]"

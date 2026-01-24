@@ -341,7 +341,7 @@ export default function RegisterForm({
 					isLoading={isLoading}
 				/>
 			) : (
-				<div className="relative">
+				<div className="bg-panel relative rounded-md p-6">
 					<Form {...form}>
 						<form
 							onSubmit={form.handleSubmit(onSubmit)}
@@ -490,7 +490,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -507,7 +507,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup>
 															{c.registration.genderOptions.map(
 																(option) => (
@@ -572,7 +572,7 @@ export default function RegisterForm({
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
-													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto bg-[#c0c0c0] p-0">
+													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto p-0">
 														<Command>
 															<CommandInput placeholder="Search countries..." />
 															<CommandList>
@@ -687,7 +687,7 @@ export default function RegisterForm({
 														</PopoverTrigger>
 													</FormControl>
 													<PopoverContent
-														className="no-scrollbar max-h-[400px] w-[--radix-popover-trigger-width] overflow-y-auto bg-[#c0c0c0] p-0"
+														className="no-scrollbar max-h-[400px] w-[--radix-popover-trigger-width] overflow-y-auto p-0"
 														onFocusOutside={() =>
 															console.log(
 																"closing",
@@ -809,7 +809,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full placeholder:text-muted-foreground">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -826,7 +826,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup className="max-h-[400px] w-[calc(var(--radix-select-trigger-width)+10rem)] overflow-y-scroll">
 															{c.registration.levelsOfStudy.map(
 																(level) => (
@@ -855,7 +855,6 @@ export default function RegisterForm({
 										name="major"
 										render={({ field }) => (
 											<FormItem
-												//
 												className={`col-span-2 ${isLocalUniversitySelected ? "md:col-span-2 lg:col-span-3" : "md:col-span-1 lg:col-span-2"} flex flex-col`}
 											>
 												<FormLabel>
@@ -894,7 +893,7 @@ export default function RegisterForm({
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
-													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto bg-[#c0c0c0] p-0">
+													<PopoverContent className="no-scrollbar max-h-[400px] w-[250px] overflow-y-auto p-0">
 														<Command>
 															<CommandInput placeholder="Search major..." />
 															<CommandList className="">
@@ -974,7 +973,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full placeholder:text-muted-foreground">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -991,7 +990,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup className="max-h-[400px] w-[var(--radix-select-trigger-width)]">
 															{c.registration.heardFromOptions.map(
 																(option) => (
@@ -1038,7 +1037,7 @@ export default function RegisterForm({
 													defaultValue={field.value}
 												>
 													<FormControl>
-														<SelectTrigger className="w-full">
+														<SelectTrigger className="w-full bg-background">
 															<div
 																className={clsx(
 																	"flex w-[95%] justify-start",
@@ -1055,7 +1054,7 @@ export default function RegisterForm({
 															</div>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-[#c0c0c0]">
+													<SelectContent>
 														<SelectGroup>
 															{c.registration.shirtSizeOptions.map(
 																(option) => (
@@ -1177,7 +1176,7 @@ export default function RegisterForm({
 												<FormControl>
 													<Textarea
 														placeholder="List any accessibility concerns here..."
-														className="h-[80%] resize-none"
+														className="h-[80%] resize-none bg-background"
 														{...field}
 														value={field.value}
 														onChange={
@@ -1317,7 +1316,7 @@ export default function RegisterForm({
 														uploadedFile
 															? ""
 															: "cursor-pointer"
-													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white bg-[#c0c0c0]`}
+													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white bg-background`}
 												>
 													<input
 														type="file"
@@ -1366,7 +1365,7 @@ export default function RegisterForm({
 												</FormLabel>
 												<FormControl>
 													<div className="flex">
-														<div className="flex h-10 w-10 items-center justify-center rounded-l bg-accent text-lg font-light text-primary">
+														<div className="flex h-10 w-10 items-center justify-center rounded-l bg-card text-lg font-light text-primary">
 															@
 														</div>
 														<Input
@@ -1445,7 +1444,7 @@ export default function RegisterForm({
 												<FormControl>
 													<Textarea
 														placeholder="Hello! I'm..."
-														className="resize-none"
+														className="resize-none bg-background"
 														{...field}
 													/>
 												</FormControl>
@@ -1520,7 +1519,7 @@ export default function RegisterForm({
 									control={form.control}
 									name="isSearchable"
 									render={({ field }) => (
-										<FormItem className="mx-auto flex max-w-[600px] flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+										<FormItem className="mx-auto flex max-w-[600px] flex-row items-start space-x-3 space-y-0 rounded-md border bg-card p-4">
 											<FormControl>
 												<Checkbox
 													checked={field.value}

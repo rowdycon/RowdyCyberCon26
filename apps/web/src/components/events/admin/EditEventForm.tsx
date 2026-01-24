@@ -129,7 +129,10 @@ export default function EditEventForm({
 						<FormItem>
 							<FormLabel>Description</FormLabel>
 							<FormControl>
-								<Textarea {...field} />
+								<Textarea
+									{...field}
+									className="bg-background"
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -166,11 +169,11 @@ export default function EditEventForm({
 									defaultValue={field.value}
 								>
 									<FormControl>
-										<SelectTrigger className="w-full">
+										<SelectTrigger className="w-full bg-background">
 											<SelectValue placeholder="Select a Event Type" />
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent className="bg-[#c0c0c0]">
+									<SelectContent>
 										<SelectGroup>
 											{Object.keys(c.eventTypes).map(
 												(type) => (

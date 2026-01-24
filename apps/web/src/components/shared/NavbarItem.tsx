@@ -7,12 +7,10 @@ interface NavbarItemProps {
 
 export default function NavbarItem({ children, link }: NavbarItemProps) {
 	return (
-		<Link
-			href={link}
-			className="mx-2 text-muted-foreground hover:text-primary hover:underline"
-			target="_blank"
-		>
-			{children}
+		<Link href={link} target="_blank">
+			<button className="win98-btn flex h-8 items-center">
+				{children}
+			</button>
 		</Link>
 	);
 }

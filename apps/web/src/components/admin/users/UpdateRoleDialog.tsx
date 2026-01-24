@@ -60,11 +60,15 @@ export default function UpdateRoleDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={"outline"} size={"sm"} className="w-full">
+				<Button
+					variant={"outline"}
+					size={"sm"}
+					className="border-panel w-full"
+				>
 					Change Role
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="bg-[#c0c0c0] sm:max-w-[425px]">
+			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>Update {name}'s Role</DialogTitle>
 					<DialogDescription>
@@ -79,7 +83,7 @@ export default function UpdateRoleDialog({
 									placeholder={getRoleName(currentRoleId)}
 								/>
 							</SelectTrigger>
-							<SelectContent className="bg-[#c0c0c0]">
+							<SelectContent>
 								{roles.map(({ id, name }) => {
 									return (
 										<SelectItem key={id} value={String(id)}>

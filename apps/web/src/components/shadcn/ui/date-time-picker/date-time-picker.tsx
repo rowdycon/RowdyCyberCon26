@@ -50,7 +50,7 @@ const DateTimePicker = React.forwardRef<
 			ref={ref}
 			className={cn(
 				groupProps.className,
-				"flex items-center rounded-md ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+				"flex items-center rounded-md bg-background ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
 			)}
 		>
 			<DateField {...fieldProps} />
@@ -68,7 +68,7 @@ const DateTimePicker = React.forwardRef<
 				</PopoverTrigger>
 				<PopoverContent
 					ref={contentRef}
-					className="w-full"
+					className="w-full bg-card"
 					align="center"
 				>
 					<div {...dialogProps} className="space-y-3">

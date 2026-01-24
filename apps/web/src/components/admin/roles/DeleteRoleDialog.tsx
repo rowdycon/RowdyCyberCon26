@@ -47,7 +47,7 @@ export default function DeleteRoleDialog({
 					Delete
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className="bg-panel">
 				<DialogHeader>
 					<DialogTitle>Delete Role</DialogTitle>
 				</DialogHeader>

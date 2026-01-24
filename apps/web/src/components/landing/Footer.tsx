@@ -9,7 +9,6 @@ import {
 	InstagramIcon,
 	Windows98Icon,
 } from "./FooterIcons";
-import { Button } from "../shadcn/ui/button";
 
 export default function Footer() {
 	const [time, setTime] = useState<string>("");
@@ -196,7 +195,7 @@ export default function Footer() {
 						</div>
 
 						{/* Menu content */}
-						<div className="flex-1 overflow-hidden bg-[#c0c0c0]">
+						<div className="flex-1 overflow-hidden">
 							{/* Menu sections with submenus */}
 							{menuSections.map((section) => (
 								<div key={section.id}>
@@ -278,7 +277,7 @@ export default function Footer() {
 													setActiveSubmenu(null)
 												}
 											>
-												<div className="scrollbar-thin max-h-full overflow-y-auto bg-[#c0c0c0] py-1">
+												<div className="scrollbar-thin max-h-full overflow-y-auto py-1">
 													{section.items.map(
 														(item) => (
 															<a
@@ -349,7 +348,7 @@ export default function Footer() {
 
 			{/* Taskbar */}
 			<footer
-				className={`fixed bottom-0 left-0 right-0 z-40 ${isMobile ? "h-12" : "h-10"} border-t-2 border-[#DFDFDF] bg-[#c0c0c0] shadow-lg`}
+				className={`fixed bottom-0 left-0 right-0 z-40 ${isMobile ? "h-12" : "h-10"} border-t-2 border-[#DFDFDF] bg-card shadow-lg`}
 			>
 				<div className="flex h-full items-center gap-1 px-1">
 					{/* Start Button */}
@@ -371,30 +370,21 @@ export default function Footer() {
 					{/* Quick Launch - only on desktop */}
 					{!isMobile && (
 						<>
-							<a
-								href="https://discord.gg/G66gERwNgK"
-								target="_blank"
-								rel="noopener noreferrer"
+							<button
+								className="win98-btn flex h-7 w-7 items-center justify-center"
+								title="Discord"
 							>
-								<Button
-									className="win98-btn flex h-7 w-7 items-center justify-center"
-									title="Discord"
+								<a
+									href="https://discord.gg/G66gERwNgK"
+									target="_blank"
+									rel="noopener noreferrer"
 								>
 									<DiscordIcon className="h-6" />
-								</Button>
-							</a>
-
-							{/* Divider */}
-							<div className="mx-1 h-6 w-px bg-[#808080]" />
+								</a>
+							</button>
 
 							{/* Active window indicator */}
-							<button
-								className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 bg-[#c0c0c0] px-3"
-								style={{
-									boxShadow:
-										"inset 1px 1px 2px rgba(0,0,0,0.2)",
-								}}
-							>
+							<button className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 px-3">
 								<span className="text-sm">🏠</span>
 								<span className="text-sm">RowdyCon 2026</span>
 							</button>

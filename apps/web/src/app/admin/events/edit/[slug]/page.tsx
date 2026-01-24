@@ -34,7 +34,7 @@ export default async function EditEventPage({
 					Edit Event
 				</h1>
 			</div>
-			<div className="my-2 rounded-xl border border-muted p-5">
+			<div className="bg-panel my-2 rounded-xl border border-muted p-5">
 				<EditEventForm {...event} />
 			</div>
 		</div>

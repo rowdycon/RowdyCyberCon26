@@ -130,10 +130,7 @@ export const columns: ColumnDef<EventRow>[] = [
 								<MoreHorizontal className="h-4 w-4" />
 							</Button>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent
-							align="end"
-							className="bg-[#c0c0c0]"
-						>
+						<DropdownMenuContent align="end">
 							<DropdownMenuItem
 								asChild
 								className="h-full w-full cursor-pointer"
@@ -198,7 +195,7 @@ export const columns: ColumnDef<EventRow>[] = [
 									toast.loading("Deleting event...");
 									executeDeleteAction({ eventID: data.id });
 								}}
-								className="text-red-500"
+								className="bg-destructive hover:bg-destructive/90"
 							>
 								Delete
 							</AlertDialogAction>

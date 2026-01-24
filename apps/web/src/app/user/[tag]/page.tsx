@@ -7,6 +7,7 @@ import { Globe } from "lucide-react";
 import { GitHubIcon, LinkedinIcon } from "@/components/landing/FooterIcons";
 import Navbar from "@/components/shared/Navbar";
 import { getHackerByTag } from "db/functions";
+import WinTitleBar from "@/components/shared/WinTitleBar";
 
 export default async function ({ params }: { params: { tag: string } }) {
 	if (!params.tag || params.tag.length <= 1) return notFound();
@@ -40,36 +41,17 @@ export default async function ({ params }: { params: { tag: string } }) {
 				<div className="relative z-10 mx-auto max-w-4xl">
 					<div className="win98-window">
 						{/* Title bar */}
-						<div className="win98-titlebar">
-							<div className="flex items-center gap-1">
-								<span className="text-xs">👤</span>
-								<span>
-									{user.firstName} {user.lastName} -
-									Properties
-								</span>
-							</div>
-							<div className="flex">
-								<button className="win98-titlebar-btn">
-									_
-								</button>
-								<button className="win98-titlebar-btn">
-									□
-								</button>
-								<button className="win98-titlebar-btn">
-									×
-								</button>
-							</div>
-						</div>
+						<WinTitleBar
+							title={`👤 ${user.firstName} ${user.lastName} - Properties`}
+						/>
 
 						{/* Window content */}
-						<div className="bg-[#c0c0c0] p-2">
+						<div className="p-2">
 							{/* Tabs */}
 							<div className="mb-2 flex border-b-2 border-white">
-								<button className="win98-tab win98-tab-active">
-									General
-								</button>
-								<button className="win98-tab">Contact</button>
-								<button className="win98-tab">Details</button>
+								<button className="win98-btn">General</button>
+								<button className="win98-btn">Contact</button>
+								<button className="win98-btn">Details</button>
 							</div>
 
 							{/* Tab content */}
@@ -188,7 +170,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 													).map((skill, i) => (
 														<span
 															key={i}
-															className="border bg-[#c0c0c0] px-2 py-1 text-xs"
+															className="border bg-card px-2 py-1 text-xs"
 															style={{
 																borderTopColor:
 																	"#ffffff",
@@ -350,7 +332,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 
 				{/* Desktop-style file icon decoration */}
 				<div className="fixed bottom-8 left-8 hidden md:block">
-					<div className="win98-icon">
+					<div className="flex cursor-pointer flex-col items-center">
 						<div className="mb-1 text-4xl">💾</div>
 						<div className="text-xs">User Profile</div>
 					</div>

@@ -12,7 +12,6 @@ export default function TiltWrapper({ children }: { children: ReactNode }) {
 	return (
 		<div>
 			<Tilt
-				className="parallax-effect-img"
 				perspective={1000}
 				gyroscope={false}
 				tiltReverse={true}

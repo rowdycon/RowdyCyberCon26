@@ -38,7 +38,11 @@ export default function RemoveUserBanDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={"destructive"} size={"sm"} className="w-full">
+				<Button
+					variant={"destructive"}
+					size={"sm"}
+					className="border-panel w-full"
+				>
 					Unban
 				</Button>
 			</DialogTrigger>

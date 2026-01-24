@@ -9,18 +9,11 @@ import {
 	PersonalInfo,
 	ProfileInfo,
 } from "@/components/admin/users/ServerSections";
-import {
-	DropdownMenu,
-	DropdownMenuTrigger,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-} from "@/components/shadcn/ui/dropdown-menu";
 import { notFound } from "next/navigation";
 import { userHasPermission } from "@/lib/utils/server/admin";
 import ApproveUserButton from "@/components/admin/users/ApproveUserButton";
 import c from "config";
-import { getHacker, getUser } from "db/functions";
+import { getHacker } from "db/functions";
 import BanUserDialog from "@/components/admin/users/BanUserDialog";
 import { db, eq } from "db";
 import { bannedUsers } from "db/schema";
@@ -72,13 +65,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						target="_blank"
 						className="w-full"
 					>
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="w-full border-panel"
+						>
 							Hacker Profile
 						</Button>
 					</Link>
 
 					<Link href={`mailto:${subject.email}`} className="w-full">
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="w-full border-panel"
+						>
 							Email Hacker
 						</Button>
 					</Link>
@@ -132,13 +133,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						target="_blank"
 						className="w-full"
 					>
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="w-full border-panel"
+						>
 							Hacker Profile
 						</Button>
 					</Link>
 
 					<Link href={`mailto:${subject.email}`} className="w-full">
-						<Button variant="outline" size="sm" className="w-full">
+						<Button
+							variant="outline"
+							size="sm"
+							className="w-full border-panel"
+						>
 							Email Hacker
 						</Button>
 					</Link>
@@ -198,7 +207,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 							<Button
 								variant="outline"
 								size="sm"
-								className="w-full"
+								className="w-full border-panel"
 							>
 								Profile
 							</Button>
@@ -211,7 +220,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 							<Button
 								variant="outline"
 								size="sm"
-								className="w-full"
+								className="w-full border-panel"
 							>
 								Email
 							</Button>

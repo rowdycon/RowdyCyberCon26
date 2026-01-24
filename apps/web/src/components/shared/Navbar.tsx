@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import c from "config";
 import ProfileButton from "./ProfileButton";
 import { currentUser } from "@clerk/nextjs/server";
 import NavBarLinksGrouper from "./NavBarLinksGrouper";
 import { getUser } from "db/functions";
+import WinTitleBar from "./WinTitleBar";
 
 interface NavbarProps {
 	className?: string;
@@ -18,65 +18,14 @@ export default async function Navbar({ className }: NavbarProps) {
 	return (
 		<div className="sticky top-0 z-50">
 			{/* Title bar */}
-			<div
-				className="flex h-7 w-full items-center justify-between px-2"
-				style={{
-					background:
-						"linear-gradient(90deg, #000080 0%, #1084d0 100%)",
-				}}
-			>
-				<div className="flex items-center gap-2">
-					<Image
-						src={c.icon.svg || "/placeholder.svg"}
-						alt={c.hackathonName + " Logo"}
-						width={16}
-						height={16}
-						className="pixelated"
-					/>
-					<span className="text-xs font-bold text-white">
-						{c.hackathonName} - [Internet Explorer]
-					</span>
-				</div>
-				<div className="flex gap-0.5">
-					<button
-						className="flex h-[18px] w-[18px] items-center justify-center border bg-[#c0c0c0] text-xs font-bold leading-none"
-						style={{
-							borderTopColor: "#ffffff",
-							borderLeftColor: "#ffffff",
-							borderRightColor: "#404040",
-							borderBottomColor: "#404040",
-						}}
-					>
-						_
-					</button>
-					<button
-						className="flex h-[18px] w-[18px] items-center justify-center border bg-[#c0c0c0] text-xs leading-none"
-						style={{
-							borderTopColor: "#ffffff",
-							borderLeftColor: "#ffffff",
-							borderRightColor: "#404040",
-							borderBottomColor: "#404040",
-						}}
-					>
-						□
-					</button>
-					<button
-						className="flex h-[18px] w-[18px] items-center justify-center border bg-[#c0c0c0] text-xs font-bold leading-none"
-						style={{
-							borderTopColor: "#ffffff",
-							borderLeftColor: "#ffffff",
-							borderRightColor: "#404040",
-							borderBottomColor: "#404040",
-						}}
-					>
-						x
-					</button>
-				</div>
-			</div>
+			<WinTitleBar
+				title={`${c.hackathonName} - [Internet Explorer]`}
+				imagePath={c.icon.svg}
+			/>
 
 			{/* Menu bar */}
 			<div
-				className={`h-10 w-full border-b bg-[#c0c0c0] ${className || ""}`}
+				className={`h-10 w-full border-b bg-card ${className || ""}`}
 				style={{
 					borderBottomColor: "#808080",
 					boxShadow: "inset 0 -1px 0 #ffffff",
@@ -124,18 +73,13 @@ export default async function Navbar({ className }: NavbarProps) {
 											: "/register"
 									}
 								>
-									<button
-										className="flex h-[22px] items-center gap-1 border bg-[#c0c0c0] px-2 hover:border-[#404040] hover:border-l-white hover:border-t-white"
-										style={{
-											borderColor: "transparent",
-										}}
-									>
+									<button className="win98-btn flex h-8 items-center gap-x-2">
 										<span className="text-sm">
 											{registrationIsComplete
 												? "📊"
 												: "📝"}
 										</span>
-										<span className="text-xs text-black">
+										<span className="text-xs">
 											{registrationIsComplete
 												? "Dashboard"
 												: "Register"}
@@ -145,12 +89,7 @@ export default async function Navbar({ className }: NavbarProps) {
 							) : (
 								<>
 									<Link href="/sign-in">
-										<button
-											className="flex h-[22px] items-center gap-1 border bg-[#c0c0c0] px-2 hover:border-[#404040] hover:border-l-white hover:border-t-white"
-											style={{
-												borderColor: "transparent",
-											}}
-										>
+										<button className="win98-btn flex h-8 items-center">
 											<span className="text-sm">🔑</span>
 											<span className="text-xs text-black">
 												Sign In
@@ -158,12 +97,7 @@ export default async function Navbar({ className }: NavbarProps) {
 										</button>
 									</Link>
 									<Link href="/register">
-										<button
-											className="flex h-[22px] items-center gap-1 border bg-[#c0c0c0] px-2 hover:border-[#404040] hover:border-l-white hover:border-t-white"
-											style={{
-												borderColor: "transparent",
-											}}
-										>
+										<button className="win98-btn flex h-8 items-center">
 											<span className="text-sm">📋</span>
 											<span className="text-xs text-black">
 												Register
@@ -184,7 +118,7 @@ export default async function Navbar({ className }: NavbarProps) {
 
 			{/* Address bar */}
 			<div
-				className="flex h-8 w-full items-center gap-2 border-b bg-[#c0c0c0] px-2"
+				className="flex h-8 w-full items-center gap-2 border-b bg-card px-2"
 				style={{
 					borderBottomColor: "#808080",
 					boxShadow: "inset 0 -1px 0 #ffffff",
@@ -207,7 +141,7 @@ export default async function Navbar({ className }: NavbarProps) {
 					</span>
 				</div>
 				<button
-					className="flex h-[22px] items-center gap-1 border-2 bg-[#c0c0c0] px-3"
+					className="flex h-[22px] items-center gap-1 border-2 px-3"
 					style={{
 						borderTopColor: "#ffffff",
 						borderLeftColor: "#ffffff",
