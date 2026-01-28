@@ -141,7 +141,7 @@ export default function HeroClient({
 	}
 
 	return (
-		<section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20">
+		<section className="relative flex flex-col items-center justify-center overflow-hidden px-4 py-20">
 			{/* Animated gradient background */}
 			<div
 				className="absolute inset-0 opacity-30"

@@ -1,7 +1,7 @@
-import { Suspense } from "react";
 import Image from "next/image";
-import { Skeleton } from "../shadcn/ui/skeleton";
 import HeroClient from "./HeroClient";
+import { Button } from "../shadcn/ui/button";
+import Link from "next/link";
 
 export default function Hero() {
 	return (
@@ -23,7 +23,7 @@ export default function Hero() {
 				</div>
 
 				{/* Text Logo */}
-				<div className="relative mx-auto my-3 h-[80px] w-[250px] md:h-[175px] md:w-[400px]">
+				<div className="relative mx-auto h-[80px] w-[250px] md:h-[175px] md:w-[400px]">
 					<Image
 						src="/img/logo/rcc_for_website.png"
 						alt="RowdyCon - Capture The Flag Competition"
@@ -41,21 +41,11 @@ export default function Hero() {
 
 				{/* Action buttons */}
 				<div className="text-bold flex flex-col items-center justify-center gap-4 text-2xl text-gray-600 sm:flex-row">
-					More info coming soon!
-					{/* <Suspense fallback={<ButtonSkeleton />}>
-						<LandingButton />
-					</Suspense>
-
-					<Link href="https://ctf.rowdycon.org" className="group">
-						<button className="win98-btn relative overflow-hidden px-8 py-2 transition-transform hover:scale-[1.02] active:scale-[0.98]">
-							<span className="relative z-10 flex items-center gap-2">
-								<span aria-hidden="true">🚩</span>
-								Go to the CTF!
-							</span>
-
-							<span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-						</button>
-					</Link> */}
+					<Link href={"/register"}>
+						<Button className="win98-btn p-10 text-xl">
+							Register Now!
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</HeroClient>
