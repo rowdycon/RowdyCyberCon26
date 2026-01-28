@@ -42,7 +42,7 @@ export default function Hero() {
 				{/* Action buttons */}
 				<div className="text-bold flex flex-col items-center justify-center gap-4 text-2xl text-gray-600 sm:flex-row">
 					<Link href={"/register"}>
-						<Button className="win98-btn p-10 text-xl">
+						<Button className="p-10 text-xl">
 							Register Now!
 						</Button>
 					</Link>
