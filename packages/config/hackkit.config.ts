@@ -851,7 +851,7 @@ const c = {
 	},
 	issueEmail: "utsarowdycon@gmail.com",
 	links: {
-		discord: "https://discord.gg/DDhMg6pXXF",
+		discord: "https://discord.gg/G66gERwNgK",
 		instagram: "https://www.instagram.com/rowdycybercon/",
 		github: "https://github.com/rowdycon",
 		guide: "https://rowdycon.notion.site/Guide-56f8318aeea7461bac459ae3fbc02273",
