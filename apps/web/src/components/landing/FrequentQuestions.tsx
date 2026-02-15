@@ -10,7 +10,7 @@ interface FAQ {
 const faqs: FAQ[] = [
 	{
 		question: "What activities will be there?",
-		answer: "There will be workshops, a massive Capture the Flag, a King of the Hill competition, free food, and the ability to network with students and employers!",
+		answer: "There will be workshops, Capture the Flag, a beginner CTF competition, free food, free swag, and the ability to network with students and industry professionals.",
 	},
 	{
 		question: "Who can attend RowdyCyberCon?",
@@ -46,45 +46,7 @@ const faqs: FAQ[] = [
 	},
 	{
 		question: "How do we get to San Pedro I at and where should we park?",
-		answer: (
-			<>
-				San Pedro I is located at UTSA's downtown campus at 506 Dolorosa
-				St, San Antonio, TX 78204. We recommend driving, carpooling, or
-				taking the VIA. All UTSA students get a free, unlimited bus pass
-				that can be accessed{" "}
-				<a
-					href="https://www.utsa.edu/campusservices/runner/via.html"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="text-[#0000FF] underline"
-				>
-					here
-				</a>
-				. There are multiple convenient pickup/drop off points. There is
-				free parking available in the Dolorosa lot (unmarked spaces
-				only), D1, D2, and D3 or paid parking in the downtown garage or
-				the Bexar County garage. A map of UTSA's downtown campus can be
-				found{" "}
-				<a
-					href="https://www.utsa.edu/campusservices/docs/Park-Trans-Map_Downtown-Campus.pdf"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="text-[#0000FF] underline"
-				>
-					here
-				</a>{" "}
-				and UTSA's weekend parking rules can be found{" "}
-				<a
-					href="https://www.utsa.edu/campusservices/parking/permits.html#w1"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="text-[#0000FF] underline"
-				>
-					here
-				</a>
-				.
-			</>
-		),
+		answer: "San Pedro I is located at UTSA's downtown campus at 506 Dolorosa St, San Antonio, TX 78204. We recommend driving, carpooling, or taking the VIA. All UTSA students get a free, unlimited bus pass that can be accessed here. There are multiple convenient pickup/drop off points. There is student parking available under the bridge, D1, D2, and D3 or paid parking in the downtown garage or the Bexar County garage. A map of UTSA's downtown campus can be found here and UTSA's weekend parking rules can be found here.",
 	},
 	{
 		question: "What if I can't attend in-person?",
@@ -103,7 +65,7 @@ const faqs: FAQ[] = [
 				>
 					here
 				</a>
-				. Check-in opens at 7:30am and runs until 8:30am when the first
+				. Check-in opens at 8:00am and runs until 9:30am when the first
 				events start!
 			</>
 		),
@@ -114,7 +76,7 @@ const faqs: FAQ[] = [
 	},
 	{
 		question: "Still have questions?",
-		answer: "Feel free reach out to publicly or privately on the discord channel or email us at admin@rowdycon.org!",
+		answer: "Feel free reach out to publicly or privately on the discord channel or email us at director@rowdycybercon.org!",
 	},
 ];
 

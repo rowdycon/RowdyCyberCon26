@@ -190,7 +190,7 @@ export default function Footer() {
 									transform: "rotate(180deg)",
 								}}
 							>
-								RowdyCon 2026
+								RowdyCyberCon 2026
 							</span>
 						</div>
 
@@ -386,7 +386,9 @@ export default function Footer() {
 							{/* Active window indicator */}
 							<button className="win98-btn flex h-7 min-w-0 max-w-[200px] flex-shrink items-center gap-2 px-3">
 								<span className="text-sm">🏠</span>
-								<span className="text-sm">RowdyCon 2026</span>
+								<span className="text-sm">
+									RowdyCyberCon 2026
+								</span>
 							</button>
 						</>
 					)}
