@@ -194,6 +194,7 @@ const schoolOptions = [
 	"Rochester Institute of Technology",
 	"Rutgers, The State University of New Jersey",
 	"SUNY Polytechnic Institute",
+	"San Antonio College",
 	"San Diego State University",
 	"San Francisco State University",
 	"San Jose State University",
