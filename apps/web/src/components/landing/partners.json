@@ -29,6 +29,12 @@
 			"logo": "utsa_sds.png",
 			"url": "https://caicc.utsa.edu/",
 			"tier": "Gold Sponsor"
+		},
+		{
+			"name": "Northwest Vista College",
+			"logo": "northwest_vista.png",
+			"url": "https://www.alamo.edu/nvc/",
+			"tier": "Gold Sponsor"
 		}
 	]
 }

@@ -10,7 +10,7 @@ export default function Partners() {
 					<WinTitleBar title="Our Partners" />
 					<div className="p-4">
 						<div className="win98-inset p-6">
-							<div className="grid grid-cols-2 place-items-center gap-6 sm:grid-cols-3 md:grid-cols-4">
+							<div className="grid grid-cols-2 items-stretch gap-6 sm:grid-cols-3 md:grid-cols-4">
 								{partnerData.partners.map((partner) => (
 									<PartnerCard
 										key={partner.name}
