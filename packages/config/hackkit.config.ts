@@ -506,6 +506,7 @@ const majorOptions = [
 	"Natural Resources Conservation, General",
 	"Natural Resources Management",
 	"Neuroscience",
+	"Northeast Lakeview College",
 	"Nuclear Engineering",
 	"Occupational Therapy Assisting",
 	"Philosophy",
