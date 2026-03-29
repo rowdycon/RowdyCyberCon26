@@ -56,7 +56,7 @@ const faqs: FAQ[] = [
 		question: "What is the event schedule and what time should I show up?",
 		answer: (
 			<>
-				The schedule can be found{" "}
+				{/* The schedule can be found{" "}
 				<a
 					href="https://rowdycon.notion.site/Schedule-daa0ea305ea34133ac68e517e185ea41?pvs=4"
 					target="_blank"
@@ -64,9 +64,8 @@ const faqs: FAQ[] = [
 					className="text-[#0000FF] underline"
 				>
 					here
-				</a>
-				. Check-in opens at 8:00am and runs until 9:30am when the first
-				events start!
+				</a> */}
+				Schedule is coming soon!
 			</>
 		),
 	},

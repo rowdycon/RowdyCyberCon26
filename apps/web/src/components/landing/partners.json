@@ -35,6 +35,12 @@
 			"logo": "northwest_vista.png",
 			"url": "https://www.alamo.edu/nvc/",
 			"tier": "Gold Sponsor"
+		},
+		{
+			"name": "Acceligence",
+			"logo": "acceligence.png.webp",
+			"url": "",
+			"tier": "Gold Sponsor"
 		}
 	]
 }
