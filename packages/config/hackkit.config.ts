@@ -388,6 +388,7 @@ const schoolOptions = [
 	"University at Oswego, SUNY",
 	"University at Plattsburgh, SUNY",
 	"University of Cincinnati Clermont College",
+	"University of the Incarnate Word",
 	"Utah State University",
 	"Utica College",
 	"Vanderbilt University",
