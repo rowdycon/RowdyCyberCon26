@@ -74,16 +74,16 @@ export default function Footer() {
 			id: "orgs",
 			title: "🏢 Organizations",
 			items: [
-				{
-					icon: "🖥️",
-					label: "CompTIA Student Chapter",
-					href: "https://rowdylink.utsa.edu/organization/comptiastudentchapter",
-				},
-				{
-					icon: "🔒",
-					label: "Computer Security Association",
-					href: "https://rowdylink.utsa.edu/organization/computersecurityassociation",
-				},
+				// {
+				// 	icon: "🖥️",
+				// 	label: "CompTIA Student Chapter",
+				// 	href: "https://rowdylink.utsa.edu/organization/comptiastudentchapter",
+				// },
+				// {
+				// 	icon: "🔒",
+				// 	label: "Computer Security Association",
+				// 	href: "https://rowdylink.utsa.edu/organization/computersecurityassociation",
+				// },
 				{
 					icon: "👩‍💻",
 					label: "Women in Cyber Security",
@@ -94,11 +94,11 @@ export default function Footer() {
 					label: "Cyber Jedis",
 					href: "https://rowdylink.utsa.edu/organization/cyberjedis",
 				},
-				{
-					icon: "🤠",
-					label: "Console Cowboys",
-					href: "https://rowdylink.utsa.edu/organization/console-cowboys",
-				},
+				// {
+				// 	icon: "🤠",
+				// 	label: "Console Cowboys",
+				// 	href: "https://rowdylink.utsa.edu/organization/console-cowboys",
+				// },
 				{
 					icon: "🌐",
 					label: "Online Cyber Security Alliance",
@@ -111,27 +111,27 @@ export default function Footer() {
 				},
 			],
 		},
-		{
-			id: "resources",
-			title: "📚 Participant Resources",
-			items: [
-				{
-					icon: "📖",
-					label: "Guide",
-					href: "https://rowdycon.notion.site/Guide-56f8318aeea7461bac459ae3fbc02273",
-				},
-				{
-					icon: "📅",
-					label: "Schedule",
-					href: "https://rowdycon.notion.site/Schedule-daa0ea305ea34133ac68e517e185ea41?pvs=4",
-				},
-				{
-					icon: "📜",
-					label: "Code of Conduct",
-					href: "https://rowdycon.notion.site/Code-of-Conduct-109850364be780f08848c4ed85aa4047",
-				},
-			],
-		},
+		// {
+		// 	id: "resources",
+		// 	title: "📚 Participant Resources",
+		// 	items: [
+		// 		{
+		// 			icon: "📖",
+		// 			label: "Guide",
+		// 			href: "https://rowdycon.notion.site/Guide-56f8318aeea7461bac459ae3fbc02273",
+		// 		},
+		// 		{
+		// 			icon: "📅",
+		// 			label: "Schedule",
+		// 			href: "https://rowdycon.notion.site/Schedule-daa0ea305ea34133ac68e517e185ea41?pvs=4",
+		// 		},
+		// 		{
+		// 			icon: "📜",
+		// 			label: "Code of Conduct",
+		// 			href: "https://rowdycon.notion.site/Code-of-Conduct-109850364be780f08848c4ed85aa4047",
+		// 		},
+		// 	],
+		// },
 	];
 
 	const socialLinks = [
@@ -214,9 +214,9 @@ export default function Footer() {
 											!isMobile &&
 											setActiveSubmenu(section.id)
 										}
-										onMouseLeave={() =>
-											!isMobile && setActiveSubmenu(null)
-										}
+										// onMouseLeave={() =>
+										// 	!isMobile && setActiveSubmenu(null)
+										// }
 									>
 										<span className="text-sm font-medium">
 											{section.title}
