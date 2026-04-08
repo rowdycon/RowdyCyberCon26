@@ -56,16 +56,15 @@ const faqs: FAQ[] = [
 		question: "What is the event schedule and what time should I show up?",
 		answer: (
 			<>
-				{/* The schedule can be found{" "}
+				The schedule can be found{" "}
 				<a
-					href="https://rowdycon.notion.site/Schedule-daa0ea305ea34133ac68e517e185ea41?pvs=4"
+					href="https://docs.google.com/spreadsheets/d/19yuormuJRxJL-zdw5Uc7rLdvCFTpus9dUlTM72Xiorg/edit?gid=0#gid=0"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="text-[#0000FF] underline"
 				>
 					here
-				</a> */}
-				Schedule is coming soon!
+				</a>
 			</>
 		),
 	},

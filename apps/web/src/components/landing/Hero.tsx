@@ -40,10 +40,15 @@ export default function Hero() {
 				</div>
 
 				{/* Action buttons */}
-				<div className="text-bold flex flex-col items-center justify-center gap-4 text-2xl text-gray-600 sm:flex-row">
+				<div className="text-bold flex flex-col items-center justify-center gap-4 text-xl text-gray-600 sm:flex-row">
 					<Link href={"/register"}>
-						<Button className="p-10 text-xl">
+						<Button className="p-8 text-xl">
 							Register Now!
+						</Button>
+					</Link>
+					<Link href={"https://docs.google.com/spreadsheets/d/19yuormuJRxJL-zdw5Uc7rLdvCFTpus9dUlTM72Xiorg/edit?gid=0#gid=0"} target="_blank">
+						<Button className="p-8 text-xl">
+							Schedule
 						</Button>
 					</Link>
 				</div>
