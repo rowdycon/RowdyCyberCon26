@@ -3,7 +3,7 @@
 import { volunteerAction } from "@/lib/safe-action";
 import { z } from "zod";
 import { db, sql } from "db";
-import { scans, userCommonData } from "db/schema";
+import { scans, userCommonData, bannedUsers } from "db/schema";
 import { eq, and } from "db/drizzle";
 import { userHasPermission } from "@/lib/utils/server/admin";
 import { PermissionType } from "@/lib/constants/permission";
@@ -15,42 +15,23 @@ export const createScan = volunteerAction
 			userID: z.string(),
 			creationTime: z.date(),
 			countToSet: z.number(),
-			alreadyExists: z.boolean(),
 		}),
 	)
 	.action(
 		async ({
-			parsedInput: {
-				eventID,
-				userID,
-				creationTime,
-				countToSet,
-				alreadyExists,
-			},
+			parsedInput: { eventID, userID, creationTime, countToSet },
 			ctx: { user, userId },
 		}) => {
-			if (alreadyExists) {
-				await db
-					.update(scans)
-					.set({ count: countToSet, updatedAt: creationTime })
-					.where(
-						and(
-							eq(scans.eventID, eventID),
-							eq(scans.userID, userID),
-						),
-					);
-			} else {
-				await db.insert(scans).values({
-					userID: userID,
-					updatedAt: creationTime,
-					count: 1,
-					eventID: eventID,
-				});
-			}
+			await db.insert(scans).values({
+				userID: userID,
+				updatedAt: creationTime,
+				count: countToSet,
+				eventID: eventID,
+			});
+
 			return { success: true };
 		},
 	);
-
 export const getScan = volunteerAction
 	.schema(z.object({ eventID: z.number(), userID: z.string() }))
 	.action(
@@ -96,3 +77,10 @@ export const checkInUserToHackathon = volunteerAction
 			.set({ checkinTimestamp: sql`(current_timestamp)` })
 			.where(eq(userCommonData.clerkID, userID));
 	});
+
+export const isUserBanned = async (userId: string) => {
+	const banInstance = await db.query.bannedUsers.findFirst({
+		where: eq(bannedUsers.userID, userId),
+	});
+	return !!banInstance;
+};

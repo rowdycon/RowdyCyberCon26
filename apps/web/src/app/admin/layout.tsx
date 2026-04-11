@@ -49,6 +49,11 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
 			!userHasPermission(user, PermissionType.MANAGE_NAVLINKS)
 		)
 			return false;
+		if (
+			name === "Raffle" &&
+			!userHasPermission(user, PermissionType.VIEW_RAFFLE)
+		)
+			return false;
 		return true;
 	});
 

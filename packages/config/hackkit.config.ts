@@ -880,6 +880,7 @@ const c = {
 			Roles: "/admin/roles",
 			Toggles: "/admin/toggles",
 			"Hackathon Check-in": "/admin/check-in",
+			Raffle: "/admin/raffle",
 		},
 	},
 	eventTypes: {

@@ -17,6 +17,13 @@ import {
 	DrawerHeader,
 	DrawerTitle,
 } from "@/components/shadcn/ui/drawer";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/shadcn/ui/select";
 import { Button } from "@/components/shadcn/ui/button";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
@@ -46,6 +53,8 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
+	const [points, setPoints] = useState<number>(1);
+	const [scannerKey, setScannerKey] = useState(0);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
@@ -72,26 +81,33 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 		if (scan) {
-			runScanAction({
-				eventID: event.id,
-				userID: scan.userID,
-				countToSet: scan.count + 1,
-				alreadyExists: true,
-				creationTime: new Date(timestamp),
-			});
+			toast.error("User has already been scanned for the event!");
+			// runScanAction({
+			// 	eventID: event.id,
+			// 	userID: scan.userID,
+			// 	countToSet: scan.count + 1,
+			// 	alreadyExists: true,
+			// 	creationTime: new Date(timestamp),
+			// });
 		} else {
 			// TODO: make this a little more typesafe
+			console.log(points);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
-				countToSet: 1,
-				alreadyExists: false,
+				countToSet: points,
 				creationTime: new Date(timestamp),
 			});
+			toast.success("Successfully Scanned User In");
 		}
+		handleClose();
+	}
 
-		toast.success("Successfully Scanned User In");
-		router.replace(`${path}`);
+	function handleClose() {
+		setPoints(1);
+		setScanLoading(false);
+		router.replace(path);
+		setScannerKey((k) => k + 1);
 	}
 
 	return (
@@ -100,6 +116,7 @@ export default function PassScanner({
 				<div className="flex w-screen flex-col items-center justify-center gap-5">
 					<div className="mx-auto aspect-square w-screen max-w-[500px] overflow-hidden">
 						<Scanner
+							key={scannerKey}
 							onScan={(result) => {
 								const params = new URLSearchParams(
 									searchParams.toString(),
@@ -139,11 +156,8 @@ export default function PassScanner({
 					</div>
 				</div>
 			</div>
-			<Drawer
-				onClose={() => router.replace(path)}
-				open={hasScanned || scanLoading}
-			>
-				<DrawerContent>
+			<Drawer onClose={handleClose} open={hasScanned || scanLoading}>
+				<DrawerContent className="bg-panel">
 					{scanLoading ? (
 						<>
 							<DrawerHeader>
@@ -151,10 +165,7 @@ export default function PassScanner({
 								<DrawerDescription></DrawerDescription>
 							</DrawerHeader>
 							<DrawerFooter>
-								<Button
-									onClick={() => router.replace(path)}
-									variant="outline"
-								>
+								<Button onClick={handleClose} variant="outline">
 									Cancel
 								</Button>
 							</DrawerFooter>
@@ -165,39 +176,62 @@ export default function PassScanner({
 								<DrawerTitle>
 									New Scan for {event.title}
 								</DrawerTitle>
-								<DrawerDescription className="flex flex-col">
-									<>
+								<DrawerDescription className="flex flex-col gap-1">
+									<span>
 										{scanUser?.firstName}{" "}
 										{scanUser?.lastName}
-									</>
-									<h2>
+									</span>
+									<span>
 										<span className="font-bold">Role:</span>{" "}
 										{role}
-									</h2>
-									<h2>
+									</span>
+									<span>
 										<span className="font-bold">
 											Status:
 										</span>{" "}
 										{register}
-									</h2>
-									<h2>
+									</span>
+									<span>
 										<span className="font-bold">
 											Guild:
 										</span>{" "}
 										{guild}
-									</h2>
+									</span>
 								</DrawerDescription>
 							</DrawerHeader>
+							<div className="px-4 pb-2">
+								<label className="mb-1 block text-sm font-medium">
+									Award Points
+								</label>
+								<Select
+									value={String(points)}
+									onValueChange={(val) =>
+										setPoints(Number(val))
+									}
+								>
+									<SelectTrigger className="w-full">
+										<SelectValue placeholder="Select points" />
+									</SelectTrigger>
+									<SelectContent>
+										{[1, 2, 3, 4, 5].map((n) => (
+											<SelectItem
+												key={n}
+												value={String(n)}
+											>
+												{n}{" "}
+												{n === 1 ? "point" : "points"}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+							</div>
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
 									{scan
 										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
-								<Button
-									onClick={() => router.replace(path)}
-									variant="outline"
-								>
+								<Button onClick={handleClose} variant="outline">
 									Cancel
 								</Button>
 							</DrawerFooter>

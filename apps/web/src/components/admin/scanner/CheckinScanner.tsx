@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import { Scanner } from "@yudiel/react-qr-scanner";
 import superjson from "superjson";
-import { checkInUserToHackathon } from "@/actions/admin/scanner-admin-actions";
+import {
+	checkInUserToHackathon,
+	isUserBanned,
+} from "@/actions/admin/scanner-admin-actions";
 import { type QRDataInterface } from "@/lib/utils/shared/qr";
 import type { User } from "db/types";
 import clsx from "clsx";
@@ -35,8 +38,19 @@ export default function CheckinScanner({
 	hasRSVP,
 }: CheckinScannerProps) {
 	console.log("scanner props is: ", hasScanned, checkedIn, scanUser, hasRSVP);
-
+	const [scannerKey, setScannerKey] = useState(0);
+	const [banned, setBanned] = useState<boolean | null>(null);
 	const [scanLoading, setScanLoading] = useState(false);
+
+	useEffect(() => {
+		async function run() {
+			if (!scanUser) return;
+			const banned = await isUserBanned(scanUser.clerkID);
+			setBanned(banned);
+		}
+		run();
+	}, [scanUser]);
+
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
@@ -55,7 +69,7 @@ export default function CheckinScanner({
 			: toast.success(
 					message || "Successfully Checked User Into Hackathon!",
 				);
-		router.replace(`${path}`);
+		handleClose();
 	}
 
 	const { execute: runCheckInUserToHackathon } = useAction(
@@ -105,7 +119,13 @@ export default function CheckinScanner({
 				QRTimestamp: timestamp,
 			});
 		}
+		handleClose();
+	}
+
+	function handleClose() {
+		setScanLoading(false);
 		router.replace(path);
+		setScannerKey((k) => k + 1);
 	}
 
 	const drawerTitle = checkedIn
@@ -130,6 +150,7 @@ export default function CheckinScanner({
 				<div className="flex w-screen flex-col items-center justify-center gap-5">
 					<div className="mx-auto aspect-square w-screen max-w-[500px] overflow-hidden">
 						<Scanner
+							key={scannerKey}
 							onScan={(result) => {
 								const params = new URLSearchParams(
 									searchParams.toString(),
@@ -150,6 +171,7 @@ export default function CheckinScanner({
 									router.replace(
 										`${path}?${params.toString()}`,
 									);
+									setScannerKey((k) => k + 1);
 								}
 							}}
 							onError={(error) => console.log(error)}
@@ -164,10 +186,7 @@ export default function CheckinScanner({
 					</div>
 				</div>
 			</div>
-			<Drawer
-				onClose={() => router.replace(path)}
-				open={hasScanned || scanLoading}
-			>
+			<Drawer onClose={handleClose} open={hasScanned || scanLoading}>
 				<DrawerContent>
 					{scanLoading ? (
 						<>
@@ -175,10 +194,7 @@ export default function CheckinScanner({
 								<DrawerTitle>Loading Scan...</DrawerTitle>
 							</DrawerHeader>
 							<DrawerFooter>
-								<Button
-									onClick={() => router.replace(path)}
-									variant="outline"
-								>
+								<Button onClick={handleClose} variant="outline">
 									Cancel
 								</Button>
 							</DrawerFooter>
@@ -191,35 +207,39 @@ export default function CheckinScanner({
 										"text-red-500": !hasRSVP || checkedIn,
 									})}
 								>
-									{drawerTitle}
+									{banned ? "USER IS BANNED" : drawerTitle}
 								</DrawerTitle>
 							</DrawerHeader>
-							<DrawerDescription className="mx-auto">
-								{drawerDescription}
-							</DrawerDescription>
-							<DrawerFooter>
-								{!hasRSVP && !checkedIn && (
-									<div className="mx-auto">
-										Do you wish to proceed?
-									</div>
-								)}
-								{!checkedIn && (
-									<Button
-										onClick={() => {
-											handleScanCreate();
-										}}
-										variant="outline"
-									>
-										{drawerFooterButtonText}
-									</Button>
-								)}
-								<Button
-									onClick={() => router.replace(path)}
-									variant="outline"
-								>
-									Cancel
-								</Button>
-							</DrawerFooter>
+							{!banned && (
+								<>
+									<DrawerDescription className="mx-auto">
+										{drawerDescription}
+									</DrawerDescription>
+									<DrawerFooter>
+										{!hasRSVP && !checkedIn && (
+											<div className="mx-auto">
+												Do you wish to proceed?
+											</div>
+										)}
+										{!checkedIn && (
+											<Button
+												onClick={() => {
+													handleScanCreate();
+												}}
+												variant="outline"
+											>
+												{drawerFooterButtonText}
+											</Button>
+										)}
+										<Button
+											onClick={handleClose}
+											variant="outline"
+										>
+											Cancel
+										</Button>
+									</DrawerFooter>
+								</>
+							)}
 						</>
 					)}
 				</DrawerContent>
